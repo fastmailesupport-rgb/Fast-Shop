@@ -276,7 +276,7 @@
             box-shadow: 0 4px 12px rgba(255, 85, 0, 0.3);
         }
 
-        /* MAIL CATEGORY BAR STYLING */
+        /* MAIL CATEGORY BAR */
         .mail-category-bar {
             display: flex;
             gap: 8px;
@@ -310,7 +310,7 @@
             box-shadow: 0 4px 12px rgba(255, 85, 0, 0.3);
         }
 
-        /* PROXY SUB-CATEGORY BAR STYLING (NEW FEATURE) */
+        /* PROXY CATEGORY BAR */
         .proxy-category-bar {
             display: flex;
             gap: 8px;
@@ -669,7 +669,7 @@
         }
         .submit-request-btn:hover { background: #132640; transform: translateY(-2px); }
 
-        /* REFUND POLICY STYLING */
+        /* REFUND POLICY */
         .policy-container {
             max-width: 680px;
             margin: 20px auto;
@@ -765,7 +765,7 @@
         .support-card.email i { color: #ea4335; }
         .support-card span { font-size: 12.5px; font-weight: 600; color: var(--text-main); }
 
-        /* WEBSITE FOOTER STYLING */
+        /* FOOTER */
         .site-footer {
             background: #0f172a;
             color: #94a3b8;
@@ -909,7 +909,7 @@
             object-fit: contain;
         }
 
-        /* MODAL OVERLAY STYLING */
+        /* MODAL */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -997,7 +997,7 @@
         }
         .modal-ok-btn:hover { filter: brightness(1.1); }
 
-        /* LOGIN INTERFACE */
+        /* LOGIN */
         .login-container {
             max-width: 440px;
             margin: 30px auto;
@@ -1119,7 +1119,7 @@
         }
         .login-submit-btn:hover { filter: brightness(1.1); }
 
-        /* ACCOUNT DASHBOARD */
+        /* DASHBOARD */
         .dashboard-container {
             max-width: 550px;
             margin: 10px auto;
@@ -1631,14 +1631,15 @@
 
         <div class="search-box">
             <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" id="searchInput" placeholder="Search products, mail, proxy..." onkeyup="filterProducts()">
+            <input type="text" id="searchInput" placeholder="Search products, mail, social subscriptions..." onkeyup="filterProducts()">
         </div>
 
         <div class="filter-tabs">
             <button class="filter-tab active" onclick="setCategory('all', this)"><i class="fa-solid fa-border-all"></i> All Products</button>
             <button class="filter-tab" onclick="setCategory('email', this)"><i class="fa-solid fa-envelope"></i> Email / Mail</button>
             <button class="filter-tab" onclick="setCategory('proxy', this)"><i class="fa-solid fa-globe"></i> Proxy Items</button>
-            <button class="filter-tab" onclick="setCategory('tools', this)"><i class="fa-solid fa-toolbox"></i> Tools & VPN</button>
+            <!-- Updated button name from Tools & VPN to Social Subscription -->
+            <button class="filter-tab" onclick="setCategory('social', this)"><i class="fa-solid fa-share-nodes"></i> Social Subscription</button>
         </div>
 
         <h3 style="margin-bottom: 12px; font-size: 16px; color: var(--secondary-glow);"><i class="fa-solid fa-fire"></i> Top Selling Products</h3>
@@ -1717,9 +1718,8 @@
         </div>
     </div>
 
-    <!-- 4. PROXY SECTION WITH 3 SUB-CATEGORIES -->
+    <!-- 4. PROXY SECTION -->
     <div id="proxySection" class="section-view">
-        <!-- Proxy Sub-Category Navigation Bar -->
         <div class="proxy-category-bar">
             <button class="proxy-cat-btn active" onclick="filterProxyCategory('all', this)"><i class="fa-solid fa-border-all"></i> All Proxy</button>
             <button class="proxy-cat-btn" onclick="filterProxyCategory('gp', this)"><i class="fa-solid fa-network-wired"></i> GP Proxy</button>
@@ -1732,9 +1732,7 @@
     </div>
 
     <!-- 5. ACCOUNT / LOGIN SECTION -->
-    <div id="profileSection" class="section-view">
-        <!-- Rendered dynamically -->
-    </div>
+    <div id="profileSection" class="section-view"></div>
 
     <!-- 6. REFUND POLICY SECTION -->
     <div id="refundPolicySection" class="section-view">
@@ -1813,7 +1811,7 @@
         </div>
     </div>
 
-    <!-- MODERN MODAL OVERLAY -->
+    <!-- MODAL OVERLAY -->
     <div class="modal-overlay" id="customModalOverlay">
         <div class="success-modal-card">
             <div class="success-icon-circle" id="modalIconBox">
@@ -1868,10 +1866,9 @@
         </div>
     </div>
 
-    <!-- WEBSITE FOOTER SECTION -->
+    <!-- FOOTER -->
     <footer class="site-footer">
         <div class="footer-content-grid">
-            <!-- Column 1: Brand & Contact -->
             <div class="footer-col">
                 <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 14px;">
                     <i class="fa-solid fa-shield-halved" style="color: var(--primary-glow); font-size: 20px;"></i>
@@ -1901,7 +1898,6 @@
                 </div>
             </div>
 
-            <!-- Column 2: Information Links -->
             <div class="footer-col">
                 <h3>Information</h3>
                 <ul class="footer-links-list">
@@ -1912,7 +1908,6 @@
                 </ul>
             </div>
 
-            <!-- Column 3: Support Links -->
             <div class="footer-col">
                 <h3>Support</h3>
                 <ul class="footer-links-list">
@@ -2242,13 +2237,7 @@
                 unitPrice: 0.57,
                 delivery: "Instant",
                 shortDesc: "Hotmail trusted account with high longevity.",
-                fullDetails: `
-                    <p>100% original and trusted Hotmail accounts. Instant automated delivery right after payment confirmation.</p>
-                    <ul>
-                        <li><strong>Format:</strong> Email:Password</li>
-                        <li><strong>Status:</strong> 100% Fresh & Active</li>
-                        <li><strong>Warranty:</strong> First login replacement guarantee</li>
-                    </ul>`
+                fullDetails: `<p>100% original and trusted Hotmail accounts. Instant automated delivery right after payment confirmation.</p>`
             },
             {
                 id: 2,
@@ -2263,13 +2252,7 @@
                 unitPrice: 0.48,
                 delivery: "Instant",
                 shortDesc: "Outlook.com | OAuth2 | 12-36 Months | Original.",
-                fullDetails: `
-                    <p>Aged and high-trusted Outlook accounts (12 to 36 months old). Full OAuth2 token supported.</p>
-                    <ul>
-                        <li><strong>Format:</strong> Email:Password:Refresh_Token:Client_ID</li>
-                        <li><strong>Usage:</strong> Best for API & automated tools</li>
-                        <li><strong>Delivery:</strong> Instant automatic delivery</li>
-                    </ul>`
+                fullDetails: `<p>Aged and high-trusted Outlook accounts (12 to 36 months old). Full OAuth2 token supported.</p>`
             },
             {
                 id: 3,
@@ -2284,12 +2267,7 @@
                 unitPrice: 0.80,
                 delivery: "Instant",
                 shortDesc: "Outlook.Fr French domain trusted accounts.",
-                fullDetails: `
-                    <p>Premium French domain (.fr) Outlook accounts. Highly reliable for all platform verifications.</p>
-                    <ul>
-                        <li><strong>Domain:</strong> @outlook.fr</li>
-                        <li><strong>Delivery:</strong> Instant 24/7</li>
-                    </ul>`
+                fullDetails: `<p>Premium French domain (.fr) Outlook accounts. Highly reliable for all platform verifications.</p>`
             },
             {
                 id: 4,
@@ -2304,12 +2282,7 @@
                 unitPrice: 1.20,
                 delivery: "Instant",
                 shortDesc: "Student institutional Edu mail with benefits.",
-                fullDetails: `
-                    <p>Original university Edu mail accounts for student pack activations and discounts.</p>
-                    <ul>
-                        <li><strong>Format:</strong> Email:Password</li>
-                        <li><strong>Status:</strong> Active & Fresh</li>
-                    </ul>`
+                fullDetails: `<p>Original university Edu mail accounts for student pack activations and discounts.</p>`
             },
             {
                 id: 5,
@@ -2324,12 +2297,7 @@
                 unitPrice: 1.50,
                 delivery: "Instant",
                 shortDesc: "Fresh Gmail.com accounts with recovery mail.",
-                fullDetails: `
-                    <p>High quality fresh Gmail accounts created with clean IPs.</p>
-                    <ul>
-                        <li><strong>Format:</strong> Email:Password:Recovery_Email</li>
-                        <li><strong>Delivery:</strong> Instant automatic</li>
-                    </ul>`
+                fullDetails: `<p>High quality fresh Gmail accounts created with clean IPs.</p>`
             },
             {
                 id: 6,
@@ -2351,13 +2319,7 @@
                     { label: "500 MB", price: 60.00 },
                     { label: "1 GB", price: 115.00 }
                 ],
-                fullDetails: `
-                    <p>Original GP Proxy residential IP packages. Select your required data plan below.</p>
-                    <ul>
-                        <li><strong>Type:</strong> CD Key / Sub User Account</li>
-                        <li><strong>Speed:</strong> Ultra-fast dedicated residential pool</li>
-                        <li><strong>Validity:</strong> No expiration date on unused balance</li>
-                    </ul>`
+                fullDetails: `<p>Original GP Proxy residential IP packages. Select your required data plan below.</p>`
             },
             {
                 id: 7,
@@ -2377,12 +2339,7 @@
                     { label: "1 Month", price: 25.00 },
                     { label: "3 Months", price: 70.00 }
                 ],
-                fullDetails: `
-                    <p>Clean dedicated static IP proxy for secure browsing and account management.</p>
-                    <ul>
-                        <li><strong>Type:</strong> Static Dedicated IP</li>
-                        <li><strong>Uptime:</strong> 99.9% Guaranteed</li>
-                    </ul>`
+                fullDetails: `<p>Clean dedicated static IP proxy for secure browsing and account management.</p>`
             },
             {
                 id: 8,
@@ -2402,12 +2359,153 @@
                     { label: "7 Days", price: 20.00 },
                     { label: "30 Days", price: 120.00 }
                 ],
-                fullDetails: `
-                    <p>High-speed NordVPN premium accounts with global server access unlocked.</p>
-                    <ul>
-                        <li><strong>Devices:</strong> Works on PC, Android, iOS</li>
-                        <li><strong>Warranty:</strong> Full subscription period replacement guarantee</li>
-                    </ul>`
+                fullDetails: `<p>High-speed NordVPN premium accounts with global server access unlocked.</p>`
+            },
+
+            /* --- NEW 9 SOCIAL SUBSCRIPTION PRODUCTS ADDED HERE --- */
+            {
+                id: 101,
+                category: 'social',
+                mode: 'plan',
+                planTitle: "SUBSCRIPTION PLAN",
+                name: "Canva Pro – 1 Year",
+                image: "https://cdn-icons-png.flaticon.com/512/3855/3855909.png",
+                stockCount: 1200,
+                stockText: "1 Year",
+                sold: "940 sold",
+                unitPrice: 350.00,
+                delivery: "Instant",
+                shortDesc: "Canva Pro official team invite for 1 full year access.",
+                plans: [{ label: "1 Year Access", price: 350.00 }],
+                fullDetails: `<p>Get 1 full year of Canva Pro access with team invite link. Enjoy all premium templates, brand kits, and background remover.</p>`
+            },
+            {
+                id: 102,
+                category: 'social',
+                mode: 'plan',
+                planTitle: "SUBSCRIPTION PLAN",
+                name: "Google Storage (Gmail) – 2TB – 1 Year",
+                image: "https://cdn-icons-png.flaticon.com/512/281/281764.png",
+                stockCount: 800,
+                stockText: "2TB / 1 Yr",
+                sold: "620 sold",
+                unitPrice: 1200.00,
+                delivery: "Instant",
+                shortDesc: "Google One 2TB cloud storage upgrade on your personal Gmail.",
+                plans: [{ label: "2TB - 1 Year", price: 1200.00 }],
+                fullDetails: `<p>Upgrade your Google account storage to 2TB for Google Drive, Gmail, and Google Photos for 1 full year.</p>`
+            },
+            {
+                id: 103,
+                category: 'social',
+                mode: 'plan',
+                planTitle: "SUBSCRIPTION PLAN",
+                name: "Gemini Pro (Veo 3) – 1 Year",
+                image: "https://www.gstatic.com/lamda/images/gemini_favicon_f06b31541cfa25732c25a.png",
+                stockCount: 450,
+                stockText: "1 Year",
+                sold: "310 sold",
+                unitPrice: 1500.00,
+                delivery: "Instant",
+                shortDesc: "Gemini Advanced / Pro subscription including Veo 3 features for 1 year.",
+                plans: [{ label: "1 Year Plan", price: 1500.00 }],
+                fullDetails: `<p>Full access to Gemini Pro and Veo video generation features for 1 year.</p>`
+            },
+            {
+                id: 104,
+                category: 'social',
+                mode: 'plan',
+                planTitle: "SUBSCRIPTION PLAN",
+                name: "YouTube Premium – 1 Month",
+                image: "https://cdn-icons-png.flaticon.com/512/1384/1384060.png",
+                stockCount: 2500,
+                stockText: "1 Month",
+                sold: "1,820 sold",
+                unitPrice: 80.00,
+                delivery: "Instant",
+                shortDesc: "YouTube Premium 1 month individual / family invite.",
+                plans: [{ label: "1 Month", price: 80.00 }],
+                fullDetails: `<p>Ad-free YouTube streaming, background play, and YouTube Music for 1 month.</p>`
+            },
+            {
+                id: 105,
+                category: 'social',
+                mode: 'plan',
+                planTitle: "SUBSCRIPTION PLAN",
+                name: "Netflix Premium – 1 Month",
+                image: "https://cdn-icons-png.flaticon.com/512/5977/5977590.png",
+                stockCount: 1500,
+                stockText: "4K UHD",
+                sold: "2,400 sold",
+                unitPrice: 150.00,
+                delivery: "Instant",
+                shortDesc: "Netflix Premium 4K UHD private profile for 1 month.",
+                plans: [{ label: "1 Month Profile", price: 150.00 }],
+                fullDetails: `<p>Enjoy ultra HD streaming on Netflix with private locked profile for 1 month.</p>`
+            },
+            {
+                id: 106,
+                category: 'social',
+                mode: 'plan',
+                planTitle: "SUBSCRIPTION PLAN",
+                name: "CapCut Pro – Full Access – 1 Month",
+                image: "https://cdn-icons-png.flaticon.com/512/6125/6125884.png",
+                stockCount: 950,
+                stockText: "1 Month",
+                sold: "710 sold",
+                unitPrice: 200.00,
+                delivery: "Instant",
+                shortDesc: "CapCut Pro full feature unlocked account for 1 month.",
+                plans: [{ label: "1 Month Access", price: 200.00 }],
+                fullDetails: `<p>Access all CapCut Pro video editing effects, transitions, and AI tools for 1 month.</p>`
+            },
+            {
+                id: 107,
+                category: 'social',
+                mode: 'plan',
+                planTitle: "SUBSCRIPTION PLAN",
+                name: "ChatGPT Plus – 1 Month",
+                image: "https://cdn-icons-png.flaticon.com/512/6125/6125016.png",
+                stockCount: 600,
+                stockText: "GPT-4o",
+                sold: "1,150 sold",
+                unitPrice: 450.00,
+                delivery: "Instant",
+                shortDesc: "ChatGPT Plus shared/private account access with GPT-4o for 1 month.",
+                plans: [{ label: "1 Month", price: 450.00 }],
+                fullDetails: `<p>Unlock advanced reasoning, GPT-4o, DALL-E 3 image generation, and data analysis for 1 month.</p>`
+            },
+            {
+                id: 108,
+                category: 'social',
+                mode: 'plan',
+                planTitle: "SUBSCRIPTION PLAN",
+                name: "Cloud AI – 1 Month",
+                image: "https://cdn-icons-png.flaticon.com/512/3855/3855841.png",
+                stockCount: 400,
+                stockText: "1 Month",
+                sold: "290 sold",
+                unitPrice: 300.00,
+                delivery: "Instant",
+                shortDesc: "Cloud AI premium subscription plan for 1 month.",
+                plans: [{ label: "1 Month", price: 300.00 }],
+                fullDetails: `<p>High performance Cloud AI assistant service for 1 month.</p>`
+            },
+            {
+                id: 109,
+                category: 'social',
+                mode: 'plan',
+                planTitle: "SUBSCRIPTION PLAN",
+                name: "Amazon Prime – 1 Month",
+                image: "https://cdn-icons-png.flaticon.com/512/5977/5977585.png",
+                stockCount: 700,
+                stockText: "Prime Video",
+                sold: "480 sold",
+                unitPrice: 100.00,
+                delivery: "Instant",
+                shortDesc: "Amazon Prime Video official account access for 1 month.",
+                plans: [{ label: "1 Month", price: 100.00 }],
+                fullDetails: `<p>Stream award-winning movies and Prime Video Originals for 1 month.</p>`
             }
         ];
 
@@ -2476,19 +2574,8 @@
             // Num & Mail section
             products.filter(p => p.category === 'email').forEach(product => numMailGrid.appendChild(createCard(product)));
 
-            // Proxy section filtering with Sub-Category Bar logic
-            const proxyFiltered = products.filter(p => {
-                if (p.category !== 'proxy') return false;
-                const matchesProxyCat = currentProxyCategory === 'all' || p.proxyType === currentProxyCategory;
-                const matchesSearch = p.name.toLowerCase().includes(filterText.toLowerCase());
-                return matchesProxyCat && matchesSearch;
-            });
-
-            if (proxyFiltered.length === 0) {
-                proxyGrid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 30px;">No proxy items found in this category!</p>`;
-            } else {
-                proxyFiltered.forEach(product => proxyGrid.appendChild(createCard(product)));
-            }
+            // Proxy section
+            products.filter(p => p.category === 'proxy').forEach(product => proxyGrid.appendChild(createCard(product)));
 
             document.getElementById('favCount').innerText = bookmarkedIds.length;
         }
@@ -2520,7 +2607,7 @@
                         <i class="${isBookmarked ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
                     </button>
                 </div>
-                <div class="card-img-wrapper"><img src="${product.image}" alt="${product.name}"></div>
+                <div class="card-img-wrapper"><img src="${product.image}" alt="${product.name}" onerror="this.src='https://cdn-icons-png.flaticon.com/512/906/906334.png'"></div>
                 <div class="card-body">
                     <h3 class="product-title">${product.name}</h3>
                     <p class="product-desc">${product.shortDesc}</p>
@@ -2601,29 +2688,8 @@
                         `).join('')}
                     </div>
                 `;
-            } else if (activeProduct.category === 'proxy' || activeProduct.category === 'tools') {
+            } else {
                 box.innerHTML = `
-                    <div class="detail-sec-header">
-                        <span>Delivery type</span>
-                        <span style="font-size:10.5px; color:#ff5500; font-weight:600;">Required</span>
-                    </div>
-                    <div class="options-grid" style="margin-bottom: 15px;">
-                        <div class="option-card ${selectedDeliveryType === 'Sub User' ? 'active' : ''}" onclick="selectDeliveryType('Sub User')">
-                            <div class="option-top">
-                                <h4>Sub User</h4>
-                                <div class="opt-check"><i class="fa-solid fa-check"></i></div>
-                            </div>
-                            <p>Ready account ...</p>
-                        </div>
-                        <div class="option-card ${selectedDeliveryType === 'CD Key' ? 'active' : ''}" onclick="selectDeliveryType('CD Key')">
-                            <div class="option-top">
-                                <h4>CD Key</h4>
-                                <div class="opt-check"><i class="fa-solid fa-check"></i></div>
-                            </div>
-                            <p>Redeem code y...</p>
-                        </div>
-                    </div>
-
                     <div class="detail-sec-header"><span>${activeProduct.planTitle || 'SELECT PLAN'}</span></div>
                     <div class="plan-grid">
                         ${activeProduct.plans.map((plan, idx) => `
@@ -2640,12 +2706,6 @@
 
         function selectFileFormat(format) {
             selectedFileFormat = format;
-            renderDetailSelectionBox();
-            updateDetailCalculation();
-        }
-
-        function selectDeliveryType(type) {
-            selectedDeliveryType = type;
             renderDetailSelectionBox();
             updateDetailCalculation();
         }
@@ -2685,7 +2745,7 @@
                 unitP = chosenPlan.price;
                 totalBDT = unitP;
                 document.getElementById('dUnitPrice').innerText = formatPrice(unitP);
-                orderSummary = `${activeProduct.name} - Plan: ${chosenPlan.label} [Delivery: ${selectedDeliveryType}]`;
+                orderSummary = `${activeProduct.name} - Plan: ${chosenPlan.label}`;
             }
 
             let formattedTotal = formatPrice(totalBDT);
