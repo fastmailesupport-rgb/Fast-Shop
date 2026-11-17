@@ -397,7 +397,7 @@
         }
         .buy-btn:hover { filter: brightness(1.1); }
 
-        /* REDESIGNED PROFESSIONAL TOP-UP / DEPOSIT INTERFACE */
+        /* DEPOSIT CONTAINER */
         .deposit-container {
             max-width: 520px;
             margin: 15px auto;
@@ -601,7 +601,7 @@
         }
         .submit-request-btn:hover { background: #132640; transform: translateY(-2px); }
 
-        /* UNIQUE PROFESSIONAL SUCCESS MODAL (REPLACING BROWSER ALERT) */
+        /* MODAL OVERLAY STYLING */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -653,6 +653,12 @@
             margin: 0 auto 18px;
             box-shadow: 0 8px 20px rgba(34, 197, 94, 0.2);
         }
+        .success-icon-circle.info {
+            background: rgba(255, 85, 0, 0.12);
+            border: 2px solid rgba(255, 85, 0, 0.3);
+            color: var(--primary-glow);
+            box-shadow: 0 8px 20px rgba(255, 85, 0, 0.2);
+        }
 
         .success-modal-card h3 {
             font-size: 20px;
@@ -682,6 +688,128 @@
             transition: 0.2s;
         }
         .modal-ok-btn:hover { filter: brightness(1.1); }
+
+        /* LOGIN INTERFACE STYLING */
+        .login-container {
+            max-width: 440px;
+            margin: 30px auto;
+            background: var(--card-bg);
+            border: 1.5px solid var(--border-color);
+            border-radius: 26px;
+            padding: 32px 24px;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.06);
+        }
+        .login-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        .login-header h2 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+        .login-header p { font-size: 13px; color: var(--text-muted); }
+
+        .google-login-btn {
+            width: 100%;
+            background: #f8fafc;
+            border: 1.5px solid var(--border-color);
+            padding: 12px;
+            border-radius: 14px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-bottom: 20px;
+        }
+        .google-login-btn:hover { border-color: var(--primary-glow); background: #fff; }
+        .google-login-btn img { width: 20px; height: 20px; }
+
+        .login-divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 12px;
+            margin-bottom: 20px;
+        }
+        .login-divider::before, .login-divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .login-divider::before { margin-right: 10px; }
+        .login-divider::after { margin-left: 10px; }
+
+        .login-form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+            margin-bottom: 16px;
+        }
+        .login-form-group label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+        .login-input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .login-input-wrapper input {
+            width: 100%;
+            background: #f8fafc;
+            border: 1.5px solid var(--border-color);
+            padding: 13px 18px;
+            border-radius: 14px;
+            font-size: 14px;
+            color: var(--text-main);
+            outline: none;
+            transition: 0.2s;
+        }
+        .login-input-wrapper input:focus {
+            border-color: var(--primary-glow);
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(255,85,0,0.08);
+        }
+
+        .login-options-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12.5px;
+            margin-bottom: 20px;
+        }
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+        .forgot-pass {
+            color: var(--secondary-glow);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .forgot-pass:hover { text-decoration: underline; }
+
+        .login-submit-btn {
+            background: var(--btn-gradient);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 16px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            box-shadow: 0 6px 20px rgba(255,85,0,0.3);
+            transition: 0.2s;
+        }
+        .login-submit-btn:hover { filter: brightness(1.1); }
 
         /* ACCOUNT DASHBOARD & OTHERS */
         .dashboard-container {
@@ -1151,11 +1279,11 @@
 <body>
 
     <header>
-        <div class="user-greeting">
+        <div class="user-greeting" id="headerUserGreeting">
             <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80" alt="Avatar" class="user-avatar">
             <div>
                 <h4>Welcome back,</h4>
-                <h2>Antor Kumar</h2>
+                <h2 id="headerUserName">Antor Kumar</h2>
             </div>
         </div>
         <div class="header-right">
@@ -1215,7 +1343,7 @@
         <div class="product-grid" id="numMailGrid"></div>
     </div>
 
-    <!-- 3. DEPOSIT SECTION (REDESIGNED PROFESSIONAL INTERFACE) -->
+    <!-- 3. DEPOSIT SECTION -->
     <div id="depositSection" class="section-view">
         <div class="deposit-container">
             <div class="deposit-top-title">
@@ -1224,7 +1352,6 @@
             <p class="deposit-subtitle">Send money to the number below and fill the form.</p>
 
             <div class="section-label-text">Payment Method</div>
-            
             <div class="gateway-grid" id="gatewayGrid"></div>
 
             <hr class="divider-line">
@@ -1253,7 +1380,7 @@
                 4. Copy the Transaction ID (TrxID) and fill the form below.
             </div>
 
-            <form onsubmit="event.preventDefault(); showSuccessModal();">
+            <form onsubmit="event.preventDefault(); showModal('Success!', 'Top-up request submitted successfully! Admin will verify within 5-10 minutes.', 'success');">
                 <div class="deposit-form-group">
                     <label>Amount (৳)</label>
                     <div class="deposit-input-wrapper">
@@ -1282,103 +1409,26 @@
         </div>
     </div>
 
-    <!-- UNIQUE PROFESSIONAL SUCCESS MODAL -->
-    <div class="modal-overlay" id="successModalOverlay">
-        <div class="success-modal-card">
-            <div class="success-icon-circle">
-                <i class="fa-solid fa-check"></i>
-            </div>
-            <h3>Top-up Request Submitted!</h3>
-            <p>Your deposit request has been successfully submitted. Admin will verify and update your balance within 5-10 minutes.</p>
-            <button class="modal-ok-btn" onclick="closeSuccessModal()">OK</button>
-        </div>
-    </div>
-
     <!-- 4. PROXY SECTION -->
     <div id="proxySection" class="section-view">
         <h3 style="margin-bottom: 12px; font-size: 16px; color: var(--secondary-glow);"><i class="fa-solid fa-globe"></i> Proxy & IP Services</h3>
         <div class="product-grid" id="proxyGrid"></div>
     </div>
 
-    <!-- 5. ACCOUNT DASHBOARD SECTION -->
+    <!-- 5. ACCOUNT DASHBOARD / LOGIN SECTION (DYNAMIC BASED ON AUTH STATE) -->
     <div id="profileSection" class="section-view">
-        <div class="dashboard-container">
-            <div class="dashboard-top-tabs">
-                <button class="dash-tab active"><i class="fa-regular fa-user"></i> Profile</button>
-                <button class="dash-tab" onclick="alert('My Orders view')"><i class="fa-solid fa-box-open"></i> My Orders</button>
-                <button class="dash-tab" onclick="switchTab('deposit', document.querySelectorAll('.nav-item')[2])"><i class="fa-solid fa-wallet"></i> Wallet</button>
-                <button class="dash-tab" onclick="alert('Security settings')"><i class="fa-solid fa-shield-halved"></i> Security</button>
+        <!-- Rendered dynamically via JS (Login or Dashboard) -->
+    </div>
+
+    <!-- MODERN MODAL OVERLAY -->
+    <div class="modal-overlay" id="customModalOverlay">
+        <div class="success-modal-card">
+            <div class="success-icon-circle" id="modalIconBox">
+                <i class="fa-solid fa-check" id="modalIcon"></i>
             </div>
-
-            <div class="dash-header-row">
-                <h2>Profile</h2>
-                <button class="edit-profile-btn" onclick="alert('Edit Profile mode enabled')">
-                    <i class="fa-solid fa-pen"></i> Edit
-                </button>
-            </div>
-
-            <div class="dash-info-list">
-                <div class="dash-info-card">
-                    <div class="dash-icon-box"><i class="fa-regular fa-user"></i></div>
-                    <div class="dash-info-content">
-                        <span class="dash-info-label">Full Name</span>
-                        <span class="dash-info-val">Antor Kumar</span>
-                    </div>
-                </div>
-
-                <div class="dash-info-card">
-                    <div class="dash-icon-box"><i class="fa-regular fa-envelope"></i></div>
-                    <div class="dash-info-content" style="flex-direction: row; justify-content: space-between; align-items: center;">
-                        <div>
-                            <span class="dash-info-label" style="display:block;">Email</span>
-                            <span class="dash-info-val">antorsaha1@gmail.com</span>
-                        </div>
-                        <span class="verified-pill"><i class="fa-solid fa-circle-check"></i> Verified</span>
-                    </div>
-                </div>
-
-                <div class="dash-info-card">
-                    <div class="dash-icon-box"><i class="fa-solid fa-phone"></i></div>
-                    <div class="dash-info-content">
-                        <span class="dash-info-label">Phone Number</span>
-                        <span class="dash-info-val muted">Not added</span>
-                    </div>
-                </div>
-
-                <div class="dash-info-card">
-                    <div class="dash-icon-box"><i class="fa-brands fa-whatsapp"></i></div>
-                    <div class="dash-info-content">
-                        <span class="dash-info-label">WhatsApp</span>
-                        <span class="dash-info-val muted">Not added</span>
-                    </div>
-                </div>
-
-                <div class="dash-info-card">
-                    <div class="dash-icon-box"><i class="fa-solid fa-location-dot"></i></div>
-                    <div class="dash-info-content">
-                        <span class="dash-info-label">Address</span>
-                        <span class="dash-info-val muted">Not added</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="dash-menu-links">
-                <a href="https://wa.me/8801700000000" target="_blank" class="dash-menu-item">
-                    <div class="dash-menu-item-left"><i class="fa-solid fa-headset"></i> Support</div>
-                    <i class="fa-solid fa-chevron-right" style="color: var(--text-muted); font-size: 12px;"></i>
-                </a>
-                <a href="#" onclick="alert('Refund Request form')" class="dash-menu-item">
-                    <div class="dash-menu-item-left"><i class="fa-solid fa-rotate-left"></i> Refund Request</div>
-                    <i class="fa-solid fa-chevron-right" style="color: var(--text-muted); font-size: 12px;"></i>
-                </a>
-                <a href="#" onclick="alert('Refund Policy details')" class="dash-menu-item">
-                    <div class="dash-menu-item-left"><i class="fa-solid fa-shield-cat"></i> Refund Policy</div>
-                    <i class="fa-solid fa-chevron-right" style="color: var(--text-muted); font-size: 12px;"></i>
-                </a>
-                <a href="#" onclick="alert('Logged out successfully')" class="dash-menu-item logout">
-                    <div class="dash-menu-item-left"><i class="fa-solid fa-right-from-bracket"></i> Logout</div>
-                </a>
-            </div>
+            <h3 id="modalTitle">Notification</h3>
+            <p id="modalDesc">Message content goes here.</p>
+            <button class="modal-ok-btn" onclick="closeCustomModal()">OK</button>
         </div>
     </div>
 
@@ -1461,6 +1511,198 @@
             showSlide(slideIndex + 1);
         }, 3000);
 
+        // Authentication & Session State
+        let isLoggedIn = localStorage.getItem('siteIsLoggedIn') === 'true' || true; // Default true as per initial view
+        let currentUser = {
+            name: "Antor Kumar",
+            email: "antorsaha1@gmail.com",
+            avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80"
+        };
+
+        function updateAuthUI() {
+            const headerGreeting = document.getElementById('headerUserGreeting');
+            if (isLoggedIn) {
+                headerGreeting.style.display = 'flex';
+                document.getElementById('headerUserName').innerText = currentUser.name;
+            } else {
+                headerGreeting.style.display = 'none';
+            }
+            renderProfileSection();
+        }
+
+        function renderProfileSection() {
+            const profileSec = document.getElementById('profileSection');
+            if (!isLoggedIn) {
+                // Render Premium Login Interface
+                profileSec.innerHTML = `
+                    <div class="login-container">
+                        <div class="login-header">
+                            <h2>Welcome Back</h2>
+                            <p>Sign in to your account to continue</p>
+                        </div>
+                        
+                        <button class="google-login-btn" onclick="handleGoogleSignIn()">
+                            <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google">
+                            Continue with Google
+                        </button>
+
+                        <div class="login-divider">or sign in with email</div>
+
+                        <form onsubmit="event.preventDefault(); handleEmailLogin();">
+                            <div class="login-form-group">
+                                <label>Email Address</label>
+                                <div class="login-input-wrapper">
+                                    <input type="email" id="loginEmail" placeholder="Enter your email..." required>
+                                </div>
+                            </div>
+
+                            <div class="login-form-group">
+                                <label>Password</label>
+                                <div class="login-input-wrapper">
+                                    <input type="password" id="loginPass" placeholder="••••••••" required>
+                                </div>
+                            </div>
+
+                            <div class="login-options-row">
+                                <label class="remember-me">
+                                    <input type="checkbox" checked> Remember me
+                                </label>
+                                <a href="#" class="forgot-pass" onclick="showModal('Password Reset', 'Password reset instructions sent to your email.', 'info')">Forgot password?</a>
+                            </div>
+
+                            <button type="submit" class="login-submit-btn">Sign In</button>
+                        </form>
+                    </div>
+                `;
+            } else {
+                // Render User Dashboard
+                profileSec.innerHTML = `
+                    <div class="dashboard-container">
+                        <div class="dashboard-top-tabs">
+                            <button class="dash-tab active"><i class="fa-regular fa-user"></i> Profile</button>
+                            <button class="dash-tab" onclick="showModal('My Orders', 'You have 3 active orders running.', 'info')"><i class="fa-solid fa-box-open"></i> My Orders</button>
+                            <button class="dash-tab" onclick="switchTab('deposit', document.querySelectorAll('.nav-item')[2])"><i class="fa-solid fa-wallet"></i> Wallet</button>
+                            <button class="dash-tab" onclick="showModal('Security', 'Account is secured with 2FA & SSL.', 'info')"><i class="fa-solid fa-shield-halved"></i> Security</button>
+                        </div>
+
+                        <div class="dash-header-row">
+                            <h2>Profile</h2>
+                            <button class="edit-profile-btn" onclick="showModal('Edit Profile', 'Edit profile mode enabled.', 'info')">
+                                <i class="fa-solid fa-pen"></i> Edit
+                            </button>
+                        </div>
+
+                        <div class="dash-info-list">
+                            <div class="dash-info-card">
+                                <div class="dash-icon-box"><i class="fa-regular fa-user"></i></div>
+                                <div class="dash-info-content">
+                                    <span class="dash-info-label">Full Name</span>
+                                    <span class="dash-info-val">${currentUser.name}</span>
+                                </div>
+                            </div>
+
+                            <div class="dash-info-card">
+                                <div class="dash-icon-box"><i class="fa-regular fa-envelope"></i></div>
+                                <div class="dash-info-content" style="flex-direction: row; justify-content: space-between; align-items: center;">
+                                    <div>
+                                        <span class="dash-info-label" style="display:block;">Email</span>
+                                        <span class="dash-info-val">${currentUser.email}</span>
+                                    </div>
+                                    <span class="verified-pill"><i class="fa-solid fa-circle-check"></i> Verified</span>
+                                </div>
+                            </div>
+
+                            <div class="dash-info-card">
+                                <div class="dash-icon-box"><i class="fa-solid fa-phone"></i></div>
+                                <div class="dash-info-content">
+                                    <span class="dash-info-label">Phone Number</span>
+                                    <span class="dash-info-val muted">Not added</span>
+                                </div>
+                            </div>
+
+                            <div class="dash-info-card">
+                                <div class="dash-icon-box"><i class="fa-brands fa-whatsapp"></i></div>
+                                <div class="dash-info-content">
+                                    <span class="dash-info-label">WhatsApp</span>
+                                    <span class="dash-info-val muted">Not added</span>
+                                </div>
+                            </div>
+
+                            <div class="dash-info-card">
+                                <div class="dash-icon-box"><i class="fa-solid fa-location-dot"></i></div>
+                                <div class="dash-info-content">
+                                    <span class="dash-info-label">Address</span>
+                                    <span class="dash-info-val muted">Not added</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dash-menu-links">
+                            <a href="https://wa.me/8801700000000" target="_blank" class="dash-menu-item">
+                                <div class="dash-menu-item-left"><i class="fa-solid fa-headset"></i> Support</div>
+                                <i class="fa-solid fa-chevron-right" style="color: var(--text-muted); font-size: 12px;"></i>
+                            </a>
+                            <a href="#" onclick="showModal('Refund', 'Refund request form opened.', 'info')" class="dash-menu-item">
+                                <div class="dash-menu-item-left"><i class="fa-solid fa-rotate-left"></i> Refund Request</div>
+                                <i class="fa-solid fa-chevron-right" style="color: var(--text-muted); font-size: 12px;"></i>
+                            </a>
+                            <a href="#" onclick="showModal('Policy', 'Reviewing store refund policy.', 'info')" class="dash-menu-item">
+                                <div class="dash-menu-item-left"><i class="fa-solid fa-shield-cat"></i> Refund Policy</div>
+                                <i class="fa-solid fa-chevron-right" style="color: var(--text-muted); font-size: 12px;"></i>
+                            </a>
+                            <a href="#" onclick="handleLogout()" class="dash-menu-item logout">
+                                <div class="dash-menu-item-left"><i class="fa-solid fa-right-from-bracket"></i> Logout</div>
+                            </a>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        function handleGoogleSignIn() {
+            showModal('Google Sign-In', 'Google Sign-In popup initiated successfully.', 'info');
+            setTimeout(() => {
+                isLoggedIn = true;
+                localStorage.setItem('siteIsLoggedIn', 'true');
+                updateAuthUI();
+            }, 1000);
+        }
+
+        function handleEmailLogin() {
+            isLoggedIn = true;
+            localStorage.setItem('siteIsLoggedIn', 'true');
+            showModal('Success!', 'Logged in successfully! Welcome back.', 'success');
+            updateAuthUI();
+        }
+
+        function handleLogout() {
+            isLoggedIn = false;
+            localStorage.setItem('siteIsLoggedIn', 'false');
+            showModal('Logged Out', 'Logged out successfully from your account.', 'info');
+            updateAuthUI();
+        }
+
+        function showModal(title, desc, type = 'success') {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalDesc').innerText = desc;
+            const iconBox = document.getElementById('modalIconBox');
+            const icon = document.getElementById('modalIcon');
+            
+            if(type === 'info') {
+                iconBox.className = 'success-icon-circle info';
+                icon.className = 'fa-solid fa-info';
+            } else {
+                iconBox.className = 'success-icon-circle';
+                icon.className = 'fa-solid fa-check';
+            }
+
+            document.getElementById('customModalOverlay').classList.add('active');
+        }
+
+        function closeCustomModal() {
+            document.getElementById('customModalOverlay').classList.remove('active');
+        }
+
         // Deposit Gateways Data
         const depositGateways = [
             { id: 'bkash1', name: 'BKash', number: '01700-111111', logo: 'https://cdn.iconscout.com/icon/free/png-256/free-bkash-logo-icon-download-in-svg-png-gif-file-formats--mobile-financial-service-brand-vol-7-pack-logos-icons-3215352.png?f=webp&w=256' },
@@ -1477,6 +1719,7 @@
 
         function renderDepositGateways() {
             const grid = document.getElementById('gatewayGrid');
+            if (!grid) return;
             grid.innerHTML = '';
 
             depositGateways.forEach(gw => {
@@ -1516,15 +1759,7 @@
         function copyPaymentNumber() {
             const num = document.getElementById('selectedGatewayNumber').innerText;
             navigator.clipboard.writeText(num);
-            alert(`Copied number: ${num}`);
-        }
-
-        function showSuccessModal() {
-            document.getElementById('successModalOverlay').classList.add('active');
-        }
-
-        function closeSuccessModal() {
-            document.getElementById('successModalOverlay').classList.remove('active');
+            showModal('Copied!', `Number ${num} copied to clipboard.`, 'success');
         }
 
         // Currency & Products Logic
@@ -1697,6 +1932,7 @@
             const numMailGrid = document.getElementById('numMailGrid');
             const proxyGrid = document.getElementById('proxyGrid');
             
+            if(!grid) return;
             grid.innerHTML = '';
             numMailGrid.innerHTML = '';
             proxyGrid.innerHTML = '';
@@ -1782,6 +2018,7 @@
 
         function renderDetailSelectionBox() {
             const box = document.getElementById('dSelectionBox');
+            if (!box) return;
             
             if (activeProduct.category === 'email') {
                 box.innerHTML = `
@@ -1963,14 +2200,19 @@
                 renderDepositGateways();
             }
             if(tabName === 'proxy') document.getElementById('proxySection').classList.add('active');
-            if(tabName === 'profile') document.getElementById('profileSection').classList.add('active');
+            if(tabName === 'profile') {
+                document.getElementById('profileSection').classList.add('active');
+                renderProfileSection();
+            }
 
             if (element) element.classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
+        // Initialization
         renderDepositGateways();
         updateCurrencyUI();
+        updateAuthUI();
     </script>
 </body>
 </html>
