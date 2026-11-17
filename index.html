@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fast Shop - Digital Store</title>
+    <title>Fast Shop - Product Details</title>
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -11,24 +11,12 @@
             --bg-dark: #120400;
             --bg-gradient: radial-gradient(circle at top, #2d0e00 0%, #120400 75%);
             --card-bg: #1e0902;
-            --primary-glow: #ff5500;
-            --secondary-glow: #ff9900;
+            --primary-orange: #ff5500;
+            --secondary-orange: #ff8800;
             --btn-gradient: linear-gradient(90deg, #ff5500, #ff7700);
             --border-color: rgba(255, 85, 0, 0.35);
             --text-main: #ffffff;
             --text-muted: #c2a294;
-        }
-
-        body.light-theme {
-            --bg-dark: #f8fafc;
-            --bg-gradient: radial-gradient(circle at top, #fee2e2 0%, #f1f5f9 75%);
-            --card-bg: #ffffff;
-            --primary-glow: #ff5500;
-            --secondary-glow: #ea580c;
-            --btn-gradient: linear-gradient(90deg, #ff5500, #ea580c);
-            --border-color: rgba(255, 85, 0, 0.25);
-            --text-main: #1e293b;
-            --text-muted: #64748b;
         }
 
         * {
@@ -43,752 +31,362 @@
             background-image: var(--bg-gradient);
             color: var(--text-main);
             min-height: 100vh;
-            padding-bottom: 95px;
-            transition: all 0.3s ease;
-        }
-
-        /* Top Header */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 5%;
-            background: rgba(0, 0, 0, 0.35);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .user-greeting {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .user-avatar {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            border: 2px solid var(--primary-glow);
-            object-fit: cover;
-        }
-
-        .user-greeting h4 { font-size: 12px; color: var(--text-muted); }
-        .user-greeting h2 { font-size: 17px; color: var(--text-main); font-weight: 700; }
-
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .wallet-pill {
-            background: rgba(255, 85, 0, 0.15);
-            border: 1px solid var(--border-color);
-            padding: 6px 14px;
-            border-radius: 50px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 700;
-            font-size: 14px;
-        }
-        .wallet-pill i { color: var(--primary-glow); }
-
-        .notif-btn {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            color: var(--text-main);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            position: relative;
-        }
-
-        .fav-count-badge {
-            position: absolute;
-            top: -4px;
-            right: -4px;
-            background: #ff2a6d;
-            color: white;
-            font-size: 10px;
-            width: 17px;
-            height: 17px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-        }
-
-        /* Section Views */
-        .section-view {
-            display: none;
-            max-width: 1100px;
-            margin: 15px auto 25px;
-            padding: 0 20px;
-        }
-        .section-view.active { display: block; }
-
-        /* Home Top Features (From Video Layout) */
-        .notice-box {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 12px 18px;
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 18px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
-        }
-        .notice-left { display: flex; align-items: center; gap: 10px; font-size: 13.5px; font-weight: 600; }
-        .notice-left i { color: var(--secondary-glow); font-size: 16px; }
-        .status-pill {
-            background: rgba(34, 197, 94, 0.15);
-            color: #4ade80;
-            border: 1px solid rgba(34, 197, 94, 0.4);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 11.5px;
-            font-weight: 600;
-        }
-
-        /* Instant Add Balance Banner */
-        .deposit-card {
-            background: linear-gradient(135deg, rgba(255, 85, 0, 0.18), rgba(30, 9, 2, 0.95));
-            border: 1.5px solid var(--primary-glow);
-            border-radius: 20px;
-            padding: 20px;
-            margin-bottom: 22px;
-            box-shadow: 0 0 25px rgba(255,85,0,0.2);
-            text-align: center;
-        }
-        .deposit-card h3 { font-size: 19px; margin-bottom: 6px; color: var(--text-main); }
-        .deposit-card p { font-size: 13px; color: var(--text-muted); margin-bottom: 14px; }
-        .payment-logos {
+            padding: 20px 15px 100px;
             display: flex;
             justify-content: center;
-            gap: 10px;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-        }
-        .pay-badge {
-            background: rgba(0,0,0,0.4);
-            border: 1px solid var(--border-color);
-            color: var(--text-main);
-            padding: 5px 14px;
-            border-radius: 30px;
-            font-size: 12.5px;
-            font-weight: 600;
         }
 
-        /* Search & Filter Bar */
-        .search-box {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 50px;
-            padding: 10px 20px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-        .search-box input {
-            background: none;
-            border: none;
-            outline: none;
-            color: var(--text-main);
-            font-size: 14.5px;
+        .container {
             width: 100%;
-        }
-        .search-box i { color: var(--primary-glow); font-size: 17px; }
-
-        .filter-tabs {
+            max-width: 480px;
             display: flex;
-            gap: 10px;
-            overflow-x: auto;
-            padding-bottom: 8px;
-            margin-bottom: 18px;
-            scrollbar-width: none;
+            flex-direction: column;
+            gap: 15px;
         }
-        .filter-tabs::-webkit-scrollbar { display: none; }
 
-        .filter-tab {
+        /* Top Banner Card */
+        .hero-card {
             background: var(--card-bg);
-            border: 1px solid var(--border-color);
+            border: 1.5px solid var(--border-color);
+            border-radius: 24px;
+            padding: 25px 20px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+        }
+
+        .hero-img {
+            width: 110px;
+            height: 110px;
+            object-fit: contain;
+            margin-bottom: 15px;
+        }
+
+        .hero-title {
+            font-size: 30px;
+            font-weight: 700;
             color: var(--text-main);
-            padding: 8px 18px;
-            border-radius: 50px;
+            margin-bottom: 12px;
+        }
+
+        .stock-pill {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid var(--border-color);
+            padding: 6px 16px;
+            border-radius: 30px;
             font-size: 13px;
             font-weight: 600;
-            cursor: pointer;
-            white-space: nowrap;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: 0.3s;
-        }
-        .filter-tab.active {
-            background: var(--btn-gradient);
-            border-color: transparent;
-            color: white;
-            box-shadow: 0 0 15px rgba(255, 85, 0, 0.4);
+            color: var(--text-muted);
         }
 
-        /* Product Grid & Cards */
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 20px;
-        }
-
-        .card {
+        /* Product Info Card */
+        .info-card {
             background: var(--card-bg);
             border: 1.5px solid var(--border-color);
             border-radius: 20px;
-            overflow: hidden;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: 0.3s;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-        }
-        .card:hover {
-            transform: translateY(-4px);
-            border-color: var(--primary-glow);
-            box-shadow: 0 10px 25px rgba(255,85,0,0.25);
+            padding: 20px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
         }
 
-        .card-top-bar {
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            right: 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 5;
+        .product-name {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 4px;
         }
 
-        .badges-left {
-            display: flex;
-            gap: 6px;
+        .product-category {
+            font-size: 13.5px;
+            color: var(--text-muted);
+            margin-bottom: 18px;
         }
 
-        .stock-badge {
-            background: rgba(0, 0, 0, 0.78);
-            backdrop-filter: blur(5px);
-            color: #fff;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 11px;
+        .section-label {
+            font-size: 11.5px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
             font-weight: 600;
-            border: 1px solid var(--primary-glow);
         }
 
-        .sold-badge {
-            background: rgba(0, 0, 0, 0.78);
-            backdrop-filter: blur(5px);
-            color: #ff9900;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 600;
-            border: 1px solid rgba(255,153,0,0.4);
+        .price-row {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-orange);
+            margin-bottom: 14px;
             display: flex;
             align-items: center;
             gap: 4px;
         }
 
-        .fav-btn {
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            background: rgba(0, 0, 0, 0.78);
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255,255,255,0.2);
-            color: #fff;
-            cursor: pointer;
+        .badges-row {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            transition: 0.2s;
-        }
-        .fav-btn:hover { transform: scale(1.1); }
-        .fav-btn.active { color: #ff2a6d; border-color: #ff2a6d; box-shadow: 0 0 10px rgba(255,42,109,0.5); }
-
-        .card-img-wrapper {
-            height: 165px;
-            overflow: hidden;
-            background: rgba(0,0,0,0.15);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 22px;
-        }
-        .card-img-wrapper img { max-width: 100%; max-height: 100%; object-fit: contain; transition: 0.3s; }
-        .card:hover .card-img-wrapper img { transform: scale(1.06); }
-
-        .card-body { padding: 16px 18px; display: flex; flex-direction: column; flex-grow: 1; }
-        .product-title { font-size: 16px; font-weight: 700; margin-bottom: 6px; color: var(--text-main); }
-        .product-desc { font-size: 12.5px; color: var(--text-muted); margin-bottom: 16px; flex-grow: 1; line-height: 1.45; }
-
-        .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 12px; }
-        .price { font-size: 18.5px; font-weight: 700; color: var(--primary-glow); }
-
-        .buy-btn {
-            background: var(--btn-gradient);
-            color: white;
-            border: none;
-            padding: 8px 18px;
-            border-radius: 50px;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(255,85,0,0.3);
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            transition: 0.2s;
-            text-decoration: none;
-        }
-        .buy-btn:hover { filter: brightness(1.1); transform: scale(1.02); }
-
-        /* Profile Styles */
-        .profile-container {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-
-        .profile-top-settings {
-            display: flex;
-            justify-content: flex-end;
-            gap: 12px;
-            margin-bottom: 20px;
+            gap: 8px;
             flex-wrap: wrap;
         }
 
-        .setting-box {
-            background: rgba(0,0,0,0.12);
+        .badge {
+            background: rgba(0,0,0,0.4);
             border: 1px solid var(--border-color);
-            padding: 6px 14px;
-            border-radius: 30px;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .badge.green { color: #22c55e; border-color: rgba(34,197,94,0.4); }
+        .badge.orange { color: #ff9900; border-color: rgba(255,153,0,0.4); }
+
+        /* Quantity Selection Card */
+        .selection-card {
+            background: var(--card-bg);
+            border: 1.5px solid var(--border-color);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .section-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
             gap: 8px;
+        }
+        .section-title i { color: var(--primary-orange); }
+
+        .counter-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(0,0,0,0.25);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 10px 20px;
+            margin-bottom: 15px;
+        }
+
+        .counter-btn {
+            background: none;
+            border: none;
+            color: var(--text-main);
+            font-size: 20px;
+            cursor: pointer;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: 0.2s;
+        }
+        .counter-btn:hover { background: rgba(255,85,0,0.2); color: var(--primary-orange); }
+
+        .counter-value {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .preset-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 6px;
+        }
+
+        .preset-btn {
+            background: rgba(0,0,0,0.3);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 10px 0;
+            border-radius: 10px;
             font-size: 13px;
             font-weight: 600;
-        }
-
-        .stats-row {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-        .stat-card {
-            background: rgba(0,0,0,0.15);
-            border: 1px solid var(--border-color);
-            padding: 15px;
-            border-radius: 14px;
-            text-align: center;
-        }
-        .stat-card h3 { font-size: 18px; font-weight: 700; color: var(--primary-glow); }
-        .stat-card p { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
-
-        .user-info-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-bottom: 25px;
-        }
-        .info-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 12px 15px;
-            background: rgba(0,0,0,0.08);
-            border-radius: 10px;
-            border: 1px solid rgba(255,255,255,0.05);
-            font-size: 14px;
-        }
-        .info-item span:first-child { color: var(--text-muted); }
-        .info-item span:last-child { font-weight: 600; }
-
-        .referral-banner {
-            background: var(--btn-gradient);
-            color: white;
-            padding: 15px;
-            border-radius: 14px;
-            text-align: center;
-            font-weight: 600;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(255,85,0,0.3);
+            transition: 0.2s;
+            text-align: center;
+        }
+        .preset-btn.active {
+            background: var(--primary-orange);
+            border-color: var(--primary-orange);
+            color: white;
+            box-shadow: 0 0 10px rgba(255,85,0,0.4);
         }
 
-        /* Bottom Navigation Bar */
-        .bottom-nav {
+        /* Product Details / Description Card */
+        .details-card {
+            background: var(--card-bg);
+            border: 1.5px solid var(--border-color);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .details-content {
+            font-size: 13.5px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .details-content ul {
+            margin-top: 10px;
+            padding-left: 18px;
+        }
+
+        .details-content li {
+            margin-bottom: 6px;
+        }
+
+        /* Fixed Bottom Action Bar */
+        .bottom-bar {
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
-            background: var(--card-bg);
+            background: rgba(30, 9, 2, 0.95);
             backdrop-filter: blur(15px);
             border-top: 1px solid var(--border-color);
+            padding: 14px 20px;
             display: flex;
-            justify-content: space-around;
+            justify-content: space-between;
             align-items: center;
-            padding: 10px 0;
             z-index: 1000;
+            max-width: 480px;
+            margin: 0 auto;
         }
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 12px;
-            cursor: pointer;
-            background: none;
-            border: none;
-            transition: 0.3s;
-        }
-        .nav-item i { font-size: 20px; margin-bottom: 4px; }
-        .nav-item.active { color: var(--primary-glow); }
 
-        .nav-item.deposit-center { position: relative; margin-top: -35px; }
-        .nav-item.deposit-center .deposit-icon-box {
-            width: 60px;
-            height: 60px;
+        .total-price-display {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary-orange);
+        }
+
+        .place-order-btn {
             background: var(--btn-gradient);
-            border-radius: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             color: white;
-            box-shadow: 0 6px 20px rgba(255,85,0,0.5);
-            border: 3px solid var(--bg-dark);
-            font-size: 24px;
-        }
-        .nav-item.deposit-center span { margin-top: 4px; font-weight: 600; color: var(--text-main); }
-
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.8);
-            backdrop-filter: blur(5px);
-            z-index: 2000;
-            justify-content: center;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(255,85,0,0.4);
+            transition: 0.2s;
+            text-decoration: none;
+            display: inline-flex;
             align-items: center;
-            padding: 20px;
+            gap: 8px;
         }
-        .modal-content {
-            background: var(--card-bg);
-            border: 2px solid var(--primary-glow);
-            border-radius: 20px;
-            padding: 25px;
-            max-width: 400px;
-            width: 100%;
-            text-align: center;
-            box-shadow: 0 0 30px rgba(255,85,0,0.4);
-        }
+        .place-order-btn:hover { filter: brightness(1.1); transform: scale(1.02); }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
-    <header>
-        <div class="user-greeting">
-            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80" alt="Avatar" class="user-avatar">
-            <div>
-                <h4>Welcome back,</h4>
-                <h2>অন্তর কুমার</h2>
-            </div>
-        </div>
-        <div class="header-right">
-            <div class="wallet-pill">
-                <i class="fa-solid fa-wallet"></i> ৳২,১০৪
-            </div>
-            <button class="notif-btn" onclick="toggleBookmarksOnly()" title="বুকমার্ক করা প্রোডাক্ট">
-                <i class="fa-solid fa-heart" style="color: #ff2a6d;"></i>
-                <span class="fav-count-badge" id="favCount">0</span>
-            </button>
-        </div>
-    </header>
-
-    <!-- 1. HOME SECTION (With Video Layout Features + Your Original Theme) -->
-    <div id="homeSection" class="section-view active">
+    <div class="container">
         
-        <!-- Live Notice Banner -->
-        <div class="notice-box">
-            <div class="notice-left">
-                <i class="fa-solid fa-bullhorn"></i>
-                <span>ইনস্ট্যান্ট অটোমেটেড ডেলিভারি এবং ২৪/৭ সাপোর্ট চালু আছে</span>
+        <!-- Top Image Card -->
+        <div class="hero-card">
+            <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Hotmail" class="hero-img">
+            <h1 class="hero-title">Hotmail</h1>
+            <div class="stock-pill"><span style="width:7px; height:7px; background:#22c55e; border-radius:50%; display:inline-block; margin-right:6px;"></span>45,768 in stock</div>
+        </div>
+
+        <!-- Product Info Card -->
+        <div class="info-card">
+            <div class="product-name">Hotmail Trusted V1</div>
+            <div class="product-category">45,768 pcs available</div>
+            
+            <div class="section-label">Unit Price</div>
+            <div class="price-row" id="unitPriceDisplay">৳ 0.57</div>
+
+            <div class="badges-row">
+                <div class="badge green"><i class="fa-solid fa-clock"></i> Instant</div>
+                <div class="badge green"><i class="fa-solid fa-circle-check"></i> In stock</div>
+                <div class="badge orange"><i class="fa-solid fa-fire"></i> 2,012 sold</div>
             </div>
-            <span class="status-pill"><i class="fa-solid fa-circle" style="font-size: 8px;"></i> Live</span>
         </div>
 
-        <!-- Instant Add Balance Card -->
-        <div class="deposit-card">
-            <h3>⚡ INSTANT ADD BALANCE</h3>
-            <p>বিকাশ, নগদ, রকেট এবং বাইন্যান্স পেমেন্টের মাধ্যমে খুব সহজেই ব্যালেন্স যোগ করুন।</p>
-            <div class="payment-logos">
-                <span class="pay-badge">বিকাশ</span>
-                <span class="pay-badge">নগদ</span>
-                <span class="pay-badge">রকেট</span>
-                <span class="pay-badge">উপায়</span>
-                <span class="pay-badge">Binance Pay</span>
+        <!-- Quantity Selection Card -->
+        <div class="selection-card">
+            <div class="section-title"><i class="fa-solid fa-arrow-down-up-acn"></i> QUANTITY <span style="margin-left:auto; color:var(--text-muted); font-weight:normal;" id="maxLimitText">Max 45768 · ৳0.57/pc</span></div>
+            
+            <div class="counter-box">
+                <button class="counter-btn" onclick="updateQty(-1)"><i class="fa-solid fa-minus"></i></button>
+                <div class="counter-value" id="qtyDisplay">1</div>
+                <button class="counter-btn" onclick="updateQty(1)"><i class="fa-solid fa-plus"></i></button>
             </div>
-            <button class="buy-btn" onclick="switchTab('deposit', document.querySelectorAll('.nav-item')[2])">
-                <i class="fa-solid fa-plus-circle"></i> Add Balance
-            </button>
+
+            <div class="preset-grid">
+                <button class="preset-btn active" onclick="setQty(1)">1</button>
+                <button class="preset-btn" onclick="setQty(5)">5</button>
+                <button class="preset-btn" onclick="setQty(10)">10</button>
+                <button class="preset-btn" onclick="setQty(25)">25</button>
+                <button class="preset-btn" onclick="setQty(50)">50</button>
+                <button class="preset-btn" onclick="setQty(100)">100</button>
+            </div>
         </div>
 
-        <!-- Search & Filter Categories -->
-        <div class="search-box">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" id="searchInput" placeholder="Search products, mail, proxy..." onkeyup="filterProducts()">
+        <!-- Product Details / Description Card -->
+        <div class="details-card">
+            <div class="section-title"><i class="fa-solid fa-circle-info"></i> PRODUCT DETAILS</div>
+            <div class="details-content">
+                <p>১০০% অরিজিনাল এবং ট্রাস্টেড হটমেইল অ্যাকাউন্ট। ইনস্ট্যান্ট ডেলিভারি সিস্টেমের মাধ্যমে পেমেন্ট সম্পন্ন করার সাথে সাথে পেয়ে যাবেন।</p>
+                <ul>
+                    <li>লগইন ফরম্যাট: Email:Password</li>
+                    <li>দীর্ঘস্থায়ী এবং ভেরিফাইড অ্যাকাউন্ট</li>
+                    <li>২৪/৭ প্রিমিয়াম সাপোর্ট</li>
+                </ul>
+            </div>
         </div>
 
-        <div class="filter-tabs">
-            <button class="filter-tab active" onclick="setCategory('all', this)"><i class="fa-solid fa-border-all"></i> All Products</button>
-            <button class="filter-tab" onclick="setCategory('email', this)"><i class="fa-solid fa-envelope"></i> Email / Mail</button>
-            <button class="filter-tab" onclick="setCategory('proxy', this)"><i class="fa-solid fa-globe"></i> Proxy Items</button>
-            <button class="filter-tab" onclick="setCategory('tools', this)"><i class="fa-solid fa-toolbox"></i> Tools & Apps</button>
-        </div>
-
-        <h3 style="margin-bottom: 15px; font-size: 17px; color: var(--secondary-glow);"><i class="fa-solid fa-fire"></i> Top Selling Products</h3>
-        <div class="product-grid" id="productGrid"></div>
     </div>
 
-    <!-- 2. NUM & MAIL SECTION -->
-    <div id="numMailSection" class="section-view">
-        <h3 style="margin-bottom: 15px; font-size: 18px; color: var(--secondary-glow);"><i class="fa-solid fa-envelope-open-text"></i> Number & Mail Accounts</h3>
-        <div class="product-grid" id="numMailGrid"></div>
-    </div>
-
-    <!-- 3. DEPOSIT SECTION -->
-    <div id="depositSection" class="section-view">
-        <div class="profile-container" style="text-align: center;">
-            <h2 style="margin-bottom: 15px;"><i class="fa-solid fa-wallet" style="color: var(--primary-glow);"></i> ফান্ড ডিপোজিট করুন</h2>
-            <p style="color: var(--text-muted); margin-bottom: 20px;">বিকাশ, নগদ বা বাইন্যান্স পেমেন্টের মাধ্যমে ব্যালেন্স যোগ করুন।</p>
-            <div style="background: rgba(0,0,0,0.12); padding: 20px; border-radius: 14px; border: 1px solid var(--border-color); margin-bottom: 20px;">
-                <p style="font-size: 14px; font-weight: 600;">বিকাশ / নগদ পার্সোনাল নম্বর:</p>
-                <h3 style="color: var(--primary-glow); margin-top: 6px; font-size: 22px;">01700-000000</h3>
-            </div>
-            <a href="https://wa.me/8801700000000?text=হ্যালো,%20আমি%20ডিপোজিট%20করতে%20চাই।" target="_blank" class="buy-btn" style="padding: 12px 25px;">
-                <i class="fa-brands fa-whatsapp"></i> টাকা পাঠিয়ে WhatsApp-এ স্ক্রিনশট দিন
-            </a>
-        </div>
-    </div>
-
-    <!-- 4. PROXY SECTION -->
-    <div id="proxySection" class="section-view">
-        <h3 style="margin-bottom: 15px; font-size: 18px; color: var(--secondary-glow);"><i class="fa-solid fa-globe"></i> Proxy & IP Services</h3>
-        <div class="product-grid" id="proxyGrid"></div>
-    </div>
-
-    <!-- 5. PROFILE SECTION -->
-    <div id="profileSection" class="section-view">
-        <div class="profile-container">
-            <div class="profile-top-settings">
-                <div class="setting-box">
-                    <span>Theme</span>
-                    <i class="fa-solid fa-toggle-on" style="color: var(--primary-glow); cursor: pointer; font-size: 18px;" onclick="toggleThemeMode()"></i>
-                </div>
-                <div class="setting-box"><span>LANG: EN</span></div>
-                <div class="setting-box" style="background: var(--btn-gradient); color: white;"><span>BDT</span></div>
-            </div>
-
-            <div class="stats-row">
-                <div class="stat-card"><h3>১৫</h3><p>Orders</p></div>
-                <div class="stat-card"><h3>৳৪,৫৫০</h3><p>Spent TK</p></div>
-                <div class="stat-card"><h3>০</h3><p>Cancelled</p></div>
-            </div>
-
-            <div class="user-info-list">
-                <div class="info-item"><span>Name</span><span>অন্তর কুমার</span></div>
-                <div class="info-item"><span>Username</span><span>@antorsaha1</span></div>
-                <div class="info-item"><span>Account ID</span><span>৮৫৩৯৫০১</span></div>
-                <div class="info-item"><span>Balance</span><span>৳২,১০৪.৮১</span></div>
-                <div class="info-item"><span>Referred By</span><span>-</span></div>
-                <div class="info-item"><span>Joined At</span><span>মে ২০২৬</span></div>
-                <div class="info-item"><span>Language</span><span>Bangla / English</span></div>
-            </div>
-
-            <div class="referral-banner"><i class="fa-solid fa-users"></i> Referral & Earnings</div>
-        </div>
-    </div>
-
-    <!-- Bottom Navigation Bar -->
-    <nav class="bottom-nav">
-        <button class="nav-item active" onclick="switchTab('home', this)"><i class="fa-solid fa-house"></i><span>Home</span></button>
-        <button class="nav-item" onclick="switchTab('numMail', this)"><i class="fa-solid fa-envelope-open-text"></i><span>Num & Mail</span></button>
-        <button class="nav-item deposit-center" onclick="switchTab('deposit', this)">
-            <div class="deposit-icon-box"><i class="fa-solid fa-wallet"></i></div>
-            <span>Deposit</span>
-        </button>
-        <button class="nav-item" onclick="switchTab('proxy', this)"><i class="fa-solid fa-globe"></i><span>Proxy</span></button>
-        <button class="nav-item" onclick="switchTab('profile', this)"><i class="fa-solid fa-user"></i><span>Profile</span></button>
-    </nav>
-
-    <!-- Buy Modal -->
-    <div class="modal" id="buyModal">
-        <div class="modal-content">
-            <span style="float: right; cursor: pointer; font-size: 22px; color: var(--text-muted);" onclick="closeModal()">&times;</span>
-            <h3 id="modalTitle" style="margin-bottom: 10px; font-size: 20px;">প্রোডাক্ট</h3>
-            <p id="modalDetails" style="color: var(--text-muted); font-size: 13.5px; margin-bottom: 18px;"></p>
-            <h4 style="font-size: 22px; margin-bottom: 20px;"><span id="modalPrice" style="color: var(--secondary-glow);"></span></h4>
-            <a href="#" id="whatsappOrderBtn" target="_blank" class="buy-btn" style="text-decoration: none; display: flex; justify-content: center; padding: 12px; width: 100%;">
-                <i class="fa-brands fa-whatsapp"></i> WhatsApp-এ অর্ডার করুন
-            </a>
-        </div>
+    <!-- Fixed Bottom Bar -->
+    <div class="bottom-bar">
+        <div class="total-price-display" id="totalPriceDisplay">৳ 0.57</div>
+        <a href="#" id="orderBtn" target="_blank" class="place-order-btn">
+            <i class="fa-solid fa-cart-shopping"></i> Buy Now
+        </a>
     </div>
 
     <script>
-        const products = [
-            { id: 1, category: 'email', name: "Hotmail Trusted V1", image: "https://cdn-icons-png.flaticon.com/512/732/732200.png", stock: "46k PCS", sold: "2k sold", price: "৳০.৫৭", details: "Hotmail trusted account with high longevity." },
-            { id: 2, category: 'email', name: "Outlook.com | OAuth2", image: "https://cdn-icons-png.flaticon.com/512/732/732221.png", stock: "48k PCS", sold: "1.4k sold", price: "৳০.৪৮", details: "Outlook.com | OAuth2 | 12-36 Months | Original." },
-            { id: 3, category: 'email', name: "Outlook.Fr Trusted V1", image: "https://cdn-icons-png.flaticon.com/512/732/732221.png", stock: "41k PCS", sold: "1k sold", price: "৳০.৮০", details: "Outlook.Fr trusted account." },
-            { id: 4, category: 'email', name: "Hotmail Trusted - OAuth2", image: "https://cdn-icons-png.flaticon.com/512/732/732200.png", stock: "47k PCS", sold: "477 sold", price: "৳০.৯১", details: "Hotmail Trusted - OAuth2 [Graph] Live." },
-            { id: 5, category: 'proxy', name: "9Proxy Residential IP", image: "https://cdn-icons-png.flaticon.com/512/1006/1006771.png", stock: "15k PCS", sold: "3.5k sold", price: "৳১২০", details: "High speed clean residential proxy." },
-            { id: 6, category: 'tools', name: "CartFlows Pro License", image: "https://cdn-icons-png.flaticon.com/512/2885/2885437.png", stock: "15 PCS", sold: "120 sold", price: "৳৪৯০", details: "Sales funnel builder for WordPress." }
-        ];
-
-        let currentCategory = 'all';
-        let showOnlyBookmarks = false;
-        let bookmarkedIds = JSON.parse(localStorage.getItem('bookmarkedProducts')) || [];
+        const unitPrice = 0.57;
+        let currentQty = 1;
+        const maxStock = 45768;
         const whatsappNumber = "8801700000000";
 
-        function renderProducts(filterText = '') {
-            const grid = document.getElementById('productGrid');
-            const numMailGrid = document.getElementById('numMailGrid');
-            const proxyGrid = document.getElementById('proxyGrid');
-            
-            grid.innerHTML = '';
-            numMailGrid.innerHTML = '';
-            proxyGrid.innerHTML = '';
+        function updateQty(change) {
+            let newQty = currentQty + change;
+            if (newQty >= 1 && newQty <= maxStock) {
+                currentQty = newQty;
+                renderState();
+            }
+        }
 
-            const filtered = products.filter(p => {
-                const matchesCat = currentCategory === 'all' || p.category === currentCategory;
-                const matchesSearch = p.name.toLowerCase().includes(filterText.toLowerCase());
-                const matchesFav = !showOnlyBookmarks || bookmarkedIds.includes(p.id);
-                return matchesCat && matchesSearch && matchesFav;
+        function setQty(val) {
+            currentQty = val;
+            document.querySelectorAll('.preset-btn').forEach(btn => {
+                if(parseInt(btn.innerText) === val) btn.classList.add('active');
+                else btn.classList.remove('active');
             });
-
-            if (filtered.length === 0) {
-                grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 30px;">কোনো প্রোডাক্ট পাওয়া যায়নি!</p>`;
-            } else {
-                filtered.forEach(product => grid.appendChild(createCard(product)));
-            }
-
-            products.filter(p => p.category === 'email').forEach(product => numMailGrid.appendChild(createCard(product)));
-            products.filter(p => p.category === 'proxy').forEach(product => proxyGrid.appendChild(createCard(product)));
-            document.getElementById('favCount').innerText = bookmarkedIds.length;
+            renderState();
         }
 
-        function createCard(product) {
-            const isBookmarked = bookmarkedIds.includes(product.id);
-            const card = document.createElement('div');
-            card.className = 'card';
-            card.innerHTML = `
-                <div class="card-top-bar">
-                    <div class="badges-left">
-                        <div class="stock-badge">${product.stock}</div>
-                        <div class="sold-badge"><i class="fa-solid fa-fire" style="color: #ff5500;"></i> ${product.sold}</div>
-                    </div>
-                    <button class="fav-btn ${isBookmarked ? 'active' : ''}" onclick="toggleBookmark(${product.id})">
-                        <i class="${isBookmarked ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
-                    </button>
-                </div>
-                <div class="card-img-wrapper"><img src="${product.image}" alt=""></div>
-                <div class="card-body">
-                    <h3 class="product-title">${product.name}</h3>
-                    <p class="product-desc">${product.details}</p>
-                    <div class="card-footer">
-                        <span class="price">${product.price}</span>
-                        <button class="buy-btn" onclick="openBuyModal(${product.id})">
-                            <i class="fa-solid fa-cart-shopping"></i> Buy now
-                        </button>
-                    </div>
-                </div>
-            `;
-            return card;
+        function renderState() {
+            document.getElementById('qtyDisplay').innerText = currentQty;
+            let total = (unitPrice * currentQty).toFixed(2);
+            document.getElementById('totalPriceDisplay').innerText = `৳ ${total}`;
+
+            let msg = encodeURIComponent(`হ্যালো, আমি Hotmail Trusted V1 প্রোডাক্টটি ${currentQty} পিস কিনতে চাই। মোট মূল্য: ৳${total}`);
+            document.getElementById('orderBtn').href = `https://wa.me/${whatsappNumber}?text=${msg}`;
         }
 
-        function setCategory(cat, element) {
-            currentCategory = cat;
-            showOnlyBookmarks = false;
-            document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
-            element.classList.add('active');
-            renderProducts(document.getElementById('searchInput').value);
-        }
-
-        function toggleBookmarksOnly() {
-            showOnlyBookmarks = !showOnlyBookmarks;
-            switchTab('home', document.querySelectorAll('.nav-item')[0]);
-            renderProducts(document.getElementById('searchInput').value);
-        }
-
-        function filterProducts() {
-            renderProducts(document.getElementById('searchInput').value);
-        }
-
-        function toggleBookmark(id) {
-            if (bookmarkedIds.includes(id)) {
-                bookmarkedIds = bookmarkedIds.filter(i => i !== id);
-            } else {
-                bookmarkedIds.push(id);
-            }
-            localStorage.setItem('bookmarkedProducts', JSON.stringify(bookmarkedIds));
-            renderProducts(document.getElementById('searchInput').value);
-        }
-
-        function switchTab(tabName, element) {
-            document.querySelectorAll('.section-view').forEach(sec => sec.classList.remove('active'));
-            document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
-
-            if(tabName === 'home') document.getElementById('homeSection').classList.add('active');
-            if(tabName === 'numMail') document.getElementById('numMailSection').classList.add('active');
-            if(tabName === 'deposit') document.getElementById('depositSection').classList.add('active');
-            if(tabName === 'proxy') document.getElementById('proxySection').classList.add('active');
-            if(tabName === 'profile') document.getElementById('profileSection').classList.add('active');
-
-            element.classList.add('active');
-        }
-
-        function toggleThemeMode() {
-            document.body.classList.toggle('light-theme');
-        }
-
-        function openBuyModal(id) {
-            const p = products.find(item => item.id === id);
-            document.getElementById('modalTitle').innerText = p.name;
-            document.getElementById('modalDetails').innerText = p.details;
-            document.getElementById('modalPrice').innerText = p.price;
-            document.getElementById('whatsappOrderBtn').href = `https://wa.me/${whatsappNumber}?text=I want to buy ${p.name} for ${p.price}`;
-            document.getElementById('buyModal').style.display = 'flex';
-        }
-
-        function closeModal() {
-            document.getElementById('buyModal').style.display = 'none';
-        }
-
-        renderProducts();
+        renderState();
     </script>
 </body>
 </html>
