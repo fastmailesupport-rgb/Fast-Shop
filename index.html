@@ -132,7 +132,7 @@
             display: none;
             max-width: 1100px;
             margin: 15px auto 25px;
-            padding: 0 20px;
+            padding: 0 15px;
         }
         .section-view.active { display: block; }
 
@@ -148,7 +148,7 @@
             margin-bottom: 18px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.25);
         }
-        .notice-left { display: flex; align-items: center; gap: 10px; font-size: 13.5px; font-weight: 600; }
+        .notice-left { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; }
         .notice-left i { color: var(--secondary-glow); font-size: 16px; }
         .status-pill {
             background: rgba(34, 197, 94, 0.15);
@@ -165,27 +165,27 @@
             background: linear-gradient(135deg, rgba(255, 85, 0, 0.18), rgba(30, 9, 2, 0.95));
             border: 1.5px solid var(--primary-glow);
             border-radius: 20px;
-            padding: 20px;
-            margin-bottom: 22px;
+            padding: 18px;
+            margin-bottom: 20px;
             box-shadow: 0 0 25px rgba(255,85,0,0.2);
             text-align: center;
         }
-        .deposit-card h3 { font-size: 19px; margin-bottom: 6px; color: var(--text-main); }
-        .deposit-card p { font-size: 13px; color: var(--text-muted); margin-bottom: 14px; }
+        .deposit-card h3 { font-size: 18px; margin-bottom: 6px; color: var(--text-main); }
+        .deposit-card p { font-size: 12.5px; color: var(--text-muted); margin-bottom: 12px; }
         .payment-logos {
             display: flex;
             justify-content: center;
-            gap: 10px;
-            margin-bottom: 15px;
+            gap: 8px;
+            margin-bottom: 12px;
             flex-wrap: wrap;
         }
         .pay-badge {
             background: rgba(0,0,0,0.4);
             border: 1px solid var(--border-color);
             color: var(--text-main);
-            padding: 5px 14px;
+            padding: 4px 12px;
             border-radius: 30px;
-            font-size: 12.5px;
+            font-size: 12px;
             font-weight: 600;
         }
 
@@ -194,7 +194,7 @@
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 50px;
-            padding: 10px 20px;
+            padding: 10px 18px;
             display: flex;
             align-items: center;
             gap: 12px;
@@ -206,14 +206,14 @@
             border: none;
             outline: none;
             color: var(--text-main);
-            font-size: 14.5px;
+            font-size: 14px;
             width: 100%;
         }
-        .search-box i { color: var(--primary-glow); font-size: 17px; }
+        .search-box i { color: var(--primary-glow); font-size: 16px; }
 
         .filter-tabs {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             overflow-x: auto;
             padding-bottom: 8px;
             margin-bottom: 18px;
@@ -225,15 +225,15 @@
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             color: var(--text-main);
-            padding: 8px 18px;
+            padding: 8px 16px;
             border-radius: 50px;
-            font-size: 13px;
+            font-size: 12.5px;
             font-weight: 600;
             cursor: pointer;
             white-space: nowrap;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             transition: 0.3s;
         }
         .filter-tab.active {
@@ -243,128 +243,132 @@
             box-shadow: 0 0 15px rgba(255, 85, 0, 0.4);
         }
 
-        /* Product Grid & Cards */
+        /* =========================================================
+           2-COLUMN GRID SYSTEM (দুই কলাম সিরিয়াল লেআউট)
+        ========================================================= */
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(2, 1fr); /* ঠিক ২ কলাম বা সিরিয়ালে দেখাবে */
+            gap: 12px;
         }
 
         .card {
             background: var(--card-bg);
             border: 1.5px solid var(--border-color);
-            border-radius: 20px;
+            border-radius: 16px;
             overflow: hidden;
             position: relative;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             transition: 0.3s;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.25);
             cursor: pointer;
         }
         .card:hover {
-            transform: translateY(-4px);
+            transform: translateY(-3px);
             border-color: var(--primary-glow);
-            box-shadow: 0 10px 25px rgba(255,85,0,0.25);
+            box-shadow: 0 8px 20px rgba(255,85,0,0.2);
         }
 
         .card-top-bar {
             position: absolute;
-            top: 12px;
-            left: 12px;
-            right: 12px;
+            top: 8px;
+            left: 8px;
+            right: 8px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 5;
         }
 
-        .badges-left { display: flex; gap: 6px; }
+        .badges-left { display: flex; flex-direction: column; gap: 4px; }
 
         .stock-badge {
-            background: rgba(0, 0, 0, 0.78);
-            backdrop-filter: blur(5px);
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(4px);
             color: #fff;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 11px;
+            padding: 3px 8px;
+            border-radius: 15px;
+            font-size: 10px;
             font-weight: 600;
             border: 1px solid var(--primary-glow);
         }
 
         .sold-badge {
-            background: rgba(0, 0, 0, 0.78);
-            backdrop-filter: blur(5px);
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(4px);
             color: #ff9900;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 11px;
+            padding: 3px 8px;
+            border-radius: 15px;
+            font-size: 10px;
             font-weight: 600;
             border: 1px solid rgba(255,153,0,0.4);
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 3px;
         }
 
         .fav-btn {
-            width: 34px;
-            height: 34px;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
-            background: rgba(0, 0, 0, 0.78);
-            backdrop-filter: blur(5px);
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(4px);
             border: 1px solid rgba(255,255,255,0.2);
             color: #fff;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 14px;
+            font-size: 12px;
             transition: 0.2s;
             z-index: 6;
         }
         .fav-btn:hover { transform: scale(1.1); }
-        .fav-btn.active { color: #ff2a6d; border-color: #ff2a6d; box-shadow: 0 0 10px rgba(255,42,109,0.5); }
+        .fav-btn.active { color: #ff2a6d; border-color: #ff2a6d; box-shadow: 0 0 8px rgba(255,42,109,0.5); }
 
         .card-img-wrapper {
-            height: 165px;
+            height: 125px;
             overflow: hidden;
             background: rgba(0,0,0,0.15);
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 22px;
+            padding: 15px;
         }
         .card-img-wrapper img { max-width: 100%; max-height: 100%; object-fit: contain; transition: 0.3s; }
-        .card:hover .card-img-wrapper img { transform: scale(1.06); }
+        .card:hover .card-img-wrapper img { transform: scale(1.05); }
 
-        .card-body { padding: 16px 18px; display: flex; flex-direction: column; flex-grow: 1; }
-        .product-title { font-size: 16px; font-weight: 700; margin-bottom: 6px; color: var(--text-main); }
-        .product-desc { font-size: 12.5px; color: var(--text-muted); margin-bottom: 16px; flex-grow: 1; line-height: 1.45; }
+        .card-body { padding: 12px; display: flex; flex-direction: column; flex-grow: 1; }
+        .product-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; color: var(--text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .product-desc { font-size: 11px; color: var(--text-muted); margin-bottom: 12px; flex-grow: 1; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 
-        .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 12px; }
-        .price { font-size: 18.5px; font-weight: 700; color: var(--primary-glow); }
+        .card-footer { display: flex; flex-direction: column; gap: 8px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 10px; }
+        .price { font-size: 15px; font-weight: 700; color: var(--primary-glow); }
 
         .buy-btn {
             background: var(--btn-gradient);
             color: white;
             border: none;
-            padding: 8px 18px;
-            border-radius: 50px;
-            font-size: 13px;
+            padding: 7px 12px;
+            border-radius: 20px;
+            font-size: 12px;
             font-weight: 600;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(255,85,0,0.3);
-            display: inline-flex;
+            box-shadow: 0 3px 10px rgba(255,85,0,0.3);
+            display: flex;
             align-items: center;
-            gap: 6px;
+            justify-content: center;
+            gap: 5px;
             transition: 0.2s;
+            width: 100%;
             text-decoration: none;
         }
-        .buy-btn:hover { filter: brightness(1.1); transform: scale(1.02); }
+        .buy-btn:hover { filter: brightness(1.1); }
 
         /* =========================================================
-           PRODUCT DETAILS / ORDER VIEW (Exact Screenshot Design)
+           PRODUCT DETAIL & CHECKOUT VIEW
         ========================================================= */
         #productDetailSection {
             max-width: 520px;
@@ -447,7 +451,6 @@
         }
         .d-badge.green { color: #22c55e; border-color: rgba(34,197,94,0.4); }
         .d-badge.orange { color: #ff9900; border-color: rgba(255,153,0,0.4); }
-        .d-badge.blue { color: #60a5fa; border-color: rgba(96,165,250,0.4); }
 
         .detail-sec-header {
             font-size: 13px;
@@ -460,7 +463,6 @@
             padding-left: 10px;
         }
 
-        /* Quantity Counter */
         .counter-box {
             display: flex;
             align-items: center;
@@ -509,7 +511,6 @@
             color: #fff;
         }
 
-        /* Plan Selection Grid (For Proxy / VPN) */
         .plan-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -547,7 +548,6 @@
         .detail-desc-list ul { padding-left: 18px; margin-top: 8px; }
         .detail-desc-list li { margin-bottom: 6px; }
 
-        /* Detail Checkout Action Card */
         .detail-checkout-bar {
             background: var(--card-bg);
             border: 1.5px solid var(--primary-glow);
@@ -709,7 +709,7 @@
                 <i class="fa-solid fa-bullhorn"></i>
                 <span>ইনস্ট্যান্ট অটোমেটেড ডেলিভারি এবং ২৪/৭ সাপোর্ট চালু আছে</span>
             </div>
-            <span class="status-pill"><i class="fa-solid fa-circle" style="font-size: 8px;"></i> Live</span>
+            <span class="status-pill"><i class="fa-solid fa-circle" style="font-size: 7px;"></i> Live</span>
         </div>
 
         <div class="deposit-card">
@@ -722,7 +722,7 @@
                 <span class="pay-badge">উপায়</span>
                 <span class="pay-badge">Binance Pay</span>
             </div>
-            <button class="buy-btn" onclick="switchTab('deposit', document.querySelectorAll('.nav-item')[2])">
+            <button class="buy-btn" style="max-width: 160px; margin: 0 auto;" onclick="switchTab('deposit', document.querySelectorAll('.nav-item')[2])">
                 <i class="fa-solid fa-plus-circle"></i> Add Balance
             </button>
         </div>
@@ -739,13 +739,13 @@
             <button class="filter-tab" onclick="setCategory('tools', this)"><i class="fa-solid fa-toolbox"></i> Tools & VPN</button>
         </div>
 
-        <h3 style="margin-bottom: 15px; font-size: 17px; color: var(--secondary-glow);"><i class="fa-solid fa-fire"></i> Top Selling Products</h3>
+        <h3 style="margin-bottom: 12px; font-size: 16px; color: var(--secondary-glow);"><i class="fa-solid fa-fire"></i> Top Selling Products</h3>
         <div class="product-grid" id="productGrid"></div>
     </div>
 
     <!-- 2. NUM & MAIL SECTION -->
     <div id="numMailSection" class="section-view">
-        <h3 style="margin-bottom: 15px; font-size: 18px; color: var(--secondary-glow);"><i class="fa-solid fa-envelope-open-text"></i> Number & Mail Accounts</h3>
+        <h3 style="margin-bottom: 12px; font-size: 16px; color: var(--secondary-glow);"><i class="fa-solid fa-envelope-open-text"></i> Number & Mail Accounts</h3>
         <div class="product-grid" id="numMailGrid"></div>
     </div>
 
@@ -758,7 +758,7 @@
                 <p style="font-size: 14px; font-weight: 600;">বিকাশ / নগদ পার্সোনাল নম্বর:</p>
                 <h3 style="color: var(--primary-glow); margin-top: 6px; font-size: 22px;">01700-000000</h3>
             </div>
-            <a href="https://wa.me/8801700000000?text=হ্যালো,%20আমি%20ডিপোজিট%20করতে%20চাই।" target="_blank" class="buy-btn" style="padding: 12px 25px;">
+            <a href="https://wa.me/8801700000000?text=হ্যালো,%20আমি%20ডিপোজিট%20করতে%20চাই।" target="_blank" class="buy-btn" style="padding: 12px 25px; max-width: 280px; margin: 0 auto; justify-content: center;">
                 <i class="fa-brands fa-whatsapp"></i> টাকা পাঠিয়ে WhatsApp-এ স্ক্রিনশট দিন
             </a>
         </div>
@@ -766,7 +766,7 @@
 
     <!-- 4. PROXY SECTION -->
     <div id="proxySection" class="section-view">
-        <h3 style="margin-bottom: 15px; font-size: 18px; color: var(--secondary-glow);"><i class="fa-solid fa-globe"></i> Proxy & IP Services</h3>
+        <h3 style="margin-bottom: 12px; font-size: 16px; color: var(--secondary-glow);"><i class="fa-solid fa-globe"></i> Proxy & IP Services</h3>
         <div class="product-grid" id="proxyGrid"></div>
     </div>
 
@@ -802,11 +802,10 @@
         </div>
     </div>
 
-    <!-- 6. PRODUCT DETAIL & CHECKOUT VIEW (Opens when clicking any product) -->
+    <!-- 6. PRODUCT DETAIL & CHECKOUT VIEW -->
     <div id="productDetailSection" class="section-view">
         <button class="back-btn" onclick="goBackToPrevious()"><i class="fa-solid fa-arrow-left"></i> ফিরে যান</button>
 
-        <!-- Hero Image Card -->
         <div class="detail-hero-card">
             <img src="" alt="" class="detail-hero-img" id="dImg">
             <div>
@@ -814,7 +813,6 @@
             </div>
         </div>
 
-        <!-- Product Info & Price Card -->
         <div class="detail-box">
             <div class="detail-title" id="dName">Product Name</div>
             <div class="detail-sub" id="dSubText">45768 pcs available</div>
@@ -829,24 +827,19 @@
             </div>
         </div>
 
-        <!-- Dynamic Selection Box (Quantity Counter OR Plan Selector) -->
-        <div class="detail-box" id="dSelectionBox">
-            <!-- Injected via JS based on product type -->
-        </div>
+        <div class="detail-box" id="dSelectionBox"></div>
 
-        <!-- Product Details / Full Info Card -->
         <div class="detail-box">
             <div class="detail-sec-header"><span>PRODUCT DETAILS</span></div>
             <div class="detail-desc-list" id="dFullDetails"></div>
         </div>
 
-        <!-- Checkout Action Bar -->
         <div class="detail-checkout-bar">
             <div>
                 <div style="font-size: 11px; color: var(--text-muted);">TOTAL PRICE</div>
                 <div style="font-size: 22px; font-weight: 700; color: var(--primary-glow);" id="dTotalPrice">৳ 0.57</div>
             </div>
-            <a href="#" id="dOrderBtn" target="_blank" class="buy-btn" style="padding: 12px 28px; font-size: 15px;">
+            <a href="#" id="dOrderBtn" target="_blank" class="buy-btn" style="padding: 12px 28px; font-size: 15px; width: auto;">
                 <i class="fa-solid fa-cart-shopping"></i> <span id="dBtnText">Buy Now</span>
             </a>
         </div>
@@ -865,7 +858,6 @@
     </nav>
 
     <script>
-        // Rich Product Data (Supports both Quantity Mode & Plan Mode like your screenshots)
         const products = [
             {
                 id: 1,
@@ -985,7 +977,6 @@
         let lastActiveTab = 'home';
         const whatsappNumber = "8801700000000";
 
-        // Active Detail State
         let activeProduct = null;
         let detailQty = 1;
         let selectedPlanIndex = 0;
@@ -1021,7 +1012,6 @@
             const isBookmarked = bookmarkedIds.includes(product.id);
             const card = document.createElement('div');
             card.className = 'card';
-            // Clicking anywhere on card opens the full Product Detail Page
             card.onclick = (e) => {
                 if (!e.target.closest('.fav-btn')) {
                     openProductDetail(product.id);
@@ -1053,7 +1043,6 @@
             return card;
         }
 
-        // Open Full Product Details View (Matches Screenshots 1, 2, 3)
         function openProductDetail(id) {
             activeProduct = products.find(p => p.id === id);
             if (!activeProduct) return;
@@ -1061,12 +1050,10 @@
             detailQty = 1;
             selectedPlanIndex = 0;
 
-            // Hide all tabs, show detail view
             document.querySelectorAll('.section-view').forEach(sec => sec.classList.remove('active'));
             document.getElementById('productDetailSection').classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
 
-            // Populate Hero & Info
             document.getElementById('dImg').src = activeProduct.image;
             document.getElementById('dStockPill').innerHTML = `<span style="width:7px; height:7px; background:#22c55e; border-radius:50%; display:inline-block; margin-right:6px;"></span>${activeProduct.stockCount.toLocaleString()} in stock`;
             document.getElementById('dName').innerText = activeProduct.name;
@@ -1100,7 +1087,6 @@
                     </div>
                 `;
             } else {
-                // Plan Selection Mode (Proxy / VPN)
                 box.innerHTML = `
                     <div class="detail-sec-header"><span>${activeProduct.planTitle || 'SELECT PLAN'}</span></div>
                     <div class="plan-grid">
