@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fast Shop - Digital Store</title>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -35,7 +35,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', 'Hind Siliguri', sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
 
         body {
@@ -75,33 +75,49 @@
             object-fit: cover;
         }
 
-        .user-greeting h4 { font-size: 12px; color: var(--text-muted); }
-        .user-greeting h2 { font-size: 17px; color: var(--text-main); font-weight: 700; }
+        .user-greeting h4 { font-size: 12px; color: var(--text-muted); font-weight: 400; }
+        .user-greeting h2 { font-size: 16px; color: var(--text-main); font-weight: 700; }
 
         .header-right {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
+        }
+
+        .currency-quick-toggle {
+            background: rgba(255, 85, 0, 0.15);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 6px 10px;
+            border-radius: 50px;
+            font-size: 11.5px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .currency-quick-toggle:hover {
+            background: var(--primary-glow);
+            color: #fff;
         }
 
         .wallet-pill {
             background: rgba(255, 85, 0, 0.15);
             border: 1px solid var(--border-color);
-            padding: 6px 14px;
+            padding: 6px 12px;
             border-radius: 50px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             font-weight: 700;
-            font-size: 14px;
+            font-size: 13px;
         }
         .wallet-pill i { color: var(--primary-glow); }
 
         .notif-btn {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            width: 38px;
-            height: 38px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             color: var(--text-main);
             display: flex;
@@ -118,8 +134,8 @@
             background: #ff2a6d;
             color: white;
             font-size: 10px;
-            width: 17px;
-            height: 17px;
+            width: 16px;
+            height: 16px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -140,7 +156,7 @@
         .notice-box {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            padding: 12px 18px;
+            padding: 12px 16px;
             border-radius: 14px;
             display: flex;
             align-items: center;
@@ -148,15 +164,15 @@
             margin-bottom: 18px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.25);
         }
-        .notice-left { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; }
-        .notice-left i { color: var(--secondary-glow); font-size: 16px; }
+        .notice-left { display: flex; align-items: center; gap: 10px; font-size: 12.5px; font-weight: 500; }
+        .notice-left i { color: var(--secondary-glow); font-size: 15px; }
         .status-pill {
             background: rgba(34, 197, 94, 0.15);
             color: #4ade80;
             border: 1px solid rgba(34, 197, 94, 0.4);
-            padding: 4px 12px;
+            padding: 4px 10px;
             border-radius: 20px;
-            font-size: 11.5px;
+            font-size: 11px;
             font-weight: 600;
             white-space: nowrap;
         }
@@ -176,7 +192,7 @@
             display: flex;
             justify-content: center;
             gap: 8px;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
             flex-wrap: wrap;
         }
         .pay-badge {
@@ -185,7 +201,7 @@
             color: var(--text-main);
             padding: 4px 12px;
             border-radius: 30px;
-            font-size: 12px;
+            font-size: 11.5px;
             font-weight: 600;
         }
 
@@ -243,12 +259,10 @@
             box-shadow: 0 0 15px rgba(255, 85, 0, 0.4);
         }
 
-        /* =========================================================
-           2-COLUMN GRID SYSTEM (দুই কলাম সিরিয়াল লেআউট)
-        ========================================================= */
+        /* 2-COLUMN GRID SYSTEM */
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr); /* ঠিক ২ কলাম বা সিরিয়ালে দেখাবে */
+            grid-template-columns: repeat(2, 1fr);
             gap: 12px;
         }
 
@@ -278,7 +292,7 @@
             right: 8px;
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-start;
             z-index: 5;
         }
 
@@ -341,11 +355,11 @@
         .card:hover .card-img-wrapper img { transform: scale(1.05); }
 
         .card-body { padding: 12px; display: flex; flex-direction: column; flex-grow: 1; }
-        .product-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; color: var(--text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .product-title { font-size: 13.5px; font-weight: 700; margin-bottom: 4px; color: var(--text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .product-desc { font-size: 11px; color: var(--text-muted); margin-bottom: 12px; flex-grow: 1; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 
         .card-footer { display: flex; flex-direction: column; gap: 8px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 10px; }
-        .price { font-size: 15px; font-weight: 700; color: var(--primary-glow); }
+        .price { font-size: 14.5px; font-weight: 700; color: var(--primary-glow); }
 
         .buy-btn {
             background: var(--btn-gradient);
@@ -367,9 +381,7 @@
         }
         .buy-btn:hover { filter: brightness(1.1); }
 
-        /* =========================================================
-           PRODUCT DETAIL & CHECKOUT VIEW
-        ========================================================= */
+        /* PRODUCT DETAIL & CHECKOUT VIEW */
         #productDetailSection {
             max-width: 520px;
             margin: 10px auto 30px;
@@ -382,7 +394,7 @@
             color: var(--text-main);
             padding: 8px 16px;
             border-radius: 50px;
-            font-size: 13.5px;
+            font-size: 13px;
             font-weight: 600;
             cursor: pointer;
             display: inline-flex;
@@ -405,8 +417,8 @@
         }
 
         .detail-hero-img {
-            width: 115px;
-            height: 115px;
+            width: 110px;
+            height: 110px;
             object-fit: contain;
             margin-bottom: 12px;
         }
@@ -418,7 +430,7 @@
             border: 1px solid var(--border-color);
             padding: 5px 15px;
             border-radius: 30px;
-            font-size: 12.5px;
+            font-size: 12px;
             font-weight: 600;
             color: #fff;
         }
@@ -432,10 +444,10 @@
             box-shadow: 0 6px 20px rgba(0,0,0,0.25);
         }
 
-        .detail-title { font-size: 21px; font-weight: 700; margin-bottom: 4px; }
+        .detail-title { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
         .detail-sub { font-size: 13px; color: var(--text-muted); margin-bottom: 16px; }
         .detail-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.6px; color: var(--text-muted); margin-bottom: 6px; font-weight: 600; }
-        .detail-price { font-size: 28px; font-weight: 700; color: var(--primary-glow); margin-bottom: 14px; }
+        .detail-price { font-size: 26px; font-weight: 700; color: var(--primary-glow); margin-bottom: 14px; }
 
         .detail-badges { display: flex; gap: 8px; flex-wrap: wrap; }
         .d-badge {
@@ -443,7 +455,7 @@
             border: 1px solid var(--border-color);
             padding: 5px 12px;
             border-radius: 20px;
-            font-size: 12px;
+            font-size: 11.5px;
             font-weight: 600;
             display: flex;
             align-items: center;
@@ -529,8 +541,8 @@
             border-color: var(--primary-glow);
             background: rgba(255,85,0,0.12);
         }
-        .plan-item h4 { font-size: 14.5px; font-weight: 700; margin-bottom: 4px; }
-        .plan-item span { font-size: 13.5px; font-weight: 700; color: var(--primary-glow); }
+        .plan-item h4 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+        .plan-item span { font-size: 13px; font-weight: 700; color: var(--primary-glow); }
         .plan-check {
             position: absolute;
             top: 12px;
@@ -541,7 +553,7 @@
         .plan-item.active .plan-check { display: block; }
 
         .detail-desc-list {
-            font-size: 13.5px;
+            font-size: 13px;
             color: var(--text-muted);
             line-height: 1.65;
         }
@@ -571,7 +583,7 @@
         .profile-top-settings {
             display: flex;
             justify-content: flex-end;
-            gap: 12px;
+            gap: 10px;
             margin-bottom: 20px;
             flex-wrap: wrap;
         }
@@ -584,25 +596,49 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            font-size: 13px;
+            font-size: 12.5px;
             font-weight: 600;
+        }
+
+        .currency-switch-group {
+            display: flex;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid var(--border-color);
+            border-radius: 30px;
+            padding: 3px;
+        }
+
+        .curr-btn {
+            border: none;
+            background: none;
+            color: var(--text-muted);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .curr-btn.active {
+            background: var(--btn-gradient);
+            color: white;
         }
 
         .stats-row {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
+            gap: 12px;
             margin-bottom: 25px;
         }
         .stat-card {
             background: rgba(0,0,0,0.15);
             border: 1px solid var(--border-color);
-            padding: 15px;
+            padding: 15px 10px;
             border-radius: 14px;
             text-align: center;
         }
-        .stat-card h3 { font-size: 18px; font-weight: 700; color: var(--primary-glow); }
-        .stat-card p { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+        .stat-card h3 { font-size: 16px; font-weight: 700; color: var(--primary-glow); }
+        .stat-card p { font-size: 11.5px; color: var(--text-muted); margin-top: 4px; }
 
         .user-info-list {
             display: flex;
@@ -617,7 +653,7 @@
             background: rgba(0,0,0,0.08);
             border-radius: 10px;
             border: 1px solid rgba(255,255,255,0.05);
-            font-size: 14px;
+            font-size: 13.5px;
         }
         .info-item span:first-child { color: var(--text-muted); }
         .info-item span:last-child { font-weight: 600; }
@@ -625,10 +661,11 @@
         .referral-banner {
             background: var(--btn-gradient);
             color: white;
-            padding: 15px;
+            padding: 14px;
             border-radius: 14px;
             text-align: center;
             font-weight: 600;
+            font-size: 14px;
             cursor: pointer;
             box-shadow: 0 4px 15px rgba(255,85,0,0.3);
         }
@@ -654,19 +691,19 @@
             align-items: center;
             color: var(--text-muted);
             text-decoration: none;
-            font-size: 12px;
+            font-size: 11.5px;
             cursor: pointer;
             background: none;
             border: none;
             transition: 0.3s;
         }
-        .nav-item i { font-size: 20px; margin-bottom: 4px; }
+        .nav-item i { font-size: 19px; margin-bottom: 4px; }
         .nav-item.active { color: var(--primary-glow); }
 
         .nav-item.deposit-center { position: relative; margin-top: -35px; }
         .nav-item.deposit-center .deposit-icon-box {
-            width: 60px;
-            height: 60px;
+            width: 58px;
+            height: 58px;
             background: var(--btn-gradient);
             border-radius: 18px;
             display: flex;
@@ -675,7 +712,7 @@
             color: white;
             box-shadow: 0 6px 20px rgba(255,85,0,0.5);
             border: 3px solid var(--bg-dark);
-            font-size: 24px;
+            font-size: 22px;
         }
         .nav-item.deposit-center span { margin-top: 4px; font-weight: 600; color: var(--text-main); }
     </style>
@@ -688,14 +725,15 @@
             <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80" alt="Avatar" class="user-avatar">
             <div>
                 <h4>Welcome back,</h4>
-                <h2>অন্তর কুমার</h2>
+                <h2>Antor Kumar</h2>
             </div>
         </div>
         <div class="header-right">
+            <button class="currency-quick-toggle" id="headerCurrBtn" onclick="toggleCurrency()">BDT</button>
             <div class="wallet-pill">
-                <i class="fa-solid fa-wallet"></i> ৳২,১০৪
+                <i class="fa-solid fa-wallet"></i> <span id="headerWalletDisplay">৳ 2,104</span>
             </div>
-            <button class="notif-btn" onclick="toggleBookmarksOnly()" title="বুকমার্ক করা প্রোডাক্ট">
+            <button class="notif-btn" onclick="toggleBookmarksOnly()" title="Bookmarked Items">
                 <i class="fa-solid fa-heart" style="color: #ff2a6d;"></i>
                 <span class="fav-count-badge" id="favCount">0</span>
             </button>
@@ -707,22 +745,22 @@
         <div class="notice-box">
             <div class="notice-left">
                 <i class="fa-solid fa-bullhorn"></i>
-                <span>ইনস্ট্যান্ট অটোমেটেড ডেলিভারি এবং ২৪/৭ সাপোর্ট চালু আছে</span>
+                <span>Instant automated delivery & 24/7 support active</span>
             </div>
             <span class="status-pill"><i class="fa-solid fa-circle" style="font-size: 7px;"></i> Live</span>
         </div>
 
         <div class="deposit-card">
             <h3>⚡ INSTANT ADD BALANCE</h3>
-            <p>বিকাশ, নগদ, রকেট এবং বাইন্যান্স পেমেন্টের মাধ্যমে খুব সহজেই ব্যালেন্স যোগ করুন।</p>
+            <p>Add balance instantly via bKash, Nagad, Rocket, Upay & Binance Pay.</p>
             <div class="payment-logos">
-                <span class="pay-badge">বিকাশ</span>
-                <span class="pay-badge">নগদ</span>
-                <span class="pay-badge">রকেট</span>
-                <span class="pay-badge">উপায়</span>
+                <span class="pay-badge">bKash</span>
+                <span class="pay-badge">Nagad</span>
+                <span class="pay-badge">Rocket</span>
+                <span class="pay-badge">Upay</span>
                 <span class="pay-badge">Binance Pay</span>
             </div>
-            <button class="buy-btn" style="max-width: 160px; margin: 0 auto;" onclick="switchTab('deposit', document.querySelectorAll('.nav-item')[2])">
+            <button class="buy-btn" style="max-width: 165px; margin: 0 auto;" onclick="switchTab('deposit', document.querySelectorAll('.nav-item')[2])">
                 <i class="fa-solid fa-plus-circle"></i> Add Balance
             </button>
         </div>
@@ -752,14 +790,15 @@
     <!-- 3. DEPOSIT SECTION -->
     <div id="depositSection" class="section-view">
         <div class="profile-container" style="text-align: center;">
-            <h2 style="margin-bottom: 15px;"><i class="fa-solid fa-wallet" style="color: var(--primary-glow);"></i> ফান্ড ডিপোজিট করুন</h2>
-            <p style="color: var(--text-muted); margin-bottom: 20px;">বিকাশ, নগদ বা বাইন্যান্স পেমেন্টের মাধ্যমে ব্যালেন্স যোগ করুন।</p>
+            <h2 style="margin-bottom: 12px;"><i class="fa-solid fa-wallet" style="color: var(--primary-glow);"></i> Deposit Funds</h2>
+            <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 13.5px;">Add balance to your wallet via bKash, Nagad, or Binance Pay.</p>
             <div style="background: rgba(0,0,0,0.12); padding: 20px; border-radius: 14px; border: 1px solid var(--border-color); margin-bottom: 20px;">
-                <p style="font-size: 14px; font-weight: 600;">বিকাশ / নগদ পার্সোনাল নম্বর:</p>
+                <p style="font-size: 13.5px; font-weight: 600;">bKash / Nagad Personal Number:</p>
                 <h3 style="color: var(--primary-glow); margin-top: 6px; font-size: 22px;">01700-000000</h3>
+                <p style="font-size: 12px; color: var(--text-muted); margin-top: 8px;">Exchange Rate: 1 USDT = 120 BDT</p>
             </div>
-            <a href="https://wa.me/8801700000000?text=হ্যালো,%20আমি%20ডিপোজিট%20করতে%20চাই।" target="_blank" class="buy-btn" style="padding: 12px 25px; max-width: 280px; margin: 0 auto; justify-content: center;">
-                <i class="fa-brands fa-whatsapp"></i> টাকা পাঠিয়ে WhatsApp-এ স্ক্রিনশট দিন
+            <a href="https://wa.me/8801700000000?text=Hello,%20I%20want%20to%20deposit%20funds%20into%20my%20account." target="_blank" class="buy-btn" style="padding: 12px 25px; max-width: 280px; margin: 0 auto; justify-content: center;">
+                <i class="fa-brands fa-whatsapp"></i> Send Payment Screenshot
             </a>
         </div>
     </div>
@@ -779,23 +818,26 @@
                     <i class="fa-solid fa-toggle-on" style="color: var(--primary-glow); cursor: pointer; font-size: 18px;" onclick="toggleThemeMode()"></i>
                 </div>
                 <div class="setting-box"><span>LANG: EN</span></div>
-                <div class="setting-box" style="background: var(--btn-gradient); color: white;"><span>BDT</span></div>
+                <div class="currency-switch-group">
+                    <button class="curr-btn active" id="btnBDT" onclick="setCurrency('BDT')">BDT</button>
+                    <button class="curr-btn" id="btnUSDT" onclick="setCurrency('USDT')">USDT</button>
+                </div>
             </div>
 
             <div class="stats-row">
-                <div class="stat-card"><h3>১৫</h3><p>Orders</p></div>
-                <div class="stat-card"><h3>৳৪,৫৫০</h3><p>Spent TK</p></div>
-                <div class="stat-card"><h3>০</h3><p>Cancelled</p></div>
+                <div class="stat-card"><h3>15</h3><p>Orders</p></div>
+                <div class="stat-card"><h3 id="profileSpentDisplay">৳ 4,550</h3><p>Total Spent</p></div>
+                <div class="stat-card"><h3>0</h3><p>Cancelled</p></div>
             </div>
 
             <div class="user-info-list">
-                <div class="info-item"><span>Name</span><span>অন্তর কুমার</span></div>
+                <div class="info-item"><span>Name</span><span>Antor Kumar</span></div>
                 <div class="info-item"><span>Username</span><span>@antorsaha1</span></div>
-                <div class="info-item"><span>Account ID</span><span>৮৫৩৯৫০১</span></div>
-                <div class="info-item"><span>Balance</span><span>৳২,১০৪.৮১</span></div>
+                <div class="info-item"><span>Account ID</span><span>8539501</span></div>
+                <div class="info-item"><span>Balance</span><span id="profileBalanceDisplay">৳ 2,104.81</span></div>
                 <div class="info-item"><span>Referred By</span><span>-</span></div>
-                <div class="info-item"><span>Joined At</span><span>মে ২০২৬</span></div>
-                <div class="info-item"><span>Language</span><span>Bangla / English</span></div>
+                <div class="info-item"><span>Joined At</span><span>May 2026</span></div>
+                <div class="info-item"><span>Language</span><span>English</span></div>
             </div>
 
             <div class="referral-banner"><i class="fa-solid fa-users"></i> Referral & Earnings</div>
@@ -804,7 +846,7 @@
 
     <!-- 6. PRODUCT DETAIL & CHECKOUT VIEW -->
     <div id="productDetailSection" class="section-view">
-        <button class="back-btn" onclick="goBackToPrevious()"><i class="fa-solid fa-arrow-left"></i> ফিরে যান</button>
+        <button class="back-btn" onclick="goBackToPrevious()"><i class="fa-solid fa-arrow-left"></i> Back</button>
 
         <div class="detail-hero-card">
             <img src="" alt="" class="detail-hero-img" id="dImg">
@@ -858,6 +900,27 @@
     </nav>
 
     <script>
+        // Currency Conversion Rate (1 USDT = 120 BDT)
+        const USDT_RATE = 120;
+        let currentCurrency = localStorage.getItem('siteCurrency') || 'BDT';
+
+        // User Account Financials (Stored in BDT base)
+        const userWalletBDT = 2104.81;
+        const userSpentBDT = 4550.00;
+
+        // Format Price Dynamically based on BDT or USDT
+        function formatPrice(bdtAmount, decimals = 2) {
+            if (currentCurrency === 'USDT') {
+                let usdt = bdtAmount / USDT_RATE;
+                // Show 4 decimals for micro-priced items like Hotmail ($0.0048)
+                let precision = usdt < 0.1 ? 4 : 2;
+                return `$ ${usdt.toFixed(precision)}`;
+            } else {
+                return `৳ ${bdtAmount.toFixed(decimals)}`;
+            }
+        }
+
+        // Products Database (All base prices in BDT)
         const products = [
             {
                 id: 1,
@@ -872,7 +935,7 @@
                 delivery: "Instant",
                 shortDesc: "Hotmail trusted account with high longevity.",
                 fullDetails: `
-                    <p>১০০% অরিজিনাল এবং ট্রাস্টেড হটমেইল অ্যাকাউন্ট। পেমেন্ট সম্পন্ন করার সাথে সাথেই ইনস্ট্যান্ট ডেলিভারি পাবেন।</p>
+                    <p>100% original and trusted Hotmail accounts. Instant automated delivery right after payment confirmation.</p>
                     <ul>
                         <li><strong>Format:</strong> Email:Password</li>
                         <li><strong>Status:</strong> 100% Fresh & Active</li>
@@ -892,7 +955,7 @@
                 delivery: "Instant",
                 shortDesc: "Outlook.com | OAuth2 | 12-36 Months | Original.",
                 fullDetails: `
-                    <p>পুরনো এবং হাই-ট্রাস্টেড আউটলুক অ্যাকাউন্ট (১২ থেকে ৩৬ মাস পুরনো)। OAuth2 টোকেন সাপোর্টেড।</p>
+                    <p>Aged and high-trusted Outlook accounts (12 to 36 months old). Full OAuth2 token supported.</p>
                     <ul>
                         <li><strong>Format:</strong> Email:Password:Refresh_Token:Client_ID</li>
                         <li><strong>Usage:</strong> Best for API & automated tools</li>
@@ -912,7 +975,7 @@
                 delivery: "Instant",
                 shortDesc: "Outlook.Fr French domain trusted accounts.",
                 fullDetails: `
-                    <p>ফ্রান্স ডোমেইনের (.fr) প্রিমিয়াম আউটলুক অ্যাকাউন্ট। যেকোনো ভেরিফিকেশনের জন্য অত্যন্ত কার্যকরী।</p>
+                    <p>Premium French domain (.fr) Outlook accounts. Highly reliable for all platform verifications.</p>
                     <ul>
                         <li><strong>Domain:</strong> @outlook.fr</li>
                         <li><strong>Delivery:</strong> Instant 24/7</li>
@@ -938,7 +1001,7 @@
                     { label: "1 GB", price: 115.00 }
                 ],
                 fullDetails: `
-                    <p>অরিজিনাল 9Proxy রেসিডেনশিয়াল আইপি প্যাকেজ। আপনার প্রয়োজন অনুযায়ী ডেটা প্ল্যান সিলেক্ট করুন।</p>
+                    <p>Original 9Proxy residential IP packages. Select your required data plan below.</p>
                     <ul>
                         <li><strong>Type:</strong> CD Key / Sub User Account</li>
                         <li><strong>Speed:</strong> Ultra-fast dedicated residential pool</li>
@@ -963,7 +1026,7 @@
                     { label: "30 Days", price: 120.00 }
                 ],
                 fullDetails: `
-                    <p>হাই-স্পিড নর্ড ভিপিএন (NordVPN) প্রিমিয়াম অ্যাকাউন্ট। সব দেশের সার্ভার আনলক করা থাকবে।</p>
+                    <p>High-speed NordVPN premium accounts with global server access unlocked.</p>
                     <ul>
                         <li><strong>Devices:</strong> Works on PC, Android, iOS</li>
                         <li><strong>Warranty:</strong> Full subscription period replacement guarantee</li>
@@ -980,6 +1043,42 @@
         let activeProduct = null;
         let detailQty = 1;
         let selectedPlanIndex = 0;
+
+        // Currency Switcher Logic
+        function setCurrency(curr) {
+            currentCurrency = curr;
+            localStorage.setItem('siteCurrency', curr);
+            updateCurrencyUI();
+        }
+
+        function toggleCurrency() {
+            setCurrency(currentCurrency === 'BDT' ? 'USDT' : 'BDT');
+        }
+
+        function updateCurrencyUI() {
+            // Update toggle buttons
+            document.getElementById('headerCurrBtn').innerText = currentCurrency;
+            document.getElementById('btnBDT').classList.toggle('active', currentCurrency === 'BDT');
+            document.getElementById('btnUSDT').classList.toggle('active', currentCurrency === 'USDT');
+
+            // Update Wallet & Profile Stats
+            if (currentCurrency === 'USDT') {
+                document.getElementById('headerWalletDisplay').innerText = `$ ${(userWalletBDT / USDT_RATE).toFixed(2)}`;
+                document.getElementById('profileBalanceDisplay').innerText = `$ ${(userWalletBDT / USDT_RATE).toFixed(2)} USDT`;
+                document.getElementById('profileSpentDisplay').innerText = `$ ${(userSpentBDT / USDT_RATE).toFixed(2)}`;
+            } else {
+                document.getElementById('headerWalletDisplay').innerText = `৳ ${Math.floor(userWalletBDT).toLocaleString()}`;
+                document.getElementById('profileBalanceDisplay').innerText = `৳ ${userWalletBDT.toLocaleString()}`;
+                document.getElementById('profileSpentDisplay').innerText = `৳ ${userSpentBDT.toLocaleString()}`;
+            }
+
+            // Re-render grids and active detail view
+            renderProducts(document.getElementById('searchInput').value);
+            if (activeProduct && document.getElementById('productDetailSection').classList.contains('active')) {
+                renderDetailSelectionBox();
+                updateDetailCalculation();
+            }
+        }
 
         function renderProducts(filterText = '') {
             const grid = document.getElementById('productGrid');
@@ -998,7 +1097,7 @@
             });
 
             if (filtered.length === 0) {
-                grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 30px;">কোনো প্রোডাক্ট পাওয়া যায়নি!</p>`;
+                grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 30px;">No products found!</p>`;
             } else {
                 filtered.forEach(product => grid.appendChild(createCard(product)));
             }
@@ -1033,7 +1132,7 @@
                     <h3 class="product-title">${product.name}</h3>
                     <p class="product-desc">${product.shortDesc}</p>
                     <div class="card-footer">
-                        <span class="price">৳ ${product.unitPrice.toFixed(2)}</span>
+                        <span class="price">${formatPrice(product.unitPrice)}</span>
                         <button class="buy-btn" onclick="openProductDetail(${product.id})">
                             <i class="fa-solid fa-cart-shopping"></i> Buy now
                         </button>
@@ -1073,7 +1172,7 @@
                 box.innerHTML = `
                     <div class="detail-sec-header">
                         <span>QUANTITY</span>
-                        <span style="font-size:12px; color:var(--text-muted); font-weight:normal;">Max ${activeProduct.stockCount} · ৳${activeProduct.unitPrice.toFixed(2)}/pc</span>
+                        <span style="font-size:12px; color:var(--text-muted); font-weight:normal;">Max ${activeProduct.stockCount} · ${formatPrice(activeProduct.unitPrice)}/pc</span>
                     </div>
                     <div class="counter-box">
                         <button class="counter-btn" onclick="changeDetailQty(-1)"><i class="fa-solid fa-minus"></i></button>
@@ -1094,7 +1193,7 @@
                             <div class="plan-item ${selectedPlanIndex === idx ? 'active' : ''}" onclick="selectDetailPlan(${idx})">
                                 <i class="fa-solid fa-circle-check plan-check"></i>
                                 <h4>${plan.label}</h4>
-                                <span>৳ ${plan.price.toFixed(2)}</span>
+                                <span>${formatPrice(plan.price)}</span>
                             </div>
                         `).join('')}
                     </div>
@@ -1125,23 +1224,25 @@
 
         function updateDetailCalculation() {
             let unitP = activeProduct.unitPrice;
-            let totalP = 0;
+            let totalBDT = 0;
             let orderSummary = "";
 
             if (activeProduct.mode === 'quantity') {
-                totalP = (unitP * detailQty).toFixed(2);
-                document.getElementById('dUnitPrice').innerText = `৳ ${unitP.toFixed(2)}`;
+                totalBDT = unitP * detailQty;
+                document.getElementById('dUnitPrice').innerText = formatPrice(unitP);
                 orderSummary = `${activeProduct.name} (${detailQty} pcs)`;
             } else {
                 let chosenPlan = activeProduct.plans[selectedPlanIndex];
                 unitP = chosenPlan.price;
-                totalP = unitP.toFixed(2);
-                document.getElementById('dUnitPrice').innerText = `৳ ${unitP.toFixed(2)}`;
+                totalBDT = unitP;
+                document.getElementById('dUnitPrice').innerText = formatPrice(unitP);
                 orderSummary = `${activeProduct.name} - Plan: ${chosenPlan.label}`;
             }
 
-            document.getElementById('dTotalPrice').innerText = `৳ ${totalP}`;
-            let msg = encodeURIComponent(`হ্যালো, আমি "${orderSummary}" অর্ডার করতে চাই। মোট মূল্য: ৳${totalP}`);
+            let formattedTotal = formatPrice(totalBDT);
+            document.getElementById('dTotalPrice').innerText = formattedTotal;
+
+            let msg = encodeURIComponent(`Hello, I want to order "${orderSummary}". Total Price: ${formattedTotal} (${currentCurrency})`);
             document.getElementById('dOrderBtn').href = `https://wa.me/${whatsappNumber}?text=${msg}`;
         }
 
@@ -1202,7 +1303,8 @@
             document.body.classList.toggle('light-theme');
         }
 
-        renderProducts();
+        // Initialize UI with saved or default currency
+        updateCurrencyUI();
     </script>
 </body>
 </html>
