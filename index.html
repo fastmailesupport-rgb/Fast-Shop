@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fast Shop - Product Details</title>
+    <title>Fast Shop - Digital Store</title>
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -11,12 +11,24 @@
             --bg-dark: #120400;
             --bg-gradient: radial-gradient(circle at top, #2d0e00 0%, #120400 75%);
             --card-bg: #1e0902;
-            --primary-orange: #ff5500;
-            --secondary-orange: #ff8800;
+            --primary-glow: #ff5500;
+            --secondary-glow: #ff9900;
             --btn-gradient: linear-gradient(90deg, #ff5500, #ff7700);
             --border-color: rgba(255, 85, 0, 0.35);
             --text-main: #ffffff;
             --text-muted: #c2a294;
+        }
+
+        body.light-theme {
+            --bg-dark: #f8fafc;
+            --bg-gradient: radial-gradient(circle at top, #fee2e2 0%, #f1f5f9 75%);
+            --card-bg: #ffffff;
+            --primary-glow: #ff5500;
+            --secondary-glow: #ea580c;
+            --btn-gradient: linear-gradient(90deg, #ff5500, #ea580c);
+            --border-color: rgba(255, 85, 0, 0.25);
+            --text-main: #1e293b;
+            --text-muted: #64748b;
         }
 
         * {
@@ -31,104 +43,399 @@
             background-image: var(--bg-gradient);
             color: var(--text-main);
             min-height: 100vh;
-            padding: 20px 15px 100px;
+            padding-bottom: 95px;
+            transition: all 0.3s ease;
+        }
+
+        /* Top Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background: rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .user-greeting {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .user-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 2px solid var(--primary-glow);
+            object-fit: cover;
+        }
+
+        .user-greeting h4 { font-size: 12px; color: var(--text-muted); }
+        .user-greeting h2 { font-size: 17px; color: var(--text-main); font-weight: 700; }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .wallet-pill {
+            background: rgba(255, 85, 0, 0.15);
+            border: 1px solid var(--border-color);
+            padding: 6px 14px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+            font-size: 14px;
+        }
+        .wallet-pill i { color: var(--primary-glow); }
+
+        .notif-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .fav-count-badge {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            background: #ff2a6d;
+            color: white;
+            font-size: 10px;
+            width: 17px;
+            height: 17px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        /* Section Views */
+        .section-view {
+            display: none;
+            max-width: 1100px;
+            margin: 15px auto 25px;
+            padding: 0 20px;
+        }
+        .section-view.active { display: block; }
+
+        /* Home Top Features */
+        .notice-box {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 12px 18px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 18px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+        }
+        .notice-left { display: flex; align-items: center; gap: 10px; font-size: 13.5px; font-weight: 600; }
+        .notice-left i { color: var(--secondary-glow); font-size: 16px; }
+        .status-pill {
+            background: rgba(34, 197, 94, 0.15);
+            color: #4ade80;
+            border: 1px solid rgba(34, 197, 94, 0.4);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11.5px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .deposit-card {
+            background: linear-gradient(135deg, rgba(255, 85, 0, 0.18), rgba(30, 9, 2, 0.95));
+            border: 1.5px solid var(--primary-glow);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 22px;
+            box-shadow: 0 0 25px rgba(255,85,0,0.2);
+            text-align: center;
+        }
+        .deposit-card h3 { font-size: 19px; margin-bottom: 6px; color: var(--text-main); }
+        .deposit-card p { font-size: 13px; color: var(--text-muted); margin-bottom: 14px; }
+        .payment-logos {
             display: flex;
             justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        .pay-badge {
+            background: rgba(0,0,0,0.4);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 5px 14px;
+            border-radius: 30px;
+            font-size: 12.5px;
+            font-weight: 600;
         }
 
-        .container {
+        /* Search & Filter Bar */
+        .search-box {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .search-box input {
+            background: none;
+            border: none;
+            outline: none;
+            color: var(--text-main);
+            font-size: 14.5px;
             width: 100%;
-            max-width: 480px;
+        }
+        .search-box i { color: var(--primary-glow); font-size: 17px; }
+
+        .filter-tabs {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+            margin-bottom: 18px;
+            scrollbar-width: none;
+        }
+        .filter-tabs::-webkit-scrollbar { display: none; }
+
+        .filter-tab {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s;
+        }
+        .filter-tab.active {
+            background: var(--btn-gradient);
+            border-color: transparent;
+            color: white;
+            box-shadow: 0 0 15px rgba(255, 85, 0, 0.4);
+        }
+
+        /* Product Grid & Cards */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1.5px solid var(--border-color);
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            justify-content: space-between;
+            transition: 0.3s;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            cursor: pointer;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary-glow);
+            box-shadow: 0 10px 25px rgba(255,85,0,0.25);
         }
 
-        /* Top Banner Card */
-        .hero-card {
+        .card-top-bar {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            right: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 5;
+        }
+
+        .badges-left { display: flex; gap: 6px; }
+
+        .stock-badge {
+            background: rgba(0, 0, 0, 0.78);
+            backdrop-filter: blur(5px);
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            border: 1px solid var(--primary-glow);
+        }
+
+        .sold-badge {
+            background: rgba(0, 0, 0, 0.78);
+            backdrop-filter: blur(5px);
+            color: #ff9900;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            border: 1px solid rgba(255,153,0,0.4);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .fav-btn {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.78);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #fff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            transition: 0.2s;
+            z-index: 6;
+        }
+        .fav-btn:hover { transform: scale(1.1); }
+        .fav-btn.active { color: #ff2a6d; border-color: #ff2a6d; box-shadow: 0 0 10px rgba(255,42,109,0.5); }
+
+        .card-img-wrapper {
+            height: 165px;
+            overflow: hidden;
+            background: rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 22px;
+        }
+        .card-img-wrapper img { max-width: 100%; max-height: 100%; object-fit: contain; transition: 0.3s; }
+        .card:hover .card-img-wrapper img { transform: scale(1.06); }
+
+        .card-body { padding: 16px 18px; display: flex; flex-direction: column; flex-grow: 1; }
+        .product-title { font-size: 16px; font-weight: 700; margin-bottom: 6px; color: var(--text-main); }
+        .product-desc { font-size: 12.5px; color: var(--text-muted); margin-bottom: 16px; flex-grow: 1; line-height: 1.45; }
+
+        .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 12px; }
+        .price { font-size: 18.5px; font-weight: 700; color: var(--primary-glow); }
+
+        .buy-btn {
+            background: var(--btn-gradient);
+            color: white;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255,85,0,0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: 0.2s;
+            text-decoration: none;
+        }
+        .buy-btn:hover { filter: brightness(1.1); transform: scale(1.02); }
+
+        /* =========================================================
+           PRODUCT DETAILS / ORDER VIEW (Exact Screenshot Design)
+        ========================================================= */
+        #productDetailSection {
+            max-width: 520px;
+            margin: 10px auto 30px;
+            padding: 0 15px;
+        }
+
+        .back-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 13.5px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 15px;
+            transition: 0.2s;
+        }
+        .back-btn:hover { border-color: var(--primary-glow); color: var(--primary-glow); }
+
+        .detail-hero-card {
             background: var(--card-bg);
             border: 1.5px solid var(--border-color);
             border-radius: 24px;
             padding: 25px 20px;
             text-align: center;
             position: relative;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
-        }
-
-        .hero-img {
-            width: 110px;
-            height: 110px;
-            object-fit: contain;
             margin-bottom: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.35);
         }
 
-        .hero-title {
-            font-size: 30px;
-            font-weight: 700;
-            color: var(--text-main);
+        .detail-hero-img {
+            width: 115px;
+            height: 115px;
+            object-fit: contain;
             margin-bottom: 12px;
         }
 
-        .stock-pill {
+        .detail-stock-pill {
             display: inline-flex;
             align-items: center;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.65);
             border: 1px solid var(--border-color);
-            padding: 6px 16px;
+            padding: 5px 15px;
             border-radius: 30px;
-            font-size: 13px;
+            font-size: 12.5px;
             font-weight: 600;
-            color: var(--text-muted);
+            color: #fff;
         }
 
-        /* Product Info Card */
-        .info-card {
+        .detail-box {
             background: var(--card-bg);
             border: 1.5px solid var(--border-color);
             border-radius: 20px;
             padding: 20px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            margin-bottom: 15px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
         }
 
-        .product-name {
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
+        .detail-title { font-size: 21px; font-weight: 700; margin-bottom: 4px; }
+        .detail-sub { font-size: 13px; color: var(--text-muted); margin-bottom: 16px; }
+        .detail-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.6px; color: var(--text-muted); margin-bottom: 6px; font-weight: 600; }
+        .detail-price { font-size: 28px; font-weight: 700; color: var(--primary-glow); margin-bottom: 14px; }
 
-        .product-category {
-            font-size: 13.5px;
-            color: var(--text-muted);
-            margin-bottom: 18px;
-        }
-
-        .section-label {
-            font-size: 11.5px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: var(--text-muted);
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-
-        .price-row {
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--primary-orange);
-            margin-bottom: 14px;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .badges-row {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .badge {
-            background: rgba(0,0,0,0.4);
+        .detail-badges { display: flex; gap: 8px; flex-wrap: wrap; }
+        .d-badge {
+            background: rgba(0,0,0,0.35);
             border: 1px solid var(--border-color);
             padding: 5px 12px;
             border-radius: 20px;
@@ -138,29 +445,22 @@
             align-items: center;
             gap: 5px;
         }
-        .badge.green { color: #22c55e; border-color: rgba(34,197,94,0.4); }
-        .badge.orange { color: #ff9900; border-color: rgba(255,153,0,0.4); }
+        .d-badge.green { color: #22c55e; border-color: rgba(34,197,94,0.4); }
+        .d-badge.orange { color: #ff9900; border-color: rgba(255,153,0,0.4); }
+        .d-badge.blue { color: #60a5fa; border-color: rgba(96,165,250,0.4); }
 
-        /* Quantity Selection Card */
-        .selection-card {
-            background: var(--card-bg);
-            border: 1.5px solid var(--border-color);
-            border-radius: 20px;
-            padding: 20px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-        }
-
-        .section-title {
+        .detail-sec-header {
             font-size: 13px;
             font-weight: 700;
-            color: var(--text-main);
-            margin-bottom: 12px;
+            margin-bottom: 14px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            justify-content: space-between;
+            border-left: 3px solid var(--primary-glow);
+            padding-left: 10px;
         }
-        .section-title i { color: var(--primary-orange); }
 
+        /* Quantity Counter */
         .counter-box {
             display: flex;
             align-items: center;
@@ -169,224 +469,754 @@
             border: 1px solid var(--border-color);
             border-radius: 14px;
             padding: 10px 20px;
-            margin-bottom: 15px;
+            margin-bottom: 14px;
         }
-
         .counter-btn {
             background: none;
             border: none;
             color: var(--text-main);
-            font-size: 20px;
+            font-size: 18px;
             cursor: pointer;
-            width: 35px;
-            height: 35px;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 50%;
-            transition: 0.2s;
         }
-        .counter-btn:hover { background: rgba(255,85,0,0.2); color: var(--primary-orange); }
-
-        .counter-value {
-            font-size: 20px;
-            font-weight: 700;
-        }
+        .counter-btn:hover { background: rgba(255,85,0,0.2); color: var(--primary-glow); }
+        .counter-val { font-size: 20px; font-weight: 700; }
 
         .preset-grid {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
             gap: 6px;
         }
-
         .preset-btn {
             background: rgba(0,0,0,0.3);
             border: 1px solid var(--border-color);
             color: var(--text-main);
-            padding: 10px 0;
+            padding: 9px 0;
             border-radius: 10px;
-            font-size: 13px;
+            font-size: 12.5px;
             font-weight: 600;
             cursor: pointer;
-            transition: 0.2s;
             text-align: center;
         }
         .preset-btn.active {
-            background: var(--primary-orange);
-            border-color: var(--primary-orange);
-            color: white;
-            box-shadow: 0 0 10px rgba(255,85,0,0.4);
+            background: var(--primary-glow);
+            border-color: var(--primary-glow);
+            color: #fff;
         }
 
-        /* Product Details / Description Card */
-        .details-card {
-            background: var(--card-bg);
+        /* Plan Selection Grid (For Proxy / VPN) */
+        .plan-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        .plan-item {
+            background: rgba(0,0,0,0.25);
             border: 1.5px solid var(--border-color);
-            border-radius: 20px;
-            padding: 20px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            border-radius: 14px;
+            padding: 14px;
+            cursor: pointer;
+            position: relative;
+            transition: 0.2s;
         }
+        .plan-item.active {
+            border-color: var(--primary-glow);
+            background: rgba(255,85,0,0.12);
+        }
+        .plan-item h4 { font-size: 14.5px; font-weight: 700; margin-bottom: 4px; }
+        .plan-item span { font-size: 13.5px; font-weight: 700; color: var(--primary-glow); }
+        .plan-check {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            color: var(--primary-glow);
+            display: none;
+        }
+        .plan-item.active .plan-check { display: block; }
 
-        .details-content {
+        .detail-desc-list {
             font-size: 13.5px;
             color: var(--text-muted);
-            line-height: 1.6;
+            line-height: 1.65;
+        }
+        .detail-desc-list ul { padding-left: 18px; margin-top: 8px; }
+        .detail-desc-list li { margin-bottom: 6px; }
+
+        /* Detail Checkout Action Card */
+        .detail-checkout-bar {
+            background: var(--card-bg);
+            border: 1.5px solid var(--primary-glow);
+            border-radius: 20px;
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 6px 25px rgba(255,85,0,0.25);
         }
 
-        .details-content ul {
-            margin-top: 10px;
-            padding-left: 18px;
+        /* Profile Styles */
+        .profile-container {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
-        .details-content li {
-            margin-bottom: 6px;
+        .profile-top-settings {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
         }
 
-        /* Fixed Bottom Action Bar */
-        .bottom-bar {
+        .setting-box {
+            background: rgba(0,0,0,0.12);
+            border: 1px solid var(--border-color);
+            padding: 6px 14px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        .stat-card {
+            background: rgba(0,0,0,0.15);
+            border: 1px solid var(--border-color);
+            padding: 15px;
+            border-radius: 14px;
+            text-align: center;
+        }
+        .stat-card h3 { font-size: 18px; font-weight: 700; color: var(--primary-glow); }
+        .stat-card p { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+
+        .user-info-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 15px;
+            background: rgba(0,0,0,0.08);
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.05);
+            font-size: 14px;
+        }
+        .info-item span:first-child { color: var(--text-muted); }
+        .info-item span:last-child { font-weight: 600; }
+
+        .referral-banner {
+            background: var(--btn-gradient);
+            color: white;
+            padding: 15px;
+            border-radius: 14px;
+            text-align: center;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255,85,0,0.3);
+        }
+
+        /* Bottom Navigation Bar */
+        .bottom-nav {
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
-            background: rgba(30, 9, 2, 0.95);
+            background: var(--card-bg);
             backdrop-filter: blur(15px);
             border-top: 1px solid var(--border-color);
-            padding: 14px 20px;
             display: flex;
-            justify-content: space-between;
+            justify-content: space-around;
             align-items: center;
+            padding: 10px 0;
             z-index: 1000;
-            max-width: 480px;
-            margin: 0 auto;
         }
-
-        .total-price-display {
-            font-size: 22px;
-            font-weight: 700;
-            color: var(--primary-orange);
-        }
-
-        .place-order-btn {
-            background: var(--btn-gradient);
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 50px;
-            font-size: 15px;
-            font-weight: 700;
-            cursor: pointer;
-            box-shadow: 0 4px 20px rgba(255,85,0,0.4);
-            transition: 0.2s;
-            text-decoration: none;
-            display: inline-flex;
+        .nav-item {
+            display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 8px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 12px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            transition: 0.3s;
         }
-        .place-order-btn:hover { filter: brightness(1.1); transform: scale(1.02); }
+        .nav-item i { font-size: 20px; margin-bottom: 4px; }
+        .nav-item.active { color: var(--primary-glow); }
+
+        .nav-item.deposit-center { position: relative; margin-top: -35px; }
+        .nav-item.deposit-center .deposit-icon-box {
+            width: 60px;
+            height: 60px;
+            background: var(--btn-gradient);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 6px 20px rgba(255,85,0,0.5);
+            border: 3px solid var(--bg-dark);
+            font-size: 24px;
+        }
+        .nav-item.deposit-center span { margin-top: 4px; font-weight: 600; color: var(--text-main); }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        
-        <!-- Top Image Card -->
-        <div class="hero-card">
-            <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Hotmail" class="hero-img">
-            <h1 class="hero-title">Hotmail</h1>
-            <div class="stock-pill"><span style="width:7px; height:7px; background:#22c55e; border-radius:50%; display:inline-block; margin-right:6px;"></span>45,768 in stock</div>
-        </div>
-
-        <!-- Product Info Card -->
-        <div class="info-card">
-            <div class="product-name">Hotmail Trusted V1</div>
-            <div class="product-category">45,768 pcs available</div>
-            
-            <div class="section-label">Unit Price</div>
-            <div class="price-row" id="unitPriceDisplay">৳ 0.57</div>
-
-            <div class="badges-row">
-                <div class="badge green"><i class="fa-solid fa-clock"></i> Instant</div>
-                <div class="badge green"><i class="fa-solid fa-circle-check"></i> In stock</div>
-                <div class="badge orange"><i class="fa-solid fa-fire"></i> 2,012 sold</div>
+    <!-- Header -->
+    <header>
+        <div class="user-greeting">
+            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80" alt="Avatar" class="user-avatar">
+            <div>
+                <h4>Welcome back,</h4>
+                <h2>অন্তর কুমার</h2>
             </div>
         </div>
-
-        <!-- Quantity Selection Card -->
-        <div class="selection-card">
-            <div class="section-title"><i class="fa-solid fa-arrow-down-up-acn"></i> QUANTITY <span style="margin-left:auto; color:var(--text-muted); font-weight:normal;" id="maxLimitText">Max 45768 · ৳0.57/pc</span></div>
-            
-            <div class="counter-box">
-                <button class="counter-btn" onclick="updateQty(-1)"><i class="fa-solid fa-minus"></i></button>
-                <div class="counter-value" id="qtyDisplay">1</div>
-                <button class="counter-btn" onclick="updateQty(1)"><i class="fa-solid fa-plus"></i></button>
+        <div class="header-right">
+            <div class="wallet-pill">
+                <i class="fa-solid fa-wallet"></i> ৳২,১০৪
             </div>
+            <button class="notif-btn" onclick="toggleBookmarksOnly()" title="বুকমার্ক করা প্রোডাক্ট">
+                <i class="fa-solid fa-heart" style="color: #ff2a6d;"></i>
+                <span class="fav-count-badge" id="favCount">0</span>
+            </button>
+        </div>
+    </header>
 
-            <div class="preset-grid">
-                <button class="preset-btn active" onclick="setQty(1)">1</button>
-                <button class="preset-btn" onclick="setQty(5)">5</button>
-                <button class="preset-btn" onclick="setQty(10)">10</button>
-                <button class="preset-btn" onclick="setQty(25)">25</button>
-                <button class="preset-btn" onclick="setQty(50)">50</button>
-                <button class="preset-btn" onclick="setQty(100)">100</button>
+    <!-- 1. HOME SECTION -->
+    <div id="homeSection" class="section-view active">
+        <div class="notice-box">
+            <div class="notice-left">
+                <i class="fa-solid fa-bullhorn"></i>
+                <span>ইনস্ট্যান্ট অটোমেটেড ডেলিভারি এবং ২৪/৭ সাপোর্ট চালু আছে</span>
             </div>
+            <span class="status-pill"><i class="fa-solid fa-circle" style="font-size: 8px;"></i> Live</span>
         </div>
 
-        <!-- Product Details / Description Card -->
-        <div class="details-card">
-            <div class="section-title"><i class="fa-solid fa-circle-info"></i> PRODUCT DETAILS</div>
-            <div class="details-content">
-                <p>১০০% অরিজিনাল এবং ট্রাস্টেড হটমেইল অ্যাকাউন্ট। ইনস্ট্যান্ট ডেলিভারি সিস্টেমের মাধ্যমে পেমেন্ট সম্পন্ন করার সাথে সাথে পেয়ে যাবেন।</p>
-                <ul>
-                    <li>লগইন ফরম্যাট: Email:Password</li>
-                    <li>দীর্ঘস্থায়ী এবং ভেরিফাইড অ্যাকাউন্ট</li>
-                    <li>২৪/৭ প্রিমিয়াম সাপোর্ট</li>
-                </ul>
+        <div class="deposit-card">
+            <h3>⚡ INSTANT ADD BALANCE</h3>
+            <p>বিকাশ, নগদ, রকেট এবং বাইন্যান্স পেমেন্টের মাধ্যমে খুব সহজেই ব্যালেন্স যোগ করুন।</p>
+            <div class="payment-logos">
+                <span class="pay-badge">বিকাশ</span>
+                <span class="pay-badge">নগদ</span>
+                <span class="pay-badge">রকেট</span>
+                <span class="pay-badge">উপায়</span>
+                <span class="pay-badge">Binance Pay</span>
             </div>
+            <button class="buy-btn" onclick="switchTab('deposit', document.querySelectorAll('.nav-item')[2])">
+                <i class="fa-solid fa-plus-circle"></i> Add Balance
+            </button>
         </div>
 
+        <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="searchInput" placeholder="Search products, mail, proxy..." onkeyup="filterProducts()">
+        </div>
+
+        <div class="filter-tabs">
+            <button class="filter-tab active" onclick="setCategory('all', this)"><i class="fa-solid fa-border-all"></i> All Products</button>
+            <button class="filter-tab" onclick="setCategory('email', this)"><i class="fa-solid fa-envelope"></i> Email / Mail</button>
+            <button class="filter-tab" onclick="setCategory('proxy', this)"><i class="fa-solid fa-globe"></i> Proxy Items</button>
+            <button class="filter-tab" onclick="setCategory('tools', this)"><i class="fa-solid fa-toolbox"></i> Tools & VPN</button>
+        </div>
+
+        <h3 style="margin-bottom: 15px; font-size: 17px; color: var(--secondary-glow);"><i class="fa-solid fa-fire"></i> Top Selling Products</h3>
+        <div class="product-grid" id="productGrid"></div>
     </div>
 
-    <!-- Fixed Bottom Bar -->
-    <div class="bottom-bar">
-        <div class="total-price-display" id="totalPriceDisplay">৳ 0.57</div>
-        <a href="#" id="orderBtn" target="_blank" class="place-order-btn">
-            <i class="fa-solid fa-cart-shopping"></i> Buy Now
-        </a>
+    <!-- 2. NUM & MAIL SECTION -->
+    <div id="numMailSection" class="section-view">
+        <h3 style="margin-bottom: 15px; font-size: 18px; color: var(--secondary-glow);"><i class="fa-solid fa-envelope-open-text"></i> Number & Mail Accounts</h3>
+        <div class="product-grid" id="numMailGrid"></div>
     </div>
+
+    <!-- 3. DEPOSIT SECTION -->
+    <div id="depositSection" class="section-view">
+        <div class="profile-container" style="text-align: center;">
+            <h2 style="margin-bottom: 15px;"><i class="fa-solid fa-wallet" style="color: var(--primary-glow);"></i> ফান্ড ডিপোজিট করুন</h2>
+            <p style="color: var(--text-muted); margin-bottom: 20px;">বিকাশ, নগদ বা বাইন্যান্স পেমেন্টের মাধ্যমে ব্যালেন্স যোগ করুন।</p>
+            <div style="background: rgba(0,0,0,0.12); padding: 20px; border-radius: 14px; border: 1px solid var(--border-color); margin-bottom: 20px;">
+                <p style="font-size: 14px; font-weight: 600;">বিকাশ / নগদ পার্সোনাল নম্বর:</p>
+                <h3 style="color: var(--primary-glow); margin-top: 6px; font-size: 22px;">01700-000000</h3>
+            </div>
+            <a href="https://wa.me/8801700000000?text=হ্যালো,%20আমি%20ডিপোজিট%20করতে%20চাই।" target="_blank" class="buy-btn" style="padding: 12px 25px;">
+                <i class="fa-brands fa-whatsapp"></i> টাকা পাঠিয়ে WhatsApp-এ স্ক্রিনশট দিন
+            </a>
+        </div>
+    </div>
+
+    <!-- 4. PROXY SECTION -->
+    <div id="proxySection" class="section-view">
+        <h3 style="margin-bottom: 15px; font-size: 18px; color: var(--secondary-glow);"><i class="fa-solid fa-globe"></i> Proxy & IP Services</h3>
+        <div class="product-grid" id="proxyGrid"></div>
+    </div>
+
+    <!-- 5. PROFILE SECTION -->
+    <div id="profileSection" class="section-view">
+        <div class="profile-container">
+            <div class="profile-top-settings">
+                <div class="setting-box">
+                    <span>Theme</span>
+                    <i class="fa-solid fa-toggle-on" style="color: var(--primary-glow); cursor: pointer; font-size: 18px;" onclick="toggleThemeMode()"></i>
+                </div>
+                <div class="setting-box"><span>LANG: EN</span></div>
+                <div class="setting-box" style="background: var(--btn-gradient); color: white;"><span>BDT</span></div>
+            </div>
+
+            <div class="stats-row">
+                <div class="stat-card"><h3>১৫</h3><p>Orders</p></div>
+                <div class="stat-card"><h3>৳৪,৫৫০</h3><p>Spent TK</p></div>
+                <div class="stat-card"><h3>০</h3><p>Cancelled</p></div>
+            </div>
+
+            <div class="user-info-list">
+                <div class="info-item"><span>Name</span><span>অন্তর কুমার</span></div>
+                <div class="info-item"><span>Username</span><span>@antorsaha1</span></div>
+                <div class="info-item"><span>Account ID</span><span>৮৫৩৯৫০১</span></div>
+                <div class="info-item"><span>Balance</span><span>৳২,১০৪.৮১</span></div>
+                <div class="info-item"><span>Referred By</span><span>-</span></div>
+                <div class="info-item"><span>Joined At</span><span>মে ২০২৬</span></div>
+                <div class="info-item"><span>Language</span><span>Bangla / English</span></div>
+            </div>
+
+            <div class="referral-banner"><i class="fa-solid fa-users"></i> Referral & Earnings</div>
+        </div>
+    </div>
+
+    <!-- 6. PRODUCT DETAIL & CHECKOUT VIEW (Opens when clicking any product) -->
+    <div id="productDetailSection" class="section-view">
+        <button class="back-btn" onclick="goBackToPrevious()"><i class="fa-solid fa-arrow-left"></i> ফিরে যান</button>
+
+        <!-- Hero Image Card -->
+        <div class="detail-hero-card">
+            <img src="" alt="" class="detail-hero-img" id="dImg">
+            <div>
+                <div class="detail-stock-pill" id="dStockPill">45,768 in stock</div>
+            </div>
+        </div>
+
+        <!-- Product Info & Price Card -->
+        <div class="detail-box">
+            <div class="detail-title" id="dName">Product Name</div>
+            <div class="detail-sub" id="dSubText">45768 pcs available</div>
+            
+            <div class="detail-label">UNIT PRICE</div>
+            <div class="detail-price" id="dUnitPrice">৳ 0.57</div>
+
+            <div class="detail-badges">
+                <div class="d-badge green"><i class="fa-solid fa-clock"></i> <span id="dDeliveryTime">Instant</span></div>
+                <div class="d-badge green"><i class="fa-solid fa-circle-check"></i> In stock</div>
+                <div class="d-badge orange"><i class="fa-solid fa-fire"></i> <span id="dSold">2,012 sold</span></div>
+            </div>
+        </div>
+
+        <!-- Dynamic Selection Box (Quantity Counter OR Plan Selector) -->
+        <div class="detail-box" id="dSelectionBox">
+            <!-- Injected via JS based on product type -->
+        </div>
+
+        <!-- Product Details / Full Info Card -->
+        <div class="detail-box">
+            <div class="detail-sec-header"><span>PRODUCT DETAILS</span></div>
+            <div class="detail-desc-list" id="dFullDetails"></div>
+        </div>
+
+        <!-- Checkout Action Bar -->
+        <div class="detail-checkout-bar">
+            <div>
+                <div style="font-size: 11px; color: var(--text-muted);">TOTAL PRICE</div>
+                <div style="font-size: 22px; font-weight: 700; color: var(--primary-glow);" id="dTotalPrice">৳ 0.57</div>
+            </div>
+            <a href="#" id="dOrderBtn" target="_blank" class="buy-btn" style="padding: 12px 28px; font-size: 15px;">
+                <i class="fa-solid fa-cart-shopping"></i> <span id="dBtnText">Buy Now</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="bottom-nav">
+        <button class="nav-item active" onclick="switchTab('home', this)"><i class="fa-solid fa-house"></i><span>Home</span></button>
+        <button class="nav-item" onclick="switchTab('numMail', this)"><i class="fa-solid fa-envelope-open-text"></i><span>Num & Mail</span></button>
+        <button class="nav-item deposit-center" onclick="switchTab('deposit', this)">
+            <div class="deposit-icon-box"><i class="fa-solid fa-wallet"></i></div>
+            <span>Deposit</span>
+        </button>
+        <button class="nav-item" onclick="switchTab('proxy', this)"><i class="fa-solid fa-globe"></i><span>Proxy</span></button>
+        <button class="nav-item" onclick="switchTab('profile', this)"><i class="fa-solid fa-user"></i><span>Profile</span></button>
+    </nav>
 
     <script>
-        const unitPrice = 0.57;
-        let currentQty = 1;
-        const maxStock = 45768;
+        // Rich Product Data (Supports both Quantity Mode & Plan Mode like your screenshots)
+        const products = [
+            {
+                id: 1,
+                category: 'email',
+                mode: 'quantity',
+                name: "Hotmail Trusted V1",
+                image: "https://cdn-icons-png.flaticon.com/512/732/732200.png",
+                stockCount: 45768,
+                stockText: "45.7k PCS",
+                sold: "2,012 sold",
+                unitPrice: 0.57,
+                delivery: "Instant",
+                shortDesc: "Hotmail trusted account with high longevity.",
+                fullDetails: `
+                    <p>১০০% অরিজিনাল এবং ট্রাস্টেড হটমেইল অ্যাকাউন্ট। পেমেন্ট সম্পন্ন করার সাথে সাথেই ইনস্ট্যান্ট ডেলিভারি পাবেন।</p>
+                    <ul>
+                        <li><strong>Format:</strong> Email:Password</li>
+                        <li><strong>Status:</strong> 100% Fresh & Active</li>
+                        <li><strong>Warranty:</strong> First login replacement guarantee</li>
+                    </ul>`
+            },
+            {
+                id: 2,
+                category: 'email',
+                mode: 'quantity',
+                name: "Outlook.com | OAuth2",
+                image: "https://cdn-icons-png.flaticon.com/512/732/732221.png",
+                stockCount: 48200,
+                stockText: "48k PCS",
+                sold: "1,420 sold",
+                unitPrice: 0.48,
+                delivery: "Instant",
+                shortDesc: "Outlook.com | OAuth2 | 12-36 Months | Original.",
+                fullDetails: `
+                    <p>পুরনো এবং হাই-ট্রাস্টেড আউটলুক অ্যাকাউন্ট (১২ থেকে ৩৬ মাস পুরনো)। OAuth2 টোকেন সাপোর্টেড।</p>
+                    <ul>
+                        <li><strong>Format:</strong> Email:Password:Refresh_Token:Client_ID</li>
+                        <li><strong>Usage:</strong> Best for API & automated tools</li>
+                        <li><strong>Delivery:</strong> Instant automatic delivery</li>
+                    </ul>`
+            },
+            {
+                id: 3,
+                category: 'email',
+                mode: 'quantity',
+                name: "Outlook.Fr Trusted V1",
+                image: "https://cdn-icons-png.flaticon.com/512/732/732221.png",
+                stockCount: 41000,
+                stockText: "41k PCS",
+                sold: "1,050 sold",
+                unitPrice: 0.80,
+                delivery: "Instant",
+                shortDesc: "Outlook.Fr French domain trusted accounts.",
+                fullDetails: `
+                    <p>ফ্রান্স ডোমেইনের (.fr) প্রিমিয়াম আউটলুক অ্যাকাউন্ট। যেকোনো ভেরিফিকেশনের জন্য অত্যন্ত কার্যকরী।</p>
+                    <ul>
+                        <li><strong>Domain:</strong> @outlook.fr</li>
+                        <li><strong>Delivery:</strong> Instant 24/7</li>
+                    </ul>`
+            },
+            {
+                id: 4,
+                category: 'proxy',
+                mode: 'plan',
+                planTitle: "SELECT DATA PLAN",
+                name: "9 Proxy",
+                image: "https://cdn-icons-png.flaticon.com/512/1006/1006771.png",
+                stockCount: 999,
+                stockText: "100 MB - 1GB",
+                sold: "408 sold",
+                unitPrice: 15.00,
+                delivery: "Instant / within 1 hour",
+                shortDesc: "High speed clean residential 9Proxy CD Key / Sub User.",
+                plans: [
+                    { label: "100 MB", price: 15.00 },
+                    { label: "200 MB", price: 25.00 },
+                    { label: "500 MB", price: 60.00 },
+                    { label: "1 GB", price: 115.00 }
+                ],
+                fullDetails: `
+                    <p>অরিজিনাল 9Proxy রেসিডেনশিয়াল আইপি প্যাকেজ। আপনার প্রয়োজন অনুযায়ী ডেটা প্ল্যান সিলেক্ট করুন।</p>
+                    <ul>
+                        <li><strong>Type:</strong> CD Key / Sub User Account</li>
+                        <li><strong>Speed:</strong> Ultra-fast dedicated residential pool</li>
+                        <li><strong>Validity:</strong> No expiration date on unused balance</li>
+                    </ul>`
+            },
+            {
+                id: 5,
+                category: 'tools',
+                mode: 'plan',
+                planTitle: "SELECT DAYS / PLAN",
+                name: "NordVPN Premium",
+                image: "https://cdn-icons-png.flaticon.com/512/6124/6124998.png",
+                stockCount: 500,
+                stockText: "7 - 30 Days",
+                sold: "356 sold",
+                unitPrice: 20.00,
+                delivery: "Instant / within 1 hour",
+                shortDesc: "NordVPN Private & Shared premium subscription.",
+                plans: [
+                    { label: "7 Days", price: 20.00 },
+                    { label: "30 Days", price: 120.00 }
+                ],
+                fullDetails: `
+                    <p>হাই-স্পিড নর্ড ভিপিএন (NordVPN) প্রিমিয়াম অ্যাকাউন্ট। সব দেশের সার্ভার আনলক করা থাকবে।</p>
+                    <ul>
+                        <li><strong>Devices:</strong> Works on PC, Android, iOS</li>
+                        <li><strong>Warranty:</strong> Full subscription period replacement guarantee</li>
+                    </ul>`
+            }
+        ];
+
+        let currentCategory = 'all';
+        let showOnlyBookmarks = false;
+        let bookmarkedIds = JSON.parse(localStorage.getItem('bookmarkedProducts')) || [];
+        let lastActiveTab = 'home';
         const whatsappNumber = "8801700000000";
 
-        function updateQty(change) {
-            let newQty = currentQty + change;
-            if (newQty >= 1 && newQty <= maxStock) {
-                currentQty = newQty;
-                renderState();
+        // Active Detail State
+        let activeProduct = null;
+        let detailQty = 1;
+        let selectedPlanIndex = 0;
+
+        function renderProducts(filterText = '') {
+            const grid = document.getElementById('productGrid');
+            const numMailGrid = document.getElementById('numMailGrid');
+            const proxyGrid = document.getElementById('proxyGrid');
+            
+            grid.innerHTML = '';
+            numMailGrid.innerHTML = '';
+            proxyGrid.innerHTML = '';
+
+            const filtered = products.filter(p => {
+                const matchesCat = currentCategory === 'all' || p.category === currentCategory;
+                const matchesSearch = p.name.toLowerCase().includes(filterText.toLowerCase());
+                const matchesFav = !showOnlyBookmarks || bookmarkedIds.includes(p.id);
+                return matchesCat && matchesSearch && matchesFav;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 30px;">কোনো প্রোডাক্ট পাওয়া যায়নি!</p>`;
+            } else {
+                filtered.forEach(product => grid.appendChild(createCard(product)));
+            }
+
+            products.filter(p => p.category === 'email').forEach(product => numMailGrid.appendChild(createCard(product)));
+            products.filter(p => p.category === 'proxy').forEach(product => proxyGrid.appendChild(createCard(product)));
+            document.getElementById('favCount').innerText = bookmarkedIds.length;
+        }
+
+        function createCard(product) {
+            const isBookmarked = bookmarkedIds.includes(product.id);
+            const card = document.createElement('div');
+            card.className = 'card';
+            // Clicking anywhere on card opens the full Product Detail Page
+            card.onclick = (e) => {
+                if (!e.target.closest('.fav-btn')) {
+                    openProductDetail(product.id);
+                }
+            };
+
+            card.innerHTML = `
+                <div class="card-top-bar">
+                    <div class="badges-left">
+                        <div class="stock-badge">${product.stockText}</div>
+                        <div class="sold-badge"><i class="fa-solid fa-fire" style="color: #ff5500;"></i> ${product.sold}</div>
+                    </div>
+                    <button class="fav-btn ${isBookmarked ? 'active' : ''}" onclick="toggleBookmark(${product.id}, event)">
+                        <i class="${isBookmarked ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
+                    </button>
+                </div>
+                <div class="card-img-wrapper"><img src="${product.image}" alt="${product.name}"></div>
+                <div class="card-body">
+                    <h3 class="product-title">${product.name}</h3>
+                    <p class="product-desc">${product.shortDesc}</p>
+                    <div class="card-footer">
+                        <span class="price">৳ ${product.unitPrice.toFixed(2)}</span>
+                        <button class="buy-btn" onclick="openProductDetail(${product.id})">
+                            <i class="fa-solid fa-cart-shopping"></i> Buy now
+                        </button>
+                    </div>
+                </div>
+            `;
+            return card;
+        }
+
+        // Open Full Product Details View (Matches Screenshots 1, 2, 3)
+        function openProductDetail(id) {
+            activeProduct = products.find(p => p.id === id);
+            if (!activeProduct) return;
+
+            detailQty = 1;
+            selectedPlanIndex = 0;
+
+            // Hide all tabs, show detail view
+            document.querySelectorAll('.section-view').forEach(sec => sec.classList.remove('active'));
+            document.getElementById('productDetailSection').classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Populate Hero & Info
+            document.getElementById('dImg').src = activeProduct.image;
+            document.getElementById('dStockPill').innerHTML = `<span style="width:7px; height:7px; background:#22c55e; border-radius:50%; display:inline-block; margin-right:6px;"></span>${activeProduct.stockCount.toLocaleString()} in stock`;
+            document.getElementById('dName').innerText = activeProduct.name;
+            document.getElementById('dSubText').innerText = activeProduct.mode === 'quantity' ? `${activeProduct.stockCount} pcs available` : `Ready to order`;
+            document.getElementById('dDeliveryTime').innerText = activeProduct.delivery;
+            document.getElementById('dSold').innerText = activeProduct.sold;
+            document.getElementById('dFullDetails').innerHTML = activeProduct.fullDetails;
+            document.getElementById('dBtnText').innerText = activeProduct.mode === 'quantity' ? 'Buy Now' : 'Place Order';
+
+            renderDetailSelectionBox();
+            updateDetailCalculation();
+        }
+
+        function renderDetailSelectionBox() {
+            const box = document.getElementById('dSelectionBox');
+            if (activeProduct.mode === 'quantity') {
+                box.innerHTML = `
+                    <div class="detail-sec-header">
+                        <span>QUANTITY</span>
+                        <span style="font-size:12px; color:var(--text-muted); font-weight:normal;">Max ${activeProduct.stockCount} · ৳${activeProduct.unitPrice.toFixed(2)}/pc</span>
+                    </div>
+                    <div class="counter-box">
+                        <button class="counter-btn" onclick="changeDetailQty(-1)"><i class="fa-solid fa-minus"></i></button>
+                        <div class="counter-val" id="dQtyVal">${detailQty}</div>
+                        <button class="counter-btn" onclick="changeDetailQty(1)"><i class="fa-solid fa-plus"></i></button>
+                    </div>
+                    <div class="preset-grid">
+                        ${[1, 5, 10, 25, 50, 100].map(num => `
+                            <button class="preset-btn ${detailQty === num ? 'active' : ''}" onclick="setDetailQty(${num})">${num}</button>
+                        `).join('')}
+                    </div>
+                `;
+            } else {
+                // Plan Selection Mode (Proxy / VPN)
+                box.innerHTML = `
+                    <div class="detail-sec-header"><span>${activeProduct.planTitle || 'SELECT PLAN'}</span></div>
+                    <div class="plan-grid">
+                        ${activeProduct.plans.map((plan, idx) => `
+                            <div class="plan-item ${selectedPlanIndex === idx ? 'active' : ''}" onclick="selectDetailPlan(${idx})">
+                                <i class="fa-solid fa-circle-check plan-check"></i>
+                                <h4>${plan.label}</h4>
+                                <span>৳ ${plan.price.toFixed(2)}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
             }
         }
 
-        function setQty(val) {
-            currentQty = val;
-            document.querySelectorAll('.preset-btn').forEach(btn => {
-                if(parseInt(btn.innerText) === val) btn.classList.add('active');
-                else btn.classList.remove('active');
-            });
-            renderState();
+        function changeDetailQty(delta) {
+            let next = detailQty + delta;
+            if (next >= 1 && next <= activeProduct.stockCount) {
+                detailQty = next;
+                renderDetailSelectionBox();
+                updateDetailCalculation();
+            }
         }
 
-        function renderState() {
-            document.getElementById('qtyDisplay').innerText = currentQty;
-            let total = (unitPrice * currentQty).toFixed(2);
-            document.getElementById('totalPriceDisplay').innerText = `৳ ${total}`;
-
-            let msg = encodeURIComponent(`হ্যালো, আমি Hotmail Trusted V1 প্রোডাক্টটি ${currentQty} পিস কিনতে চাই। মোট মূল্য: ৳${total}`);
-            document.getElementById('orderBtn').href = `https://wa.me/${whatsappNumber}?text=${msg}`;
+        function setDetailQty(val) {
+            detailQty = val;
+            renderDetailSelectionBox();
+            updateDetailCalculation();
         }
 
-        renderState();
+        function selectDetailPlan(index) {
+            selectedPlanIndex = index;
+            renderDetailSelectionBox();
+            updateDetailCalculation();
+        }
+
+        function updateDetailCalculation() {
+            let unitP = activeProduct.unitPrice;
+            let totalP = 0;
+            let orderSummary = "";
+
+            if (activeProduct.mode === 'quantity') {
+                totalP = (unitP * detailQty).toFixed(2);
+                document.getElementById('dUnitPrice').innerText = `৳ ${unitP.toFixed(2)}`;
+                orderSummary = `${activeProduct.name} (${detailQty} pcs)`;
+            } else {
+                let chosenPlan = activeProduct.plans[selectedPlanIndex];
+                unitP = chosenPlan.price;
+                totalP = unitP.toFixed(2);
+                document.getElementById('dUnitPrice').innerText = `৳ ${unitP.toFixed(2)}`;
+                orderSummary = `${activeProduct.name} - Plan: ${chosenPlan.label}`;
+            }
+
+            document.getElementById('dTotalPrice').innerText = `৳ ${totalP}`;
+            let msg = encodeURIComponent(`হ্যালো, আমি "${orderSummary}" অর্ডার করতে চাই। মোট মূল্য: ৳${totalP}`);
+            document.getElementById('dOrderBtn').href = `https://wa.me/${whatsappNumber}?text=${msg}`;
+        }
+
+        function goBackToPrevious() {
+            document.getElementById('productDetailSection').classList.remove('active');
+            const navButtons = document.querySelectorAll('.nav-item');
+            if(lastActiveTab === 'home') switchTab('home', navButtons[0]);
+            else if(lastActiveTab === 'numMail') switchTab('numMail', navButtons[1]);
+            else if(lastActiveTab === 'proxy') switchTab('proxy', navButtons[3]);
+            else switchTab('home', navButtons[0]);
+        }
+
+        function setCategory(cat, element) {
+            currentCategory = cat;
+            showOnlyBookmarks = false;
+            document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+            element.classList.add('active');
+            renderProducts(document.getElementById('searchInput').value);
+        }
+
+        function toggleBookmarksOnly() {
+            showOnlyBookmarks = !showOnlyBookmarks;
+            switchTab('home', document.querySelectorAll('.nav-item')[0]);
+            renderProducts(document.getElementById('searchInput').value);
+        }
+
+        function filterProducts() {
+            renderProducts(document.getElementById('searchInput').value);
+        }
+
+        function toggleBookmark(id, event) {
+            if (event) event.stopPropagation();
+            if (bookmarkedIds.includes(id)) {
+                bookmarkedIds = bookmarkedIds.filter(i => i !== id);
+            } else {
+                bookmarkedIds.push(id);
+            }
+            localStorage.setItem('bookmarkedProducts', JSON.stringify(bookmarkedIds));
+            renderProducts(document.getElementById('searchInput').value);
+        }
+
+        function switchTab(tabName, element) {
+            lastActiveTab = tabName;
+            document.querySelectorAll('.section-view').forEach(sec => sec.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+
+            if(tabName === 'home') document.getElementById('homeSection').classList.add('active');
+            if(tabName === 'numMail') document.getElementById('numMailSection').classList.add('active');
+            if(tabName === 'deposit') document.getElementById('depositSection').classList.add('active');
+            if(tabName === 'proxy') document.getElementById('proxySection').classList.add('active');
+            if(tabName === 'profile') document.getElementById('profileSection').classList.add('active');
+
+            if (element) element.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleThemeMode() {
+            document.body.classList.toggle('light-theme');
+        }
+
+        renderProducts();
     </script>
 </body>
 </html>
