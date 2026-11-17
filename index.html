@@ -601,7 +601,7 @@
         }
         .submit-request-btn:hover { background: #132640; transform: translateY(-2px); }
 
-        /* REFUND POLICY STYLING (MODERN & PROFESSIONAL) */
+        /* REFUND POLICY STYLING */
         .policy-container {
             max-width: 680px;
             margin: 20px auto;
@@ -691,17 +691,156 @@
             background: #fff;
             box-shadow: 0 6px 18px rgba(255,85,0,0.1);
         }
-        .support-card i {
-            font-size: 24px;
-        }
+        .support-card i { font-size: 24px; }
         .support-card.whatsapp i { color: #25D366; }
         .support-card.telegram i { color: #0088cc; }
         .support-card.email i { color: #ea4335; }
+        .support-card span { font-size: 12.5px; font-weight: 600; color: var(--text-main); }
 
-        .support-card span {
-            font-size: 12.5px;
-            font-weight: 600;
-            color: var(--text-main);
+        /* ---------------------------------------------------- */
+        /* PREMIUM WEBSITE FOOTER STYLING (MATCHING SCREENSHOT) */
+        /* ---------------------------------------------------- */
+        .site-footer {
+            background: #0f172a;
+            color: #94a3b8;
+            padding: 50px 5% 30px;
+            border-top: 2px solid #1e293b;
+            margin-top: 60px;
+        }
+
+        .footer-content-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .footer-content-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        .footer-col h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 16px;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-col p {
+            font-size: 13.5px;
+            line-height: 1.6;
+            margin-bottom: 18px;
+            color: #cbd5e1;
+        }
+
+        .footer-contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .footer-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            color: #cbd5e1;
+        }
+        .footer-contact-item i {
+            color: var(--primary-glow);
+            width: 16px;
+        }
+
+        .footer-social-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .footer-social-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            text-decoration: none;
+            transition: 0.25s;
+        }
+        .footer-social-btn:hover {
+            background: var(--primary-glow);
+            border-color: var(--primary-glow);
+            transform: translateY(-2px);
+        }
+
+        .footer-links-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-links-list li a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 13.5px;
+            transition: 0.2s;
+            display: inline-block;
+        }
+        .footer-links-list li a:hover {
+            color: #ffffff;
+            transform: translateX(4px);
+        }
+
+        .footer-bottom-bar {
+            max-width: 1100px;
+            margin: 0 auto;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .footer-bottom-bar {
+                flex-direction: row;
+                justify-content: space-between;
+                text-align: left;
+            }
+        }
+
+        .footer-copyright {
+            font-size: 13px;
+            color: #94a3b8;
+        }
+
+        .footer-payment-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pay-badge-img {
+            height: 24px;
+            background: #fff;
+            padding: 3px 6px;
+            border-radius: 4px;
+            object-fit: contain;
         }
 
         /* MODAL OVERLAY STYLING */
@@ -1523,7 +1662,7 @@
         <!-- Rendered dynamically -->
     </div>
 
-    <!-- 6. REFUND POLICY SECTION (PREMIUM & EXACT TEXT INTEGRATED WITH HIDDEN CONTACTS) -->
+    <!-- 6. REFUND POLICY SECTION -->
     <div id="refundPolicySection" class="section-view">
         <div class="policy-container">
             <div class="policy-header">
@@ -1654,6 +1793,79 @@
             </a>
         </div>
     </div>
+
+    <!-- ---------------------------------------------------- -->
+    <!-- PROFESSIONAL WEBSITE FOOTER SECTION                   -->
+    <!-- ---------------------------------------------------- -->
+    <footer class="site-footer">
+        <div class="footer-content-grid">
+            <!-- Column 1: Brand & Contact -->
+            <div class="footer-col">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 14px;">
+                    <i class="fa-solid fa-shield-halved" style="color: var(--primary-glow); font-size: 20px;"></i>
+                    <h3 style="margin-bottom: 0; font-size: 18px;">Fast Shop</h3>
+                </div>
+                <p>Trusted digital product store in Bangladesh with fast delivery, clear support, and secure payment options.</p>
+                
+                <div class="footer-contact-info">
+                    <div class="footer-contact-item">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>Bangladesh</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="fa-solid fa-phone"></i>
+                        <span>+880 1740-249310</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>fastmailesupport@gmail.com</span>
+                    </div>
+                </div>
+
+                <div class="footer-social-row">
+                    <a href="https://facebook.com" target="_blank" class="footer-social-btn" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://t.me/FastMaileSupport" target="_blank" class="footer-social-btn" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
+                    <a href="https://wa.me/8801740249310" target="_blank" class="footer-social-btn" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <!-- Column 2: Information Links -->
+            <div class="footer-col">
+                <h3>Information</h3>
+                <ul class="footer-links-list">
+                    <li><a href="#" onclick="switchTab('home', document.querySelectorAll('.nav-item')[0])">About us</a></li>
+                    <li><a href="https://wa.me/8801740249310" target="_blank">Contact us</a></li>
+                    <li><a href="#" onclick="switchTab('refund', null)">Terms & Conditions</a></li>
+                    <li><a href="#" onclick="switchTab('refund', null)">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 3: Support Links -->
+            <div class="footer-col">
+                <h3>Support</h3>
+                <ul class="footer-links-list">
+                    <li><a href="https://t.me/FastMaileSupport" target="_blank">Support Center</a></li>
+                    <li><a href="#" onclick="showModal('How to Order', '1. Select your desired product.\n2. Choose options & quantity.\n3. Complete payment and click Buy Now to chat on WhatsApp.', 'info')">How to Order</a></li>
+                    <li><a href="#" onclick="switchTab('deposit', document.querySelectorAll('.nav-item')[2])">Payment Options</a></li>
+                    <li><a href="#" onclick="switchTab('refund', null)">Refund Policy</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom-bar">
+            <div class="footer-copyright">
+                © 2026 Fast Shop. All Rights Reserved.
+            </div>
+            <div class="footer-payment-badges">
+                <img src="https://seeklogo.com/images/B/bkash-logo-FBB25EDF56-seeklogo.com.png" alt="BKash" class="pay-badge-img">
+                <img src="https://seeklogo.com/images/N/nagad-logo-A2DE3F1545-seeklogo.com.png" alt="Nagad" class="pay-badge-img">
+                <img src="https://seeklogo.com/images/D/dutch-bangla-rocket-logo-B4A45A9522-seeklogo.com.png" alt="Rocket" class="pay-badge-img">
+                <img src="https://cryptologos.cc/logos/binance-coin-bnb-logo.png?v=035" alt="Binance" class="pay-badge-img">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png" alt="Visa" class="pay-badge-img">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" class="pay-badge-img">
+            </div>
+        </div>
+    </footer>
 
     <nav class="bottom-nav">
         <button class="nav-item active" onclick="switchTab('home', this)"><i class="fa-solid fa-house"></i><span>Home</span></button>
@@ -2061,7 +2273,7 @@
         let showOnlyBookmarks = false;
         let bookmarkedIds = JSON.parse(localStorage.getItem('bookmarkedProducts')) || [];
         let lastActiveTab = 'home';
-        const whatsappNumber = "8801700000000";
+        const whatsappNumber = "8801740249310";
 
         let activeProduct = null;
         let detailQty = 1;
