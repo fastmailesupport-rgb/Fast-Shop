@@ -47,7 +47,6 @@
             transition: all 0.3s ease;
         }
 
-        /* Top Header */
         header {
             display: flex;
             justify-content: space-between;
@@ -143,7 +142,6 @@
             font-weight: bold;
         }
 
-        /* Section Views */
         .section-view {
             display: none;
             max-width: 1100px;
@@ -152,7 +150,6 @@
         }
         .section-view.active { display: block; }
 
-        /* Home Top Features */
         .notice-box {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -205,7 +202,6 @@
             font-weight: 600;
         }
 
-        /* Search & Filter Bar */
         .search-box {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -259,7 +255,6 @@
             box-shadow: 0 0 15px rgba(255, 85, 0, 0.4);
         }
 
-        /* 2-COLUMN GRID SYSTEM */
         .product-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -475,6 +470,62 @@
             padding-left: 10px;
         }
 
+        /* FORMAT & DELIVERY OPTIONS STYLING (Screenshots match) */
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 5px;
+        }
+        .option-card {
+            background: rgba(0,0,0,0.25);
+            border: 1.5px solid var(--border-color);
+            border-radius: 14px;
+            padding: 14px;
+            cursor: pointer;
+            position: relative;
+            transition: 0.2s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .option-card.active {
+            border-color: var(--primary-glow);
+            background: rgba(255,85,0,0.12);
+        }
+        .option-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+        .option-card h4 { font-size: 14px; font-weight: 700; }
+        .option-card p { font-size: 11px; color: var(--text-muted); }
+        .opt-badge {
+            background: rgba(34,197,94,0.15);
+            color: #4ade80;
+            font-size: 9.5px;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+        .opt-check {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 1.5px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9px;
+            color: transparent;
+        }
+        .option-card.active .opt-check {
+            background: var(--primary-glow);
+            border-color: var(--primary-glow);
+            color: white;
+        }
+
         .counter-box {
             display: flex;
             align-items: center;
@@ -571,7 +622,6 @@
             box-shadow: 0 6px 25px rgba(255,85,0,0.25);
         }
 
-        /* Profile Styles */
         .profile-container {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -670,7 +720,6 @@
             box-shadow: 0 4px 15px rgba(255,85,0,0.3);
         }
 
-        /* Bottom Navigation Bar */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -719,7 +768,6 @@
 </head>
 <body>
 
-    <!-- Header -->
     <header>
         <div class="user-greeting">
             <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80" alt="Avatar" class="user-avatar">
@@ -887,7 +935,6 @@
         </div>
     </div>
 
-    <!-- Bottom Navigation Bar -->
     <nav class="bottom-nav">
         <button class="nav-item active" onclick="switchTab('home', this)"><i class="fa-solid fa-house"></i><span>Home</span></button>
         <button class="nav-item" onclick="switchTab('numMail', this)"><i class="fa-solid fa-envelope-open-text"></i><span>Num & Mail</span></button>
@@ -900,19 +947,15 @@
     </nav>
 
     <script>
-        // Currency Conversion Rate (1 USDT = 120 BDT)
         const USDT_RATE = 120;
         let currentCurrency = localStorage.getItem('siteCurrency') || 'BDT';
 
-        // User Account Financials (Stored in BDT base)
         const userWalletBDT = 2104.81;
         const userSpentBDT = 4550.00;
 
-        // Format Price Dynamically based on BDT or USDT
         function formatPrice(bdtAmount, decimals = 2) {
             if (currentCurrency === 'USDT') {
                 let usdt = bdtAmount / USDT_RATE;
-                // Show 4 decimals for micro-priced items like Hotmail ($0.0048)
                 let precision = usdt < 0.1 ? 4 : 2;
                 return `$ ${usdt.toFixed(precision)}`;
             } else {
@@ -920,7 +963,6 @@
             }
         }
 
-        // Products Database (All base prices in BDT)
         const products = [
             {
                 id: 1,
@@ -1043,8 +1085,9 @@
         let activeProduct = null;
         let detailQty = 1;
         let selectedPlanIndex = 0;
+        let selectedFileFormat = 'CSV'; // Default active format for Email
+        let selectedDeliveryType = 'Sub User'; // Default active delivery for Proxy/VPN
 
-        // Currency Switcher Logic
         function setCurrency(curr) {
             currentCurrency = curr;
             localStorage.setItem('siteCurrency', curr);
@@ -1056,12 +1099,10 @@
         }
 
         function updateCurrencyUI() {
-            // Update toggle buttons
             document.getElementById('headerCurrBtn').innerText = currentCurrency;
             document.getElementById('btnBDT').classList.toggle('active', currentCurrency === 'BDT');
             document.getElementById('btnUSDT').classList.toggle('active', currentCurrency === 'USDT');
 
-            // Update Wallet & Profile Stats
             if (currentCurrency === 'USDT') {
                 document.getElementById('headerWalletDisplay').innerText = `$ ${(userWalletBDT / USDT_RATE).toFixed(2)}`;
                 document.getElementById('profileBalanceDisplay').innerText = `$ ${(userWalletBDT / USDT_RATE).toFixed(2)} USDT`;
@@ -1072,7 +1113,6 @@
                 document.getElementById('profileSpentDisplay').innerText = `৳ ${userSpentBDT.toLocaleString()}`;
             }
 
-            // Re-render grids and active detail view
             renderProducts(document.getElementById('searchInput').value);
             if (activeProduct && document.getElementById('productDetailSection').classList.contains('active')) {
                 renderDetailSelectionBox();
@@ -1148,6 +1188,8 @@
 
             detailQty = 1;
             selectedPlanIndex = 0;
+            selectedFileFormat = 'CSV'; // Always CSV active by default for mails
+            selectedDeliveryType = 'Sub User'; // Always Sub User active by default for proxy/vpn
 
             document.querySelectorAll('.section-view').forEach(sec => sec.classList.remove('active'));
             document.getElementById('productDetailSection').classList.add('active');
@@ -1168,9 +1210,30 @@
 
         function renderDetailSelectionBox() {
             const box = document.getElementById('dSelectionBox');
-            if (activeProduct.mode === 'quantity') {
+            
+            if (activeProduct.category === 'email') {
+                // Email products: File Format Selection (CSV active always, TXT optional)
                 box.innerHTML = `
-                    <div class="detail-sec-header">
+                    <div class="detail-sec-header"><span>File format</span></div>
+                    <div class="options-grid">
+                        <div class="option-card ${selectedFileFormat === 'CSV' ? 'active' : ''}" onclick="selectFileFormat('CSV')">
+                            <div class="option-top">
+                                <h4>CSV</h4>
+                                <span class="opt-badge">BEST</span>
+                                <div class="opt-check"><i class="fa-solid fa-check"></i></div>
+                            </div>
+                            <p>Excel & Sheets</p>
+                        </div>
+                        <div class="option-card ${selectedFileFormat === 'TXT' ? 'active' : ''}" onclick="selectFileFormat('TXT')">
+                            <div class="option-top">
+                                <h4>TXT</h4>
+                                <div class="opt-check"><i class="fa-solid fa-check"></i></div>
+                            </div>
+                            <p>Plain text</p>
+                        </div>
+                    </div>
+
+                    <div class="detail-sec-header" style="margin-top: 15px;">
                         <span>QUANTITY</span>
                         <span style="font-size:12px; color:var(--text-muted); font-weight:normal;">Max ${activeProduct.stockCount} · ${formatPrice(activeProduct.unitPrice)}/pc</span>
                     </div>
@@ -1185,8 +1248,30 @@
                         `).join('')}
                     </div>
                 `;
-            } else {
+            } else if (activeProduct.category === 'proxy' || activeProduct.category === 'tools') {
+                // Proxy / VPN products: Delivery type (Sub User active always, CD Key optional) + Plan
                 box.innerHTML = `
+                    <div class="detail-sec-header">
+                        <span>Delivery type</span>
+                        <span style="font-size:10.5px; color:#ff5500; font-weight:600;">Required</span>
+                    </div>
+                    <div class="options-grid" style="margin-bottom: 15px;">
+                        <div class="option-card ${selectedDeliveryType === 'Sub User' ? 'active' : ''}" onclick="selectDeliveryType('Sub User')">
+                            <div class="option-top">
+                                <h4>Sub User</h4>
+                                <div class="opt-check"><i class="fa-solid fa-check"></i></div>
+                            </div>
+                            <p>Ready account ...</p>
+                        </div>
+                        <div class="option-card ${selectedDeliveryType === 'CD Key' ? 'active' : ''}" onclick="selectDeliveryType('CD Key')">
+                            <div class="option-top">
+                                <h4>CD Key</h4>
+                                <div class="opt-check"><i class="fa-solid fa-check"></i></div>
+                            </div>
+                            <p>Redeem code y...</p>
+                        </div>
+                    </div>
+
                     <div class="detail-sec-header"><span>${activeProduct.planTitle || 'SELECT PLAN'}</span></div>
                     <div class="plan-grid">
                         ${activeProduct.plans.map((plan, idx) => `
@@ -1199,6 +1284,18 @@
                     </div>
                 `;
             }
+        }
+
+        function selectFileFormat(format) {
+            selectedFileFormat = format;
+            renderDetailSelectionBox();
+            updateDetailCalculation();
+        }
+
+        function selectDeliveryType(type) {
+            selectedDeliveryType = type;
+            renderDetailSelectionBox();
+            updateDetailCalculation();
         }
 
         function changeDetailQty(delta) {
@@ -1230,13 +1327,13 @@
             if (activeProduct.mode === 'quantity') {
                 totalBDT = unitP * detailQty;
                 document.getElementById('dUnitPrice').innerText = formatPrice(unitP);
-                orderSummary = `${activeProduct.name} (${detailQty} pcs)`;
+                orderSummary = `${activeProduct.name} (${detailQty} pcs) [Format: ${selectedFileFormat}]`;
             } else {
                 let chosenPlan = activeProduct.plans[selectedPlanIndex];
                 unitP = chosenPlan.price;
                 totalBDT = unitP;
                 document.getElementById('dUnitPrice').innerText = formatPrice(unitP);
-                orderSummary = `${activeProduct.name} - Plan: ${chosenPlan.label}`;
+                orderSummary = `${activeProduct.name} - Plan: ${chosenPlan.label} [Delivery: ${selectedDeliveryType}]`;
             }
 
             let formattedTotal = formatPrice(totalBDT);
@@ -1303,7 +1400,6 @@
             document.body.classList.toggle('light-theme');
         }
 
-        // Initialize UI with saved or default currency
         updateCurrencyUI();
     </script>
 </body>
