@@ -276,7 +276,7 @@
             box-shadow: 0 4px 12px rgba(255, 85, 0, 0.3);
         }
 
-        /* MAIL CATEGORY BAR */
+        /* MAIL CATEGORY BAR (MARK-ED LOCATION STYLING) */
         .mail-category-bar {
             display: flex;
             gap: 8px;
@@ -1638,7 +1638,6 @@
             <button class="filter-tab active" onclick="setCategory('all', this)"><i class="fa-solid fa-border-all"></i> All Products</button>
             <button class="filter-tab" onclick="setCategory('email', this)"><i class="fa-solid fa-envelope"></i> Email / Mail</button>
             <button class="filter-tab" onclick="setCategory('proxy', this)"><i class="fa-solid fa-globe"></i> Proxy Items</button>
-            <!-- Updated button name from Tools & VPN to Social Subscription -->
             <button class="filter-tab" onclick="setCategory('social', this)"><i class="fa-solid fa-share-nodes"></i> Social Subscription</button>
         </div>
 
@@ -1648,6 +1647,15 @@
 
     <!-- 2. NUM & MAIL SECTION -->
     <div id="numMailSection" class="section-view">
+        <!-- Mail Category Navigation Bar Added Here (Marked Area) -->
+        <div class="mail-category-bar">
+            <button class="mail-cat-btn active" onclick="filterMailCategory('all', this)"><i class="fa-solid fa-border-all"></i> All Mail</button>
+            <button class="mail-cat-btn" onclick="filterMailCategory('hotmail', this)"><i class="fa-brands fa-windows"></i> Hotmail</button>
+            <button class="mail-cat-btn" onclick="filterMailCategory('outlook', this)"><i class="fa-solid fa-envelope"></i> Outlook Mail</button>
+            <button class="mail-cat-btn" onclick="filterMailCategory('edu', this)"><i class="fa-solid fa-graduation-cap"></i> Edu Mail</button>
+            <button class="mail-cat-btn" onclick="filterMailCategory('gmail', this)"><i class="fa-brands fa-google"></i> Gmail.com</button>
+        </div>
+
         <h3 style="margin-bottom: 12px; font-size: 16px; color: var(--secondary-glow);"><i class="fa-solid fa-envelope-open-text"></i> Number & Mail Accounts</h3>
         <div class="product-grid" id="numMailGrid"></div>
     </div>
@@ -2361,8 +2369,6 @@
                 ],
                 fullDetails: `<p>High-speed NordVPN premium accounts with global server access unlocked.</p>`
             },
-
-            /* --- NEW 9 SOCIAL SUBSCRIPTION PRODUCTS ADDED HERE --- */
             {
                 id: 101,
                 category: 'social',
@@ -2510,6 +2516,7 @@
         ];
 
         let currentCategory = 'all';
+        let currentMailCategory = 'all'; // Default Mail Category
         let currentProxyCategory = 'all';
         let showOnlyBookmarks = false;
         let bookmarkedIds = JSON.parse(localStorage.getItem('bookmarkedProducts')) || [];
@@ -2571,13 +2578,31 @@
                 filtered.forEach(product => grid.appendChild(createCard(product)));
             }
 
-            // Num & Mail section
-            products.filter(p => p.category === 'email').forEach(product => numMailGrid.appendChild(createCard(product)));
+            // Num & Mail section with Mail Category Filtering
+            const mailFiltered = products.filter(p => {
+                if (p.category !== 'email') return false;
+                if (currentMailCategory === 'all') return true;
+                return p.mailType === currentMailCategory;
+            });
+
+            if (mailFiltered.length === 0) {
+                numMailGrid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 30px;">No mail products found in this category!</p>`;
+            } else {
+                mailFiltered.forEach(product => numMailGrid.appendChild(createCard(product)));
+            }
 
             // Proxy section
             products.filter(p => p.category === 'proxy').forEach(product => proxyGrid.appendChild(createCard(product)));
 
             document.getElementById('favCount').innerText = bookmarkedIds.length;
+        }
+
+        // Mail Category Filter Handler
+        function filterMailCategory(cat, element) {
+            currentMailCategory = cat;
+            document.querySelectorAll('.mail-cat-btn').forEach(b => b.classList.remove('active'));
+            if(element) element.classList.add('active');
+            renderProducts(document.getElementById('searchInput').value);
         }
 
         function filterProxyCategory(cat, element) {
