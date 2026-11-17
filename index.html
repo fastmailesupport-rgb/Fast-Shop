@@ -8,25 +8,25 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --bg-dark: #140500;
-            --bg-gradient: radial-gradient(circle at top, #3b1200 0%, #140500 70%);
-            --card-bg: rgba(35, 14, 5, 0.85);
+            --bg-dark: #120400;
+            --bg-gradient: radial-gradient(circle at top, #2d0e00 0%, #120400 75%);
+            --card-bg: #1e0902;
             --primary-glow: #ff5500;
             --secondary-glow: #ff9900;
-            --btn-gradient: linear-gradient(90deg, #ff5500, #ff8800);
-            --border-color: rgba(255, 102, 0, 0.4);
+            --btn-gradient: linear-gradient(90deg, #ff5500, #ff7700);
+            --border-color: rgba(255, 85, 0, 0.35);
             --text-main: #ffffff;
-            --text-muted: #d1b8ae;
+            --text-muted: #c2a294;
         }
 
         body.light-theme {
             --bg-dark: #f8fafc;
-            --bg-gradient: radial-gradient(circle at top, #fee2e2 0%, #f1f5f9 70%);
-            --card-bg: rgba(255, 255, 255, 0.9);
+            --bg-gradient: radial-gradient(circle at top, #fee2e2 0%, #f1f5f9 75%);
+            --card-bg: #ffffff;
             --primary-glow: #ff5500;
             --secondary-glow: #ea580c;
             --btn-gradient: linear-gradient(90deg, #ff5500, #ea580c);
-            --border-color: rgba(255, 85, 0, 0.3);
+            --border-color: rgba(255, 85, 0, 0.25);
             --text-main: #1e293b;
             --text-muted: #64748b;
         }
@@ -53,7 +53,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 15px 5%;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.3);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border-color);
             position: sticky;
@@ -68,15 +68,15 @@
         }
 
         .user-avatar {
-            width: 45px;
-            height: 45px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             border: 2px solid var(--primary-glow);
             object-fit: cover;
         }
 
-        .user-greeting h4 { font-size: 13px; color: var(--text-muted); }
-        .user-greeting h2 { font-size: 18px; color: var(--text-main); }
+        .user-greeting h4 { font-size: 12px; color: var(--text-muted); }
+        .user-greeting h2 { font-size: 17px; color: var(--text-main); font-weight: 700; }
 
         .header-right {
             display: flex;
@@ -93,15 +93,15 @@
             align-items: center;
             gap: 8px;
             font-weight: 700;
-            font-size: 15px;
+            font-size: 14px;
         }
         .wallet-pill i { color: var(--primary-glow); }
 
         .notif-btn {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            width: 40px;
-            height: 40px;
+            width: 38px;
+            height: 38px;
             border-radius: 50%;
             color: var(--text-main);
             display: flex;
@@ -110,10 +110,10 @@
             cursor: pointer;
         }
 
-        /* Search & Filter Bar (Matching Screenshot) */
+        /* Search & Filter Bar */
         .search-filter-container {
             max-width: 1100px;
-            margin: 20px auto 10px;
+            margin: 20px auto 12px;
             padding: 0 20px;
         }
 
@@ -153,9 +153,9 @@
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             color: var(--text-main);
-            padding: 8px 18px;
+            padding: 9px 20px;
             border-radius: 50px;
-            font-size: 13px;
+            font-size: 13.5px;
             font-weight: 600;
             cursor: pointer;
             white-space: nowrap;
@@ -169,7 +169,7 @@
             background: var(--btn-gradient);
             border-color: transparent;
             color: white;
-            box-shadow: 0 0 15px var(--border-color);
+            box-shadow: 0 0 15px rgba(255, 85, 0, 0.4);
         }
 
         /* Section Views */
@@ -181,7 +181,7 @@
         }
         .section-view.active { display: block; }
 
-        /* Product Grid & Cards (Exact Screenshot Style) */
+        /* Product Grid & Cards */
         .product-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -191,20 +191,20 @@
         .card {
             background: var(--card-bg);
             border: 1.5px solid var(--border-color);
-            border-radius: 18px;
+            border-radius: 20px;
             overflow: hidden;
             position: relative;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             transition: 0.3s;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
         }
 
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+            transform: translateY(-4px);
             border-color: var(--primary-glow);
+            box-shadow: 0 10px 25px rgba(255,85,0,0.2);
         }
 
         .card-top-bar {
@@ -221,9 +221,9 @@
             background: rgba(0, 0, 0, 0.75);
             backdrop-filter: blur(5px);
             color: #fff;
-            padding: 4px 10px;
+            padding: 4px 11px;
             border-radius: 20px;
-            font-size: 11px;
+            font-size: 11.5px;
             font-weight: 600;
             border: 1px solid var(--primary-glow);
         }
@@ -232,9 +232,9 @@
             background: rgba(0, 0, 0, 0.75);
             backdrop-filter: blur(5px);
             color: #ff9900;
-            padding: 4px 10px;
+            padding: 4px 11px;
             border-radius: 20px;
-            font-size: 11px;
+            font-size: 11.5px;
             font-weight: 600;
             border: 1px solid rgba(255,153,0,0.4);
             display: flex;
@@ -243,8 +243,8 @@
         }
 
         .fav-btn {
-            width: 34px;
-            height: 34px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             background: rgba(0, 0, 0, 0.75);
             backdrop-filter: blur(5px);
@@ -254,40 +254,47 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 15px;
+            transition: 0.2s;
         }
-        .fav-btn.active { color: #ff2a6d; border-color: #ff2a6d; }
+        .fav-btn:hover { transform: scale(1.1); }
+        .fav-btn.active { color: #ff2a6d; border-color: #ff2a6d; box-shadow: 0 0 10px rgba(255,42,109,0.5); }
 
         .card-img-wrapper {
-            height: 160px;
+            height: 170px;
             overflow: hidden;
-            background: rgba(0,0,0,0.2);
+            background: rgba(0,0,0,0.15);
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 15px;
+            padding: 20px;
         }
         .card-img-wrapper img { max-width: 100%; max-height: 100%; object-fit: contain; transition: 0.3s; }
-        .card:hover .card-img-wrapper img { transform: scale(1.05); }
+        .card:hover .card-img-wrapper img { transform: scale(1.06); }
 
-        .card-body { padding: 15px; display: flex; flex-direction: column; flex-grow: 1; }
-        .product-title { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
-        .product-desc { font-size: 12.5px; color: var(--text-muted); margin-bottom: 15px; flex-grow: 1; line-height: 1.4; }
+        .card-body { padding: 18px; display: flex; flex-direction: column; flex-grow: 1; }
+        .product-title { font-size: 16.5px; font-weight: 700; margin-bottom: 6px; color: var(--text-main); }
+        .product-desc { font-size: 12.5px; color: var(--text-muted); margin-bottom: 18px; flex-grow: 1; line-height: 1.45; }
 
-        .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px; }
-        .price { font-size: 18px; font-weight: 700; color: var(--primary-glow); }
+        .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 12px; }
+        .price { font-size: 19px; font-weight: 700; color: var(--primary-glow); }
 
         .buy-btn {
             background: var(--btn-gradient);
             color: white;
             border: none;
-            padding: 8px 18px;
-            border-radius: 20px;
-            font-size: 13px;
+            padding: 9px 20px;
+            border-radius: 50px;
+            font-size: 13.5px;
             font-weight: 600;
             cursor: pointer;
-            box-shadow: 0 0 10px var(--border-color);
+            box-shadow: 0 4px 15px rgba(255,85,0,0.3);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: 0.2s;
         }
-        .buy-btn:hover { filter: brightness(1.1); }
+        .buy-btn:hover { filter: brightness(1.1); transform: scale(1.02); }
 
         /* Profile Styles */
         .profile-container {
@@ -361,10 +368,10 @@
             text-align: center;
             font-weight: 600;
             cursor: pointer;
-            box-shadow: 0 4px 15px var(--border-color);
+            box-shadow: 0 4px 15px rgba(255,85,0,0.3);
         }
 
-        /* Bottom Nav Bar */
+        /* Bottom Navigation Bar */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -405,7 +412,7 @@
             align-items: center;
             justify-content: center;
             color: white;
-            box-shadow: 0 6px 20px var(--primary-glow);
+            box-shadow: 0 6px 20px rgba(255,85,0,0.5);
             border: 3px solid var(--bg-dark);
             font-size: 24px;
         }
@@ -424,13 +431,14 @@
             padding: 20px;
         }
         .modal-content {
-            background: var(--bg-dark);
+            background: var(--card-bg);
             border: 2px solid var(--primary-glow);
             border-radius: 20px;
             padding: 25px;
             max-width: 400px;
             width: 100%;
             text-align: center;
+            box-shadow: 0 0 30px rgba(255,85,0,0.4);
         }
     </style>
 </head>
@@ -453,7 +461,7 @@
         </div>
     </header>
 
-    <!-- Search & Filter Bar (Matching your screenshot) -->
+    <!-- Search & Filter Bar -->
     <div class="search-filter-container">
         <div class="search-box">
             <i class="fa-solid fa-magnifying-glass"></i>
@@ -467,12 +475,12 @@
         </div>
     </div>
 
-    <!-- 1. HOME / MAIN STORE SECTION -->
+    <!-- 1. HOME SECTION -->
     <div id="homeSection" class="section-view active">
         <div class="product-grid" id="productGrid"></div>
     </div>
 
-    <!-- 2. NUM & MAIL SECTION (Updated with exact screenshot style) -->
+    <!-- 2. NUM & MAIL SECTION -->
     <div id="numMailSection" class="section-view">
         <div class="product-grid" id="numMailGrid"></div>
     </div>
@@ -486,7 +494,7 @@
                 <p style="font-size: 15px; font-weight: 600;">বিকাশ / নগদ পার্সোনাল নম্বর:</p>
                 <h3 style="color: var(--primary-glow); margin-top: 5px; font-size: 22px;">01700-000000</h3>
             </div>
-            <a href="https://wa.me/8801700000000?text=হ্যালো,%20আমি%20ডিপোজিট%20করতে%20চাই।" target="_blank" class="buy-btn" style="padding: 12px 25px; display: inline-block; text-decoration: none;">টাকা পাঠিয়ে WhatsApp-এ স্ক্রিনশট দিন</a>
+            <a href="https://wa.me/8801700000000?text=হ্যালো,%20আমি%20ডিপোজিট%20করতে%20চাই।" target="_blank" class="buy-btn" style="padding: 12px 25px; display: inline-block; text-decoration: none; justify-content: center;">টাকা পাঠিয়ে WhatsApp-এ স্ক্রিনশট দিন</a>
         </div>
     </div>
 
@@ -542,23 +550,22 @@
     <!-- Buy Modal -->
     <div class="modal" id="buyModal">
         <div class="modal-content">
-            <span style="float: right; cursor: pointer; font-size: 20px;" onclick="closeModal()">&times;</span>
-            <h3 id="modalTitle" style="margin-bottom: 10px;">প্রোডাক্ট</h3>
-            <p id="modalDetails" style="color: var(--text-muted); font-size: 13px; margin-bottom: 15px;"></p>
-            <h4 style="font-size: 20px; margin-bottom: 15px;"><span id="modalPrice" style="color: var(--secondary-glow);"></span></h4>
-            <a href="#" id="whatsappOrderBtn" target="_blank" class="buy-btn" style="text-decoration: none; display: block; padding: 10px;">
+            <span style="float: right; cursor: pointer; font-size: 22px; color: var(--text-muted);" onclick="closeModal()">&times;</span>
+            <h3 id="modalTitle" style="margin-bottom: 10px; font-size: 20px;">প্রোডাক্ট</h3>
+            <p id="modalDetails" style="color: var(--text-muted); font-size: 13.5px; margin-bottom: 18px;"></p>
+            <h4 style="font-size: 22px; margin-bottom: 20px;"><span id="modalPrice" style="color: var(--secondary-glow);"></span></h4>
+            <a href="#" id="whatsappOrderBtn" target="_blank" class="buy-btn" style="text-decoration: none; display: flex; justify-content: center; padding: 12px; width: 100%;">
                 <i class="fa-brands fa-whatsapp"></i> WhatsApp-এ অর্ডার করুন
             </a>
         </div>
     </div>
 
     <script>
-        // Products data with categories matching your screenshot style
         const products = [
-            { id: 1, category: 'email', name: "Hotmail Trusted V1[span_1](start_span)[span_1](end_span)", image: "https://cdn-icons-png.flaticon.com/512/732/732200.png", stock: "46k PCS[span_2](start_span)[span_2](end_span)", sold: "2k sold[span_3](start_span)[span_3](end_span)", price: "৳0.57[span_4](start_span)[span_4](end_span)", details: "Hotmail trusted account with high longevity." },
-            { id: 2, category: 'email', name: "Outlook.com | OAuth2", image: "https://cdn-icons-png.flaticon.com/512/732/732221.png", stock: "48k PCS[span_5](start_span)[span_5](end_span)", sold: "1.4k sold[span_6](start_span)[span_6](end_span)", price: "৳0.48[span_7](start_span)[span_7](end_span)", details: "Outlook.com | OAuth2 | 12-36 Months | Original[span_8](start_span)[span_8](end_span)." },
-            { id: 3, category: 'email', name: "Outlook.Fr Trusted V1[span_9](start_span)[span_9](end_span)", image: "https://cdn-icons-png.flaticon.com/512/732/732221.png", stock: "41k PCS[span_10](start_span)[span_10](end_span)", sold: "1k sold[span_11](start_span)[span_11](end_span)", price: "৳0.80[span_12](start_span)[span_12](end_span)", details: "Outlook.Fr trusted account[span_13](start_span)[span_13](end_span)." },
-            { id: 4, category: 'email', name: "Hotmail Trusted - OAuth2", image: "https://cdn-icons-png.flaticon.com/512/732/732200.png", stock: "47k PCS[span_14](start_span)[span_14](end_span)", sold: "477 sold[span_15](start_span)[span_15](end_span)", price: "৳0.91[span_16](start_span)[span_16](end_span)", details: "Hotmail Trusted - OAuth2 [Graph] Live[span_17](start_span)[span_17](end_span)." },
+            { id: 1, category: 'email', name: "Hotmail Trusted V1", image: "https://cdn-icons-png.flaticon.com/512/732/732200.png", stock: "46k PCS", sold: "2k sold", price: "৳০.৫৭", details: "Hotmail trusted account with high longevity." },
+            { id: 2, category: 'email', name: "Outlook.com | OAuth2", image: "https://cdn-icons-png.flaticon.com/512/732/732221.png", stock: "48k PCS", sold: "1.4k sold", price: "৳০.৪৮", details: "Outlook.com | OAuth2 | 12-36 Months | Original." },
+            { id: 3, category: 'email', name: "Outlook.Fr Trusted V1", image: "https://cdn-icons-png.flaticon.com/512/732/732221.png", stock: "41k PCS", sold: "1k sold", price: "৳০.৮০", details: "Outlook.Fr trusted account." },
+            { id: 4, category: 'email', name: "Hotmail Trusted - OAuth2", image: "https://cdn-icons-png.flaticon.com/512/732/732200.png", stock: "47k PCS", sold: "477 sold", price: "৳০.৯১", details: "Hotmail Trusted - OAuth2 [Graph] Live." },
             { id: 5, category: 'proxy', name: "9Proxy Residential IP", image: "https://cdn-icons-png.flaticon.com/512/1006/1006771.png", stock: "15k PCS", sold: "3.5k sold", price: "৳১২০", details: "High speed clean residential proxy." },
             { id: 6, category: 'tools', name: "CartFlows Pro License", image: "https://cdn-icons-png.flaticon.com/512/2885/2885437.png", stock: "15 PCS", sold: "120 sold", price: "৳৪৯০", details: "Sales funnel builder for WordPress." }
         ];
@@ -582,17 +589,14 @@
                 return matchesCat && matchesSearch;
             });
 
-            // Render main grid
             filtered.forEach(product => {
                 grid.appendChild(createCard(product));
             });
 
-            // Render Num & Mail tab specific items
             products.filter(p => p.category === 'email').forEach(product => {
                 numMailGrid.appendChild(createCard(product));
             });
 
-            // Render Proxy tab specific items
             products.filter(p => p.category === 'proxy').forEach(product => {
                 proxyGrid.appendChild(createCard(product));
             });
