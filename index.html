@@ -470,7 +470,7 @@
             padding-left: 10px;
         }
 
-        /* FORMAT & DELIVERY OPTIONS STYLING (Screenshots match) */
+        /* FORMAT & DELIVERY OPTIONS STYLING */
         .options-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -1085,8 +1085,8 @@
         let activeProduct = null;
         let detailQty = 1;
         let selectedPlanIndex = 0;
-        let selectedFileFormat = 'CSV'; // Default active format for Email
-        let selectedDeliveryType = 'Sub User'; // Default active delivery for Proxy/VPN
+        let selectedFileFormat = 'CSV'; 
+        let selectedDeliveryType = 'Sub User'; 
 
         function setCurrency(curr) {
             currentCurrency = curr;
@@ -1188,8 +1188,8 @@
 
             detailQty = 1;
             selectedPlanIndex = 0;
-            selectedFileFormat = 'CSV'; // Always CSV active by default for mails
-            selectedDeliveryType = 'Sub User'; // Always Sub User active by default for proxy/vpn
+            selectedFileFormat = 'CSV'; 
+            selectedDeliveryType = 'Sub User'; 
 
             document.querySelectorAll('.section-view').forEach(sec => sec.classList.remove('active'));
             document.getElementById('productDetailSection').classList.add('active');
@@ -1212,7 +1212,6 @@
             const box = document.getElementById('dSelectionBox');
             
             if (activeProduct.category === 'email') {
-                // Email products: File Format Selection (CSV active always, TXT optional)
                 box.innerHTML = `
                     <div class="detail-sec-header"><span>File format</span></div>
                     <div class="options-grid">
@@ -1249,7 +1248,6 @@
                     </div>
                 `;
             } else if (activeProduct.category === 'proxy' || activeProduct.category === 'tools') {
-                // Proxy / VPN products: Delivery type (Sub User active always, CD Key optional) + Plan
                 box.innerHTML = `
                     <div class="detail-sec-header">
                         <span>Delivery type</span>
