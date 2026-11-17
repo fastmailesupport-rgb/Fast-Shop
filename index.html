@@ -276,7 +276,7 @@
             box-shadow: 0 4px 12px rgba(255, 85, 0, 0.3);
         }
 
-        /* MAIL CATEGORY BAR STYLING (NEW FEATURE FOR NUM & MAIL SECTION) */
+        /* MAIL CATEGORY BAR STYLING */
         .mail-category-bar {
             display: flex;
             gap: 8px;
@@ -304,6 +304,40 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.02);
         }
         .mail-cat-btn.active {
+            background: var(--btn-gradient);
+            border-color: transparent;
+            color: white;
+            box-shadow: 0 4px 12px rgba(255, 85, 0, 0.3);
+        }
+
+        /* PROXY SUB-CATEGORY BAR STYLING (NEW FEATURE) */
+        .proxy-category-bar {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+            scrollbar-width: none;
+        }
+        .proxy-category-bar::-webkit-scrollbar { display: none; }
+
+        .proxy-cat-btn {
+            background: var(--card-bg);
+            border: 1.5px solid var(--border-color);
+            color: var(--text-main);
+            padding: 7px 15px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: 0.3s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+        .proxy-cat-btn.active {
             background: var(--btn-gradient);
             border-color: transparent;
             color: white;
@@ -1611,17 +1645,8 @@
         <div class="product-grid" id="productGrid"></div>
     </div>
 
-    <!-- 2. NUM & MAIL SECTION WITH MAIL CATEGORY NAVIGATION BAR -->
+    <!-- 2. NUM & MAIL SECTION -->
     <div id="numMailSection" class="section-view">
-        <!-- Mail Category Navigation Bar (Added exactly in the green-marked position from screenshot) -->
-        <div class="mail-category-bar">
-            <button class="mail-cat-btn active" onclick="filterMailCategory('all', this)"><i class="fa-solid fa-border-all"></i> All Mail</button>
-            <button class="mail-cat-btn" onclick="filterMailCategory('hotmail', this)"><i class="fa-brands fa-windows"></i> Hotmail</button>
-            <button class="mail-cat-btn" onclick="filterMailCategory('outlook', this)"><i class="fa-solid fa-envelope"></i> Outlook Mail</button>
-            <button class="mail-cat-btn" onclick="filterMailCategory('edu', this)"><i class="fa-solid fa-graduation-cap"></i> Edu Mail</button>
-            <button class="mail-cat-btn" onclick="filterMailCategory('gmail', this)"><i class="fa-brands fa-google"></i> Gmail.com</button>
-        </div>
-
         <h3 style="margin-bottom: 12px; font-size: 16px; color: var(--secondary-glow);"><i class="fa-solid fa-envelope-open-text"></i> Number & Mail Accounts</h3>
         <div class="product-grid" id="numMailGrid"></div>
     </div>
@@ -1692,8 +1717,16 @@
         </div>
     </div>
 
-    <!-- 4. PROXY SECTION -->
+    <!-- 4. PROXY SECTION WITH 3 SUB-CATEGORIES -->
     <div id="proxySection" class="section-view">
+        <!-- Proxy Sub-Category Navigation Bar -->
+        <div class="proxy-category-bar">
+            <button class="proxy-cat-btn active" onclick="filterProxyCategory('all', this)"><i class="fa-solid fa-border-all"></i> All Proxy</button>
+            <button class="proxy-cat-btn" onclick="filterProxyCategory('gp', this)"><i class="fa-solid fa-network-wired"></i> GP Proxy</button>
+            <button class="proxy-cat-btn" onclick="filterProxyCategory('ip', this)"><i class="fa-solid fa-globe"></i> IP Proxy</button>
+            <button class="proxy-cat-btn" onclick="filterProxyCategory('vpn', this)"><i class="fa-solid fa-shield-halved"></i> VPN Premium</button>
+        </div>
+
         <h3 style="margin-bottom: 12px; font-size: 16px; color: var(--secondary-glow);"><i class="fa-solid fa-globe"></i> Proxy & IP Services</h3>
         <div class="product-grid" id="proxyGrid"></div>
     </div>
@@ -2301,17 +2334,17 @@
             {
                 id: 6,
                 category: 'proxy',
-                mailType: 'proxy',
+                proxyType: 'gp',
                 mode: 'plan',
                 planTitle: "SELECT DATA PLAN",
-                name: "9 Proxy",
+                name: "GP Proxy 9Proxy",
                 image: "https://cdn-icons-png.flaticon.com/512/1006/1006771.png",
                 stockCount: 999,
                 stockText: "100 MB - 1GB",
                 sold: "408 sold",
                 unitPrice: 15.00,
                 delivery: "Instant / within 1 hour",
-                shortDesc: "High speed clean residential 9Proxy CD Key / Sub User.",
+                shortDesc: "High speed clean residential GP Proxy CD Key / Sub User.",
                 plans: [
                     { label: "100 MB", price: 15.00 },
                     { label: "200 MB", price: 25.00 },
@@ -2319,7 +2352,7 @@
                     { label: "1 GB", price: 115.00 }
                 ],
                 fullDetails: `
-                    <p>Original 9Proxy residential IP packages. Select your required data plan below.</p>
+                    <p>Original GP Proxy residential IP packages. Select your required data plan below.</p>
                     <ul>
                         <li><strong>Type:</strong> CD Key / Sub User Account</li>
                         <li><strong>Speed:</strong> Ultra-fast dedicated residential pool</li>
@@ -2328,8 +2361,33 @@
             },
             {
                 id: 7,
-                category: 'tools',
-                mailType: 'vpn',
+                category: 'proxy',
+                proxyType: 'ip',
+                mode: 'plan',
+                planTitle: "SELECT IP PLAN",
+                name: "Dedicated IP Proxy",
+                image: "https://cdn-icons-png.flaticon.com/512/2885/2885437.png",
+                stockCount: 450,
+                stockText: "Static IP",
+                sold: "230 sold",
+                unitPrice: 25.00,
+                delivery: "Instant",
+                shortDesc: "Clean static dedicated IP Proxy for multi-login.",
+                plans: [
+                    { label: "1 Month", price: 25.00 },
+                    { label: "3 Months", price: 70.00 }
+                ],
+                fullDetails: `
+                    <p>Clean dedicated static IP proxy for secure browsing and account management.</p>
+                    <ul>
+                        <li><strong>Type:</strong> Static Dedicated IP</li>
+                        <li><strong>Uptime:</strong> 99.9% Guaranteed</li>
+                    </ul>`
+            },
+            {
+                id: 8,
+                category: 'proxy',
+                proxyType: 'vpn',
                 mode: 'plan',
                 planTitle: "SELECT DAYS / PLAN",
                 name: "NordVPN Premium",
@@ -2354,7 +2412,7 @@
         ];
 
         let currentCategory = 'all';
-        let currentMailCategory = 'all';
+        let currentProxyCategory = 'all';
         let showOnlyBookmarks = false;
         let bookmarkedIds = JSON.parse(localStorage.getItem('bookmarkedProducts')) || [];
         let lastActiveTab = 'home';
@@ -2415,27 +2473,29 @@
                 filtered.forEach(product => grid.appendChild(createCard(product)));
             }
 
-            // Num & Mail section filtering with Mail Category Bar logic
-            const numMailFiltered = products.filter(p => {
-                if (p.category !== 'email') return false;
-                const matchesMailCat = currentMailCategory === 'all' || p.mailType === currentMailCategory;
+            // Num & Mail section
+            products.filter(p => p.category === 'email').forEach(product => numMailGrid.appendChild(createCard(product)));
+
+            // Proxy section filtering with Sub-Category Bar logic
+            const proxyFiltered = products.filter(p => {
+                if (p.category !== 'proxy') return false;
+                const matchesProxyCat = currentProxyCategory === 'all' || p.proxyType === currentProxyCategory;
                 const matchesSearch = p.name.toLowerCase().includes(filterText.toLowerCase());
-                return matchesMailCat && matchesSearch;
+                return matchesProxyCat && matchesSearch;
             });
 
-            if (numMailFiltered.length === 0) {
-                numMailGrid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 30px;">No mail accounts found in this category!</p>`;
+            if (proxyFiltered.length === 0) {
+                proxyGrid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 30px;">No proxy items found in this category!</p>`;
             } else {
-                numMailFiltered.forEach(product => numMailGrid.appendChild(createCard(product)));
+                proxyFiltered.forEach(product => proxyGrid.appendChild(createCard(product)));
             }
 
-            products.filter(p => p.category === 'proxy').forEach(product => proxyGrid.appendChild(createCard(product)));
             document.getElementById('favCount').innerText = bookmarkedIds.length;
         }
 
-        function filterMailCategory(cat, element) {
-            currentMailCategory = cat;
-            document.querySelectorAll('.mail-cat-btn').forEach(b => b.classList.remove('active'));
+        function filterProxyCategory(cat, element) {
+            currentProxyCategory = cat;
+            document.querySelectorAll('.proxy-cat-btn').forEach(b => b.classList.remove('active'));
             if(element) element.classList.add('active');
             renderProducts(document.getElementById('searchInput').value);
         }
