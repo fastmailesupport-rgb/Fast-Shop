@@ -397,7 +397,204 @@
         }
         .buy-btn:hover { filter: brightness(1.1); }
 
-        /* EXACT SCREENSHOT ACCOUNT DASHBOARD STYLING */
+        /* EXACT TOP-UP / DEPOSIT INTERFACE STYLING */
+        .deposit-container {
+            max-width: 500px;
+            margin: 10px auto;
+            background: var(--card-bg);
+            border: 1.5px solid var(--border-color);
+            border-radius: 24px;
+            padding: 24px 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+        }
+
+        .deposit-top-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 6px;
+        }
+        .deposit-top-title i { color: var(--primary-glow); }
+
+        .deposit-subtitle {
+            font-size: 12.5px;
+            color: var(--text-muted);
+            margin-bottom: 18px;
+        }
+
+        .section-label-text {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 10px;
+        }
+
+        .gateway-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .gateway-card {
+            background: #f8fafc;
+            border: 1.5px solid var(--border-color);
+            border-radius: 14px;
+            padding: 12px 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .gateway-card:hover { border-color: var(--primary-glow); }
+        .gateway-card.active {
+            border-color: #2563eb;
+            background: rgba(37,99,235,0.04);
+        }
+
+        .gateway-logo {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            object-fit: contain;
+            background: #fff;
+            padding: 2px;
+            border: 1px solid var(--border-color);
+            flex-shrink: 0;
+        }
+
+        .gateway-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .divider-line {
+            border: none;
+            border-top: 1px solid var(--border-color);
+            margin: 18px 0;
+        }
+
+        .selected-account-box {
+            background: #f8fafc;
+            border: 1.5px solid var(--border-color);
+            border-radius: 14px;
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .selected-acc-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .copy-btn-box {
+            background: #fff;
+            border: 1.5px solid var(--border-color);
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-main);
+            transition: 0.2s;
+        }
+        .copy-btn-box:hover { border-color: var(--primary-glow); color: var(--primary-glow); }
+
+        .instructions-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-main);
+            cursor: pointer;
+            margin-bottom: 18px;
+        }
+        .instructions-toggle i { font-size: 11px; transition: 0.2s; }
+        .instructions-toggle.open i { transform: rotate(90deg); }
+
+        .instructions-content {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 10px 14px;
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            display: none;
+            line-height: 1.5;
+        }
+        .instructions-content.show { display: block; }
+
+        .deposit-form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 14px;
+        }
+
+        .deposit-form-group label {
+            font-size: 12.5px;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .deposit-input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .deposit-input-wrapper input {
+            width: 100%;
+            background: #f8fafc;
+            border: 1.5px solid var(--border-color);
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 13.5px;
+            color: var(--text-main);
+            outline: none;
+            transition: 0.2s;
+        }
+        .deposit-input-wrapper input:focus {
+            border-color: var(--primary-glow);
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(255,85,0,0.08);
+        }
+        .deposit-input-wrapper input::placeholder { color: #94a3b8; }
+
+        .submit-request-btn {
+            background: #0b192c; /* Screenshot navy blue submit button */
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 14px;
+            font-size: 14.5px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(11,25,44,0.25);
+            transition: 0.2s;
+            margin-top: 10px;
+        }
+        .submit-request-btn:hover { background: #132640; }
+
+        /* ACCOUNT DASHBOARD SECTION */
         .dashboard-container {
             max-width: 550px;
             margin: 10px auto;
@@ -438,7 +635,7 @@
         }
         .dash-tab i { font-size: 16px; }
         .dash-tab.active {
-            background: #0b192c; /* Screenshot dark navy active tab */
+            background: #0b192c;
             color: white;
             box-shadow: 0 4px 12px rgba(11,25,44,0.2);
         }
@@ -931,19 +1128,75 @@
         <div class="product-grid" id="numMailGrid"></div>
     </div>
 
-    <!-- 3. DEPOSIT SECTION -->
+    <!-- 3. DEPOSIT SECTION (EXACT SCREENSHOT TOP-UP REQUEST INTERFACE) -->
     <div id="depositSection" class="section-view">
-        <div class="dashboard-container" style="text-align: center;">
-            <h2 style="margin-bottom: 12px;"><i class="fa-solid fa-wallet" style="color: var(--primary-glow);"></i> Deposit Funds</h2>
-            <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 13.5px;">Add balance to your wallet via bKash, Nagad, or Binance Pay.</p>
-            <div style="background: #f8fafc; padding: 20px; border-radius: 14px; border: 1px solid var(--border-color); margin-bottom: 20px;">
-                <p style="font-size: 13.5px; font-weight: 600;">bKash / Nagad Personal Number:</p>
-                <h3 style="color: var(--primary-glow); margin-top: 6px; font-size: 22px;">01700-000000</h3>
-                <p style="font-size: 12px; color: var(--text-muted); margin-top: 8px;">Exchange Rate: 1 USDT = 120 BDT</p>
+        <div class="deposit-container">
+            <div class="deposit-top-title">
+                <i class="fa-solid fa-paper-plane"></i> Top-up Request
             </div>
-            <a href="https://wa.me/8801700000000?text=Hello,%20I%20want%20to%20deposit%20funds%20into%20my%20account." target="_blank" class="buy-btn" style="padding: 12px 25px; max-width: 280px; margin: 0 auto; justify-content: center;">
-                <i class="fa-brands fa-whatsapp"></i> Send Payment Screenshot
-            </a>
+            <p class="deposit-subtitle">Send money to the number below and fill the form.</p>
+
+            <div class="section-label-text">Payment Method</div>
+            
+            <!-- Gateway Selection Grid -->
+            <div class="gateway-grid" id="gatewayGrid">
+                <!-- Dynamically populated or rendered -->
+            </div>
+
+            <hr class="divider-line">
+
+            <!-- Selected Account & Copy Box -->
+            <div class="selected-account-box">
+                <div class="selected-acc-left">
+                    <img id="selectedGatewayLogo" src="" alt="Logo" class="gateway-logo">
+                    <div>
+                        <div style="font-size: 11px; color: var(--text-muted);" id="selectedGatewayLabel">Payment Number</div>
+                        <div style="font-size: 14.5px; font-weight: 700; color: var(--text-main);" id="selectedGatewayNumber">01700-000000</div>
+                    </div>
+                </div>
+                <div class="copy-btn-box" onclick="copyPaymentNumber()" title="Copy Number">
+                    <i class="fa-regular fa-copy"></i>
+                </div>
+            </div>
+
+            <!-- Payment Instructions Toggle -->
+            <div class="instructions-toggle" id="instructionToggle" onclick="toggleInstructions()">
+                <i class="fa-solid fa-chevron-right"></i> Payment instructions
+            </div>
+            <div class="instructions-content" id="instructionContent">
+                1. Open your <span id="instrWalletName">Nagad</span> app and select "Send Money".<br>
+                2. Enter the personal number above.<br>
+                3. Enter your deposit amount and complete transaction.<br>
+                4. Copy the Transaction ID (TrxID) and fill the form below.
+            </div>
+
+            <!-- Form Fields -->
+            <form onsubmit="event.preventDefault(); alert('Top-up request submitted successfully! Admin will verify within 5-10 minutes.');">
+                <div class="deposit-form-group">
+                    <label>Amount (৳)</label>
+                    <div class="deposit-input-wrapper">
+                        <input type="number" placeholder="500" required>
+                    </div>
+                </div>
+
+                <div class="deposit-form-group">
+                    <label>Sender Number</label>
+                    <div class="deposit-input-wrapper">
+                        <input type="text" placeholder="01XXXXXXXXX" required>
+                    </div>
+                </div>
+
+                <div class="deposit-form-group">
+                    <label>Transaction ID</label>
+                    <div class="deposit-input-wrapper">
+                        <input type="text" placeholder="ABC123XYZ" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-request-btn">
+                    <i class="fa-solid fa-paper-plane"></i> রিকোয়েস্ট পাঠান
+                </button>
+            </form>
         </div>
     </div>
 
@@ -953,11 +1206,9 @@
         <div class="product-grid" id="proxyGrid"></div>
     </div>
 
-    <!-- 5. ACCOUNT DASHBOARD SECTION (EXACT SCREENSHOT LAYOUT) -->
+    <!-- 5. ACCOUNT DASHBOARD SECTION -->
     <div id="profileSection" class="section-view">
         <div class="dashboard-container">
-            
-            <!-- Top Navigation Tabs (Profile, My Orders, Wallet, Security) -->
             <div class="dashboard-top-tabs">
                 <button class="dash-tab active"><i class="fa-regular fa-user"></i> Profile</button>
                 <button class="dash-tab" onclick="alert('My Orders view')"><i class="fa-solid fa-box-open"></i> My Orders</button>
@@ -965,7 +1216,6 @@
                 <button class="dash-tab" onclick="alert('Security settings')"><i class="fa-solid fa-shield-halved"></i> Security</button>
             </div>
 
-            <!-- Profile Header Row -->
             <div class="dash-header-row">
                 <h2>Profile</h2>
                 <button class="edit-profile-btn" onclick="alert('Edit Profile mode enabled')">
@@ -973,9 +1223,7 @@
                 </button>
             </div>
 
-            <!-- Profile Info Cards -->
             <div class="dash-info-list">
-                <!-- Full Name -->
                 <div class="dash-info-card">
                     <div class="dash-icon-box"><i class="fa-regular fa-user"></i></div>
                     <div class="dash-info-content">
@@ -984,7 +1232,6 @@
                     </div>
                 </div>
 
-                <!-- Email (Verified) -->
                 <div class="dash-info-card">
                     <div class="dash-icon-box"><i class="fa-regular fa-envelope"></i></div>
                     <div class="dash-info-content" style="flex-direction: row; justify-content: space-between; align-items: center;">
@@ -996,7 +1243,6 @@
                     </div>
                 </div>
 
-                <!-- Phone Number -->
                 <div class="dash-info-card">
                     <div class="dash-icon-box"><i class="fa-solid fa-phone"></i></div>
                     <div class="dash-info-content">
@@ -1005,7 +1251,6 @@
                     </div>
                 </div>
 
-                <!-- WhatsApp -->
                 <div class="dash-info-card">
                     <div class="dash-icon-box"><i class="fa-brands fa-whatsapp"></i></div>
                     <div class="dash-info-content">
@@ -1014,7 +1259,6 @@
                     </div>
                 </div>
 
-                <!-- Address -->
                 <div class="dash-info-card">
                     <div class="dash-icon-box"><i class="fa-solid fa-location-dot"></i></div>
                     <div class="dash-info-content">
@@ -1024,36 +1268,23 @@
                 </div>
             </div>
 
-            <!-- Bottom Menu Links -->
             <div class="dash-menu-links">
                 <a href="https://wa.me/8801700000000" target="_blank" class="dash-menu-item">
-                    <div class="dash-menu-item-left">
-                        <i class="fa-solid fa-headset"></i> Support
-                    </div>
+                    <div class="dash-menu-item-left"><i class="fa-solid fa-headset"></i> Support</div>
                     <i class="fa-solid fa-chevron-right" style="color: var(--text-muted); font-size: 12px;"></i>
                 </a>
-
                 <a href="#" onclick="alert('Refund Request form')" class="dash-menu-item">
-                    <div class="dash-menu-item-left">
-                        <i class="fa-solid fa-rotate-left"></i> Refund Request
-                    </div>
+                    <div class="dash-menu-item-left"><i class="fa-solid fa-rotate-left"></i> Refund Request</div>
                     <i class="fa-solid fa-chevron-right" style="color: var(--text-muted); font-size: 12px;"></i>
                 </a>
-
                 <a href="#" onclick="alert('Refund Policy details')" class="dash-menu-item">
-                    <div class="dash-menu-item-left">
-                        <i class="fa-solid fa-shield-cat"></i> Refund Policy
-                    </div>
+                    <div class="dash-menu-item-left"><i class="fa-solid fa-shield-cat"></i> Refund Policy</div>
                     <i class="fa-solid fa-chevron-right" style="color: var(--text-muted); font-size: 12px;"></i>
                 </a>
-
                 <a href="#" onclick="alert('Logged out successfully')" class="dash-menu-item logout">
-                    <div class="dash-menu-item-left">
-                        <i class="fa-solid fa-right-from-bracket"></i> Logout
-                    </div>
+                    <div class="dash-menu-item-left"><i class="fa-solid fa-right-from-bracket"></i> Logout</div>
                 </a>
             </div>
-
         </div>
     </div>
 
@@ -1136,10 +1367,67 @@
             showSlide(slideIndex + 1);
         }, 3000);
 
+        // Deposit Gateways Data with Official Logos/Icons
+        const depositGateways = [
+            { id: 'bkash1', name: 'BKash', number: '01700-111111', logo: 'https://cdn.iconscout.com/icon/free/png-256/free-bkash-logo-icon-download-in-svg-png-gif-file-formats--mobile-financial-service-brand-vol-7-pack-logos-icons-3215352.png?f=webp&w=256' },
+            { id: 'nagad', name: 'Nagad', number: '01700-222222', logo: 'https://seeklogo.com/images/N/nagad-logo-A2DE3F1545-seeklogo.com.png' },
+            { id: 'rocket', name: 'Rocket', number: '01700-3333333', logo: 'https://seeklogo.com/images/DB/dutch-bangla-rocket-logo-B4A45A9522-seeklogo.com.png' },
+            { id: 'upay', name: 'Upay', number: '01700-444444', logo: 'https://scontent.fdac141-1.fna.fbcdn.net/v/t39.30808-6/241551800_104273018596645_4761427110118833959_n.png?_nc_cat=103&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeGMQ98Dk779tU-3S1W0L3T959Yq7Z48197q7Z48197q7&_nc_ohc=803j7T7zU48Q7kNvgFv07z8&_nc_zt=28&_nc_ht=scontent.fdac141-1.fna.fbcdn.net&oh=00_AYBeW8a8b1z4T5J8e5Xb1Z72X6Q6t3V7Z9J8b5Xb1Z72X6Q&oe=673A7B9B' },
+            { id: 'binance', name: 'Binance UID', number: '987654321 (UID)', logo: 'https://cryptologos.cc/logos/binance-coin-bnb-logo.png?v=035' },
+            { id: 'bkash2', name: 'BKash', number: '01700-555555', logo: 'https://cdn.iconscout.com/icon/free/png-256/free-bkash-logo-icon-download-in-svg-png-gif-file-formats--mobile-financial-service-brand-vol-7-pack-logos-icons-3215352.png?f=webp&w=256' },
+            { id: 'brac', name: 'BRAC Bank PLC', number: '1501-2039-4859-001', logo: 'https://www.bracbank.com/assets/images/logo.png' },
+            { id: 'dbbl', name: 'Dutch Bangla Bank', number: '126-101-998822', logo: 'https://seeklogo.com/images/D/dutch-bangla-bank-limited-logo-B763784EDD-seeklogo.com.png' }
+        ];
+
+        let selectedGatewayId = 'nagad';
+
+        function renderDepositGateways() {
+            const grid = document.getElementById('gatewayGrid');
+            grid.innerHTML = '';
+
+            depositGateways.forEach(gw => {
+                const isSelected = gw.id === selectedGatewayId;
+                const card = document.createElement('div');
+                card.className = `gateway-card ${isSelected ? 'active' : ''}`;
+                card.onclick = () => selectGateway(gw.id);
+
+                card.innerHTML = `
+                    <img src="${gw.logo}" alt="${gw.name}" class="gateway-logo" onerror="this.src='https://cdn-icons-png.flaticon.com/512/825/825454.png'">
+                    <span class="gateway-name">${gw.name}</span>
+                `;
+                grid.appendChild(card);
+            });
+
+            const activeGw = depositGateways.find(g => g.id === selectedGatewayId);
+            if (activeGw) {
+                document.getElementById('selectedGatewayLogo').src = activeGw.logo;
+                document.getElementById('selectedGatewayNumber').innerText = activeGw.number;
+                document.getElementById('selectedGatewayLabel').innerText = `${activeGw.name} Number / Account`;
+                document.getElementById('instrWalletName').innerText = activeGw.name;
+            }
+        }
+
+        function selectGateway(id) {
+            selectedGatewayId = id;
+            renderDepositGateways();
+        }
+
+        function toggleInstructions() {
+            const toggle = document.getElementById('instructionToggle');
+            const content = document.getElementById('instructionContent');
+            toggle.classList.toggle('open');
+            content.classList.toggle('show');
+        }
+
+        function copyPaymentNumber() {
+            const num = document.getElementById('selectedGatewayNumber').innerText;
+            navigator.clipboard.writeText(num);
+            alert(`Copied number: ${num}`);
+        }
+
         // Currency & Products Logic
         const USDT_RATE = 120;
         let currentCurrency = localStorage.getItem('siteCurrency') || 'BDT';
-
         const userWalletBDT = 2104.81;
 
         function formatPrice(bdtAmount, decimals = 2) {
@@ -1289,7 +1577,6 @@
 
         function updateCurrencyUI() {
             document.getElementById('headerCurrBtn').innerText = currentCurrency;
-
             if (currentCurrency === 'USDT') {
                 document.getElementById('headerWalletDisplay').innerText = `$ ${(userWalletBDT / USDT_RATE).toFixed(2)}`;
             } else {
@@ -1569,7 +1856,10 @@
 
             if(tabName === 'home') document.getElementById('homeSection').classList.add('active');
             if(tabName === 'numMail') document.getElementById('numMailSection').classList.add('active');
-            if(tabName === 'deposit') document.getElementById('depositSection').classList.add('active');
+            if(tabName === 'deposit') {
+                document.getElementById('depositSection').classList.add('active');
+                renderDepositGateways();
+            }
             if(tabName === 'proxy') document.getElementById('proxySection').classList.add('active');
             if(tabName === 'profile') document.getElementById('profileSection').classList.add('active');
 
@@ -1577,6 +1867,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
+        renderDepositGateways();
         updateCurrencyUI();
     </script>
 </body>
