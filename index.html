@@ -397,6 +397,196 @@
         }
         .buy-btn:hover { filter: brightness(1.1); }
 
+        /* VIDEO AUTH / LOGIN INTERFACE STYLING */
+        .auth-container {
+            max-width: 480px;
+            margin: 20px auto;
+            background: var(--card-bg);
+            border: 1.5px solid var(--border-color);
+            border-radius: 24px;
+            padding: 30px 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            text-align: center;
+        }
+
+        .auth-top-banner {
+            margin-bottom: 25px;
+        }
+        .auth-top-banner img {
+            width: 100%;
+            max-width: 260px;
+            height: auto;
+            margin-bottom: 15px;
+            object-fit: contain;
+        }
+
+        .services-pill-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #f1f5f9;
+            border: 1px solid var(--border-color);
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-main);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+        .services-pill-badge span { color: var(--primary-glow); }
+
+        .auth-container h2 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: var(--text-main);
+        }
+        .auth-container p {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 22px;
+        }
+
+        .social-login-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .social-btn {
+            background: #f8fafc;
+            border: 1.5px solid var(--border-color);
+            padding: 12px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-main);
+            cursor: pointer;
+            transition: 0.2s;
+            text-decoration: none;
+        }
+        .social-btn:hover {
+            border-color: var(--primary-glow);
+            background: rgba(255,85,0,0.04);
+        }
+        .social-btn i { font-size: 18px; }
+
+        .auth-divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 12px;
+            margin: 18px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+        .auth-divider::before, .auth-divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .auth-divider::before { margin-right: 15px; }
+        .auth-divider::after { margin-left: 15px; }
+
+        .auth-form {
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-group label {
+            font-size: 12.5px;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .form-input-box {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .form-input-box input {
+            width: 100%;
+            background: #f8fafc;
+            border: 1.5px solid var(--border-color);
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 13.5px;
+            color: var(--text-main);
+            outline: none;
+            transition: 0.2s;
+        }
+        .form-input-box input:focus {
+            border-color: var(--primary-glow);
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(255,85,0,0.1);
+        }
+        .form-input-box input::placeholder { color: #94a3b8; }
+
+        .input-icon-right {
+            position: absolute;
+            right: 14px;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .auth-options-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12.5px;
+            margin: 4px 0;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+        .remember-me input { accent-color: var(--primary-glow); width: 15px; height: 15px; }
+
+        .forgot-pass {
+            color: var(--primary-glow);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .forgot-pass:hover { text-decoration: underline; }
+
+        .signin-submit-btn {
+            background: var(--btn-gradient);
+            color: white;
+            border: none;
+            padding: 13px;
+            border-radius: 14px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            box-shadow: 0 4px 15px rgba(255,85,0,0.3);
+            transition: 0.2s;
+            margin-top: 6px;
+        }
+        .signin-submit-btn:hover { filter: brightness(1.08); }
+
         /* PRODUCT DETAIL & CHECKOUT VIEW */
         #productDetailSection {
             max-width: 520px;
@@ -642,92 +832,6 @@
             box-shadow: 0 6px 25px rgba(255,85,0,0.15);
         }
 
-        .profile-container {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-        }
-
-        .profile-top-settings {
-            display: flex;
-            justify-content: flex-end;
-            gap: 10px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-
-        .currency-switch-group {
-            display: flex;
-            background: #f1f5f9;
-            border: 1px solid var(--border-color);
-            border-radius: 30px;
-            padding: 3px;
-        }
-
-        .curr-btn {
-            border: none;
-            background: none;
-            color: var(--text-muted);
-            padding: 4px 14px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .curr-btn.active {
-            background: var(--btn-gradient);
-            color: white;
-        }
-
-        .stats-row {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            margin-bottom: 25px;
-        }
-        .stat-card {
-            background: #f8fafc;
-            border: 1px solid var(--border-color);
-            padding: 15px 10px;
-            border-radius: 14px;
-            text-align: center;
-        }
-        .stat-card h3 { font-size: 16px; font-weight: 700; color: var(--primary-glow); }
-        .stat-card p { font-size: 11.5px; color: var(--text-muted); margin-top: 4px; }
-
-        .user-info-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-bottom: 25px;
-        }
-        .info-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 12px 15px;
-            background: #f8fafc;
-            border-radius: 10px;
-            border: 1px solid var(--border-color);
-            font-size: 13.5px;
-        }
-        .info-item span:first-child { color: var(--text-muted); }
-        .info-item span:last-child { font-weight: 600; }
-
-        .referral-banner {
-            background: var(--btn-gradient);
-            color: white;
-            padding: 14px;
-            border-radius: 14px;
-            text-align: center;
-            font-weight: 600;
-            font-size: 14px;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(255,85,0,0.3);
-        }
-
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -846,11 +950,11 @@
 
     <!-- 3. DEPOSIT SECTION -->
     <div id="depositSection" class="section-view">
-        <div class="profile-container" style="text-align: center;">
+        <div class="auth-container" style="text-align: center;">
             <h2 style="margin-bottom: 12px;"><i class="fa-solid fa-wallet" style="color: var(--primary-glow);"></i> Deposit Funds</h2>
             <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 13.5px;">Add balance to your wallet via bKash, Nagad, or Binance Pay.</p>
             <div style="background: #f8fafc; padding: 20px; border-radius: 14px; border: 1px solid var(--border-color); margin-bottom: 20px;">
-                <p style="font-size: 13.5px; font-weight: 600;">bKash / Nagad Personal Number:</p>
+                <p style="font-size: 13.5px; font-weight: 600;">bKash / Nagad PersonalNumber:</p>
                 <h3 style="color: var(--primary-glow); margin-top: 6px; font-size: 22px;">01700-000000</h3>
                 <p style="font-size: 12px; color: var(--text-muted); margin-top: 8px;">Exchange Rate: 1 USDT = 120 BDT</p>
             </div>
@@ -866,33 +970,89 @@
         <div class="product-grid" id="proxyGrid"></div>
     </div>
 
-    <!-- 5. PROFILE SECTION -->
+    <!-- 5. ACCOUNT / PROFILE SECTION (EXACT VIDEO LOGIN INTERFACE) -->
     <div id="profileSection" class="section-view">
-        <div class="profile-container">
-            <div class="profile-top-settings">
-                <div class="currency-switch-group">
-                    <button class="curr-btn active" id="btnBDT" onclick="setCurrency('BDT')">BDT</button>
-                    <button class="curr-btn" id="btnUSDT" onclick="setCurrency('USDT')">USDT</button>
+        <div class="auth-container">
+            <div class="auth-top-banner">
+                <!-- Circular connected brand icons graphic as shown in video -->
+                <svg viewBox="0 0 400 180" style="width: 100%; height: auto; max-height: 130px; margin-bottom: 10px;">
+                    <!-- Connection lines -->
+                    <line x1="200" y1="90" x2="100" y2="40" stroke="#e2e8f0" stroke-width="2" stroke-dasharray="4"/>
+                    <line x1="200" y1="90" x2="300" y2="40" stroke="#e2e8f0" stroke-width="2" stroke-dasharray="4"/>
+                    <line x1="200" y1="90" x2="70" y2="90" stroke="#e2e8f0" stroke-width="2" stroke-dasharray="4"/>
+                    <line x1="200" y1="90" x2="330" y2="90" stroke="#e2e8f0" stroke-width="2" stroke-dasharray="4"/>
+                    <line x1="200" y1="90" x2="130" y2="140" stroke="#e2e8f0" stroke-width="2" stroke-dasharray="4"/>
+                    <line x1="200" y1="90" x2="270" y2="140" stroke="#e2e8f0" stroke-width="2" stroke-dasharray="4"/>
+                    
+                    <!-- Center node -->
+                    <circle cx="200" cy="90" r="32" fill="#ff5500" opacity="0.12"/>
+                    <circle cx="200" cy="90" r="22" fill="#fff" stroke="#ff5500" stroke-width="3"/>
+                    <text x="200" y="96" font-size="14" font-weight="bold" text-anchor="middle" fill="#ff5500">🛒</text>
+                    
+                    <!-- Orbiting brand dots -->
+                    <circle cx="100" cy="40" r="16" fill="#fff" stroke="#e2e8f0" stroke-width="1.5"/>
+                    <text x="100" y="45" font-size="11" text-anchor="middle">⚡</text>
+                    
+                    <circle cx="300" cy="40" r="16" fill="#fff" stroke="#e2e8f0" stroke-width="1.5"/>
+                    <text x="300" y="45" font-size="11" text-anchor="middle">🌐</text>
+                    
+                    <circle cx="70" cy="90" r="16" fill="#fff" stroke="#e2e8f0" stroke-width="1.5"/>
+                    <text x="70" y="94" font-size="10" text-anchor="middle" fill="#ea580c">🔒</text>
+                    
+                    <circle cx="330" cy="90" r="16" fill="#fff" stroke="#e2e8f0" stroke-width="1.5"/>
+                    <text x="330" y="94" font-size="10" text-anchor="middle" fill="#ff5500">💎</text>
+                    
+                    <circle cx="130" cy="140" r="16" fill="#fff" stroke="#e2e8f0" stroke-width="1.5"/>
+                    <text x="130" y="145" font-size="10" text-anchor="middle">🚀</text>
+                    
+                    <circle cx="270" cy="140" r="16" fill="#fff" stroke="#e2e8f0" stroke-width="1.5"/>
+                    <text x="270" y="145" font-size="10" text-anchor="middle">⭐</text>
+                </svg>
+
+                <div class="services-pill-badge">
+                    <span>●</span> 50+ Premium Services • One Store
                 </div>
             </div>
 
-            <div class="stats-row">
-                <div class="stat-card"><h3>15</h3><p>Orders</p></div>
-                <div class="stat-card"><h3 id="profileSpentDisplay">৳ 4,550</h3><p>Total Spent</p></div>
-                <div class="stat-card"><h3>0</h3><p>Cancelled</p></div>
+            <h2>Welcome back</h2>
+            <p>Please enter your detail to sign in.</p>
+
+            <div class="social-login-grid">
+                <a href="#" class="social-btn" onclick="alert('Apple Login integration ready')">
+                    <i class="fa-brands fa-apple" style="color: #000;"></i> Apple
+                </a>
+                <a href="#" class="social-btn" onclick="alert('Google Sign-In popup initiated')">
+                    <i class="fa-brands fa-google" style="color: #ea4335;"></i> Google
+                </a>
             </div>
 
-            <div class="user-info-list">
-                <div class="info-item"><span>Name</span><span>Antor Kumar</span></div>
-                <div class="info-item"><span>Username</span><span>@antorsaha1</span></div>
-                <div class="info-item"><span>Account ID</span><span>8539501</span></div>
-                <div class="info-item"><span>Balance</span><span id="profileBalanceDisplay">৳ 2,104.81</span></div>
-                <div class="info-item"><span>Referred By</span><span>-</span></div>
-                <div class="info-item"><span>Joined At</span><span>May 2026</span></div>
-                <div class="info-item"><span>Language</span><span>English</span></div>
-            </div>
+            <div class="auth-divider">OR</div>
 
-            <div class="referral-banner"><i class="fa-solid fa-users"></i> Referral & Earnings</div>
+            <form class="auth-form" onsubmit="event.preventDefault(); alert('Sign in successful!');">
+                <div class="form-group">
+                    <label>E-Mail Address</label>
+                    <div class="form-input-box">
+                        <input type="email" placeholder="Enter your email..." required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Password</label>
+                    <div class="form-input-box">
+                        <input type="password" id="loginPasswordInput" value="Password@123" required>
+                        <i class="fa-solid fa-eye input-icon-right" onclick="togglePasswordVisibility()"></i>
+                    </div>
+                </div>
+
+                <div class="auth-options-row">
+                    <label class="remember-me">
+                        <input type="checkbox" checked> Remember me
+                    </label>
+                    <a href="#" class="forgot-pass" onclick="alert('Password reset link sent to email')">Forgot password?</a>
+                </div>
+
+                <button type="submit" class="signin-submit-btn">Sign in</button>
+            </form>
         </div>
     </div>
 
@@ -947,7 +1107,7 @@
             <span>Deposit</span>
         </button>
         <button class="nav-item" onclick="switchTab('proxy', this)"><i class="fa-solid fa-globe"></i><span>Proxy</span></button>
-        <button class="nav-item" onclick="switchTab('profile', this)"><i class="fa-solid fa-user"></i><span>Profile</span></button>
+        <button class="nav-item" onclick="switchTab('profile', this)"><i class="fa-solid fa-user"></i><span>Account</span></button>
     </nav>
 
     <script>
@@ -974,6 +1134,15 @@
         setInterval(() => {
             showSlide(slideIndex + 1);
         }, 3000);
+
+        function togglePasswordVisibility() {
+            const passInput = document.getElementById('loginPasswordInput');
+            if (passInput.type === 'password') {
+                passInput.type = 'text';
+            } else {
+                passInput.type = 'password';
+            }
+        }
 
         // Currency & Products Logic
         const USDT_RATE = 120;
@@ -1129,17 +1298,11 @@
 
         function updateCurrencyUI() {
             document.getElementById('headerCurrBtn').innerText = currentCurrency;
-            document.getElementById('btnBDT').classList.toggle('active', currentCurrency === 'BDT');
-            document.getElementById('btnUSDT').classList.toggle('active', currentCurrency === 'USDT');
 
             if (currentCurrency === 'USDT') {
                 document.getElementById('headerWalletDisplay').innerText = `$ ${(userWalletBDT / USDT_RATE).toFixed(2)}`;
-                document.getElementById('profileBalanceDisplay').innerText = `$ ${(userWalletBDT / USDT_RATE).toFixed(2)} USDT`;
-                document.getElementById('profileSpentDisplay').innerText = `$ ${(userSpentBDT / USDT_RATE).toFixed(2)}`;
             } else {
                 document.getElementById('headerWalletDisplay').innerText = `৳ ${Math.floor(userWalletBDT).toLocaleString()}`;
-                document.getElementById('profileBalanceDisplay').innerText = `৳ ${userWalletBDT.toLocaleString()}`;
-                document.getElementById('profileSpentDisplay').innerText = `৳ ${userSpentBDT.toLocaleString()}`;
             }
 
             renderProducts(document.getElementById('searchInput').value);
