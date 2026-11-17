@@ -601,6 +601,109 @@
         }
         .submit-request-btn:hover { background: #132640; transform: translateY(-2px); }
 
+        /* REFUND POLICY STYLING (MODERN & PROFESSIONAL) */
+        .policy-container {
+            max-width: 680px;
+            margin: 20px auto;
+            background: var(--card-bg);
+            border: 1.5px solid var(--border-color);
+            border-radius: 28px;
+            padding: 32px 26px;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.06);
+        }
+
+        .policy-header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1.5px solid var(--border-color);
+        }
+        .policy-header h2 {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 6px;
+        }
+        .policy-header h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--primary-glow);
+            letter-spacing: 0.5px;
+        }
+
+        .policy-section {
+            margin-bottom: 22px;
+        }
+        .policy-section h3 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .policy-section h3 i {
+            color: var(--primary-glow);
+            font-size: 14px;
+        }
+        .policy-section p {
+            font-size: 13.5px;
+            color: var(--text-muted);
+            line-height: 1.65;
+            margin-bottom: 8px;
+        }
+
+        .policy-alert-box {
+            background: rgba(255, 85, 0, 0.06);
+            border: 1.5px solid rgba(255, 85, 0, 0.2);
+            border-radius: 14px;
+            padding: 14px 18px;
+            margin: 12px 0;
+            font-size: 13px;
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        .policy-support-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 24px;
+        }
+        .support-card {
+            background: #f8fafc;
+            border: 1.5px solid var(--border-color);
+            border-radius: 16px;
+            padding: 16px 12px;
+            text-align: center;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.25s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        .support-card:hover {
+            border-color: var(--primary-glow);
+            transform: translateY(-3px);
+            background: #fff;
+            box-shadow: 0 6px 18px rgba(255,85,0,0.1);
+        }
+        .support-card i {
+            font-size: 24px;
+        }
+        .support-card.whatsapp i { color: #25D366; }
+        .support-card.telegram i { color: #0088cc; }
+        .support-card.email i { color: #ea4335; }
+
+        .support-card span {
+            font-size: 12.5px;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
         /* MODAL OVERLAY STYLING */
         .modal-overlay {
             position: fixed;
@@ -689,7 +792,7 @@
         }
         .modal-ok-btn:hover { filter: brightness(1.1); }
 
-        /* LOGIN INTERFACE STYLING */
+        /* LOGIN INTERFACE */
         .login-container {
             max-width: 440px;
             margin: 30px auto;
@@ -811,7 +914,7 @@
         }
         .login-submit-btn:hover { filter: brightness(1.1); }
 
-        /* ACCOUNT DASHBOARD & OTHERS */
+        /* ACCOUNT DASHBOARD */
         .dashboard-container {
             max-width: 550px;
             margin: 10px auto;
@@ -984,7 +1087,7 @@
         .dash-menu-item.logout i { color: #ef4444; }
         .dash-menu-item.logout { color: #ef4444; }
 
-        /* PRODUCT DETAIL & CHECKOUT VIEW */
+        /* PRODUCT DETAIL VIEW */
         #productDetailSection {
             max-width: 520px;
             margin: 10px auto 30px;
@@ -1166,7 +1269,7 @@
         }
         .preset-btn {
             background: #f8fafc;
-            border: 1.5px solid var(--border-color);
+            border: 1px solid var(--border-color);
             color: var(--text-main);
             padding: 9px 0;
             border-radius: 10px;
@@ -1283,7 +1386,7 @@
             <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80" alt="Avatar" class="user-avatar">
             <div>
                 <h4>Welcome back,</h4>
-                <h2 id="headerUserName">Antor Kumar</h2>
+                <h2 id="headerUserName">অন্তর কুমার</h2>
             </div>
         </div>
         <div class="header-right">
@@ -1415,9 +1518,86 @@
         <div class="product-grid" id="proxyGrid"></div>
     </div>
 
-    <!-- 5. ACCOUNT DASHBOARD / LOGIN SECTION (DYNAMIC BASED ON AUTH STATE) -->
+    <!-- 5. ACCOUNT / LOGIN SECTION -->
     <div id="profileSection" class="section-view">
-        <!-- Rendered dynamically via JS (Login or Dashboard) -->
+        <!-- Rendered dynamically -->
+    </div>
+
+    <!-- 6. REFUND POLICY SECTION (PREMIUM & EXACT TEXT INTEGRATED WITH HIDDEN CONTACTS) -->
+    <div id="refundPolicySection" class="section-view">
+        <div class="policy-container">
+            <div class="policy-header">
+                <h2>Terms & Conditions</h2>
+                <h4>RxB Premium Store - Return & Refund Policy</h4>
+            </div>
+
+            <div class="policy-section">
+                <h3><i class="fa-solid fa-circle-chevron-right"></i> 1. General Policy</h3>
+                <p>All products sold on our website are digital subscriptions, therefore returns and refunds are limited and subject to the conditions below.</p>
+            </div>
+
+            <div class="policy-section">
+                <h3><i class="fa-solid fa-circle-chevron-right"></i> 2. Non-Login Condition</h3>
+                <p>If the delivered account is not logged in within 24 hours, the customer may request a return.</p>
+                <div class="policy-alert-box">
+                    <i class="fa-solid fa-triangle-exclamation" style="color: var(--primary-glow); margin-right: 6px;"></i> <strong>Important Note:</strong> A 10% service fee will be deducted, and the remaining balance will be refunded.
+                </div>
+            </div>
+
+            <div class="policy-section">
+                <h3><i class="fa-solid fa-circle-chevron-right"></i> 3. Issue After Login</h3>
+                <p>If the customer logs into the account and faces any major issue, it must be reported within 24 hours delivery.</p>
+                <p>Our support team will review and attempt to resolve the issue.</p>
+                <p>If the issue cannot be resolved, a refund or replacement may be provided at our discretion.</p>
+            </div>
+
+            <div class="policy-section">
+                <h3><i class="fa-solid fa-circle-chevron-right"></i> 4. Time Limitation</h3>
+                <p><strong>Strict Deadline:</strong> No return or refund requests will be accepted after 24 hours from the time of delivery.</p>
+            </div>
+
+            <div class="policy-section">
+                <h3><i class="fa-solid fa-circle-chevron-right"></i> 5. Invalid Requests</h3>
+                <p>Submitting false, unnecessary, or misleading return requests may result in:</p>
+                <p>• Immediate order cancellation</p>
+                <p>• Possible denial of future service</p>
+            </div>
+
+            <div class="policy-section">
+                <h3><i class="fa-solid fa-circle-chevron-right"></i> 6. Customer Responsibility</h3>
+                <p>Refunds are not applicable in cases where the issue is caused by the customer, including but not limited to:</p>
+                <p>• Incorrect information provided (email, details, etc.)</p>
+                <p>• Misuse of the account</p>
+                <p>• Changing account credentials (email/password)</p>
+                <p>• Violation of platform rules</p>
+            </div>
+
+            <div class="policy-section">
+                <h3><i class="fa-solid fa-circle-chevron-right"></i> 7. Shared Account Disclaimer</h3>
+                <p>For shared plans, issues caused by other users are eligible for refund.</p>
+            </div>
+
+            <div class="policy-section">
+                <h3><i class="fa-solid fa-circle-chevron-right"></i> 8. Support</h3>
+                <p>For any issue, customers must contact us within the allowed timeframe.</p>
+                <p style="font-weight: 600; color: var(--text-main); margin-top: 10px;">Reach out to us anytime via our official support channels below:</p>
+
+                <div class="policy-support-grid">
+                    <a href="https://wa.me/8801740249310" target="_blank" class="support-card whatsapp">
+                        <i class="fa-brands fa-whatsapp"></i>
+                        <span>WhatsApp Us</span>
+                    </a>
+                    <a href="https://t.me/FastMaileSupport" target="_blank" class="support-card telegram">
+                        <i class="fa-brands fa-telegram"></i>
+                        <span>Telegram Us</span>
+                    </a>
+                    <a href="mailto:fastmailesupport@gmail.com" class="support-card email">
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>Email Us</span>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- MODERN MODAL OVERLAY -->
@@ -1432,7 +1612,7 @@
         </div>
     </div>
 
-    <!-- 6. PRODUCT DETAIL & CHECKOUT VIEW -->
+    <!-- PRODUCT DETAIL VIEW -->
     <div id="productDetailSection" class="section-view">
         <button class="back-btn" onclick="goBackToPrevious()"><i class="fa-solid fa-arrow-left"></i> Back</button>
 
@@ -1487,7 +1667,6 @@
     </nav>
 
     <script>
-        // Banner Slider Logic
         let slideIndex = 0;
         const slides = document.getElementById('bannerSlides');
         const dots = document.querySelectorAll('.slider-dot');
@@ -1511,10 +1690,9 @@
             showSlide(slideIndex + 1);
         }, 3000);
 
-        // Authentication & Session State
-        let isLoggedIn = localStorage.getItem('siteIsLoggedIn') === 'true' || true; // Default true as per initial view
+        let isLoggedIn = localStorage.getItem('siteIsLoggedIn') === 'true' || true;
         let currentUser = {
-            name: "Antor Kumar",
+            name: "অন্তর কুমার",
             email: "antorsaha1@gmail.com",
             avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80"
         };
@@ -1533,21 +1711,17 @@
         function renderProfileSection() {
             const profileSec = document.getElementById('profileSection');
             if (!isLoggedIn) {
-                // Render Premium Login Interface
                 profileSec.innerHTML = `
                     <div class="login-container">
                         <div class="login-header">
                             <h2>Welcome Back</h2>
                             <p>Sign in to your account to continue</p>
                         </div>
-                        
                         <button class="google-login-btn" onclick="handleGoogleSignIn()">
                             <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google">
                             Continue with Google
                         </button>
-
                         <div class="login-divider">or sign in with email</div>
-
                         <form onsubmit="event.preventDefault(); handleEmailLogin();">
                             <div class="login-form-group">
                                 <label>Email Address</label>
@@ -1555,27 +1729,21 @@
                                     <input type="email" id="loginEmail" placeholder="Enter your email..." required>
                                 </div>
                             </div>
-
                             <div class="login-form-group">
                                 <label>Password</label>
                                 <div class="login-input-wrapper">
                                     <input type="password" id="loginPass" placeholder="••••••••" required>
                                 </div>
                             </div>
-
                             <div class="login-options-row">
-                                <label class="remember-me">
-                                    <input type="checkbox" checked> Remember me
-                                </label>
+                                <label class="remember-me"><input type="checkbox" checked> Remember me</label>
                                 <a href="#" class="forgot-pass" onclick="showModal('Password Reset', 'Password reset instructions sent to your email.', 'info')">Forgot password?</a>
                             </div>
-
                             <button type="submit" class="login-submit-btn">Sign In</button>
                         </form>
                     </div>
                 `;
             } else {
-                // Render User Dashboard
                 profileSec.innerHTML = `
                     <div class="dashboard-container">
                         <div class="dashboard-top-tabs">
@@ -1638,15 +1806,15 @@
                         </div>
 
                         <div class="dash-menu-links">
-                            <a href="https://wa.me/8801700000000" target="_blank" class="dash-menu-item">
+                            <a href="https://wa.me/8801740249310" target="_blank" class="dash-menu-item">
                                 <div class="dash-menu-item-left"><i class="fa-solid fa-headset"></i> Support</div>
                                 <i class="fa-solid fa-chevron-right" style="color: var(--text-muted); font-size: 12px;"></i>
                             </a>
-                            <a href="#" onclick="showModal('Refund', 'Refund request form opened.', 'info')" class="dash-menu-item">
+                            <a href="#" onclick="switchTab('refund', null)" class="dash-menu-item">
                                 <div class="dash-menu-item-left"><i class="fa-solid fa-rotate-left"></i> Refund Request</div>
                                 <i class="fa-solid fa-chevron-right" style="color: var(--text-muted); font-size: 12px;"></i>
                             </a>
-                            <a href="#" onclick="showModal('Policy', 'Reviewing store refund policy.', 'info')" class="dash-menu-item">
+                            <a href="#" onclick="switchTab('refund', null)" class="dash-menu-item">
                                 <div class="dash-menu-item-left"><i class="fa-solid fa-shield-cat"></i> Refund Policy</div>
                                 <i class="fa-solid fa-chevron-right" style="color: var(--text-muted); font-size: 12px;"></i>
                             </a>
@@ -1695,7 +1863,6 @@
                 iconBox.className = 'success-icon-circle';
                 icon.className = 'fa-solid fa-check';
             }
-
             document.getElementById('customModalOverlay').classList.add('active');
         }
 
@@ -2204,12 +2371,14 @@
                 document.getElementById('profileSection').classList.add('active');
                 renderProfileSection();
             }
+            if(tabName === 'refund') {
+                document.getElementById('refundPolicySection').classList.add('active');
+            }
 
             if (element) element.classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Initialization
         renderDepositGateways();
         updateCurrencyUI();
         updateAuthUI();
