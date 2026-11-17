@@ -75,15 +75,8 @@
             object-fit: cover;
         }
 
-        .user-greeting h4 {
-            font-size: 13px;
-            color: var(--text-muted);
-        }
-
-        .user-greeting h2 {
-            font-size: 18px;
-            color: var(--text-main);
-        }
+        .user-greeting h4 { font-size: 13px; color: var(--text-muted); }
+        .user-greeting h2 { font-size: 18px; color: var(--text-main); }
 
         .header-right {
             display: flex;
@@ -102,7 +95,6 @@
             font-weight: 700;
             font-size: 15px;
         }
-
         .wallet-pill i { color: var(--primary-glow); }
 
         .notif-btn {
@@ -118,19 +110,78 @@
             cursor: pointer;
         }
 
-        /* Main Content Sections */
-        .section-view {
-            display: none;
+        /* Search & Filter Bar (Matching Screenshot) */
+        .search-filter-container {
             max-width: 1100px;
-            margin: 25px auto;
+            margin: 20px auto 10px;
             padding: 0 20px;
         }
 
-        .section-view.active {
-            display: block;
+        .search-box {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
-        /* Product Grid */
+        .search-box input {
+            background: none;
+            border: none;
+            outline: none;
+            color: var(--text-main);
+            font-size: 15px;
+            width: 100%;
+        }
+
+        .search-box i { color: var(--primary-glow); font-size: 18px; }
+
+        .filter-tabs {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+            scrollbar-width: none;
+        }
+        .filter-tabs::-webkit-scrollbar { display: none; }
+
+        .filter-tab {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s;
+        }
+
+        .filter-tab.active {
+            background: var(--btn-gradient);
+            border-color: transparent;
+            color: white;
+            box-shadow: 0 0 15px var(--border-color);
+        }
+
+        /* Section Views */
+        .section-view {
+            display: none;
+            max-width: 1100px;
+            margin: 15px auto 25px;
+            padding: 0 20px;
+        }
+        .section-view.active { display: block; }
+
+        /* Product Grid & Cards (Exact Screenshot Style) */
         .product-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -140,25 +191,27 @@
         .card {
             background: var(--card-bg);
             border: 1.5px solid var(--border-color);
-            border-radius: 16px;
+            border-radius: 18px;
             overflow: hidden;
             position: relative;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             transition: 0.3s;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
         }
 
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+            border-color: var(--primary-glow);
         }
 
         .card-top-bar {
             position: absolute;
-            top: 10px;
-            left: 10px;
-            right: 10px;
+            top: 12px;
+            left: 12px;
+            right: 12px;
             display: flex;
             justify-content: space-between;
             z-index: 5;
@@ -166,23 +219,35 @@
 
         .stock-badge {
             background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(5px);
             color: #fff;
             padding: 4px 10px;
             border-radius: 20px;
             font-size: 11px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
+            font-weight: 600;
             border: 1px solid var(--primary-glow);
         }
 
-        .stock-dot { width: 6px; height: 6px; background: #22c55e; border-radius: 50%; }
+        .sold-badge {
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(5px);
+            color: #ff9900;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            border: 1px solid rgba(255,153,0,0.4);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
 
         .fav-btn {
-            width: 32px;
-            height: 32px;
+            width: 34px;
+            height: 34px;
             border-radius: 50%;
             background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(5px);
             border: 1px solid rgba(255,255,255,0.2);
             color: #fff;
             cursor: pointer;
@@ -190,31 +255,41 @@
             align-items: center;
             justify-content: center;
         }
-
         .fav-btn.active { color: #ff2a6d; border-color: #ff2a6d; }
 
-        .card-img-wrapper { height: 170px; overflow: hidden; }
-        .card-img-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+        .card-img-wrapper {
+            height: 160px;
+            overflow: hidden;
+            background: rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+        }
+        .card-img-wrapper img { max-width: 100%; max-height: 100%; object-fit: contain; transition: 0.3s; }
+        .card:hover .card-img-wrapper img { transform: scale(1.05); }
 
         .card-body { padding: 15px; display: flex; flex-direction: column; flex-grow: 1; }
-        .product-title { font-size: 17px; font-weight: 700; margin-bottom: 6px; }
-        .product-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 15px; flex-grow: 1; }
+        .product-title { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+        .product-desc { font-size: 12.5px; color: var(--text-muted); margin-bottom: 15px; flex-grow: 1; line-height: 1.4; }
 
         .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px; }
-        .price { font-size: 18px; font-weight: 700; }
+        .price { font-size: 18px; font-weight: 700; color: var(--primary-glow); }
 
         .buy-btn {
             background: var(--btn-gradient);
             color: white;
             border: none;
-            padding: 8px 16px;
+            padding: 8px 18px;
             border-radius: 20px;
             font-size: 13px;
             font-weight: 600;
             cursor: pointer;
+            box-shadow: 0 0 10px var(--border-color);
         }
+        .buy-btn:hover { filter: brightness(1.1); }
 
-        /* Profile Styles (Matching Screenshot) */
+        /* Profile Styles */
         .profile-container {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -228,7 +303,6 @@
             justify-content: flex-end;
             gap: 15px;
             margin-bottom: 20px;
-            flex-wrap: wrap;
         }
 
         .setting-box {
@@ -257,14 +331,13 @@
             border-radius: 14px;
             text-align: center;
         }
-
         .stat-card h3 { font-size: 18px; font-weight: 700; color: var(--primary-glow); }
         .stat-card p { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
 
         .user-info-list {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 12px;
             margin-bottom: 25px;
         }
 
@@ -277,7 +350,6 @@
             border: 1px solid rgba(255,255,255,0.05);
             font-size: 14px;
         }
-
         .info-item span:first-child { color: var(--text-muted); }
         .info-item span:last-child { font-weight: 600; }
 
@@ -292,7 +364,7 @@
             box-shadow: 0 4px 15px var(--border-color);
         }
 
-        /* Bottom Nav Bar (Exact Match with your requirement) */
+        /* Bottom Nav Bar */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -316,23 +388,14 @@
             text-decoration: none;
             font-size: 12px;
             cursor: pointer;
-            transition: 0.3s;
             background: none;
             border: none;
+            transition: 0.3s;
         }
-
         .nav-item i { font-size: 20px; margin-bottom: 4px; }
+        .nav-item.active { color: var(--primary-glow); }
 
-        .nav-item.active {
-            color: var(--primary-glow);
-        }
-
-        /* Special Center Deposit Button Style */
-        .nav-item.deposit-center {
-            position: relative;
-            margin-top: -35px;
-        }
-
+        .nav-item.deposit-center { position: relative; margin-top: -35px; }
         .nav-item.deposit-center .deposit-icon-box {
             width: 60px;
             height: 60px;
@@ -346,12 +409,7 @@
             border: 3px solid var(--bg-dark);
             font-size: 24px;
         }
-
-        .nav-item.deposit-center span {
-            margin-top: 4px;
-            font-weight: 600;
-            color: var(--text-main);
-        }
+        .nav-item.deposit-center span { margin-top: 4px; font-weight: 600; color: var(--text-main); }
 
         /* Modal */
         .modal {
@@ -365,7 +423,6 @@
             align-items: center;
             padding: 20px;
         }
-
         .modal-content {
             background: var(--bg-dark);
             border: 2px solid var(--primary-glow);
@@ -396,26 +453,28 @@
         </div>
     </header>
 
-    <!-- 1. HOME SECTION -->
+    <!-- Search & Filter Bar (Matching your screenshot) -->
+    <div class="search-filter-container">
+        <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="searchInput" placeholder="Search products..." onkeyup="filterProducts()">
+        </div>
+        <div class="filter-tabs">
+            <button class="filter-tab active" onclick="setCategory('all', this)"><i class="fa-solid fa-border-all"></i> All Products</button>
+            <button class="filter-tab" onclick="setCategory('email', this)"><i class="fa-solid fa-envelope"></i> Email</button>
+            <button class="filter-tab" onclick="setCategory('proxy', this)"><i class="fa-solid fa-globe"></i> Proxy Items</button>
+            <button class="filter-tab" onclick="setCategory('tools', this)"><i class="fa-solid fa-toolbox"></i> Tools</button>
+        </div>
+    </div>
+
+    <!-- 1. HOME / MAIN STORE SECTION -->
     <div id="homeSection" class="section-view active">
         <div class="product-grid" id="productGrid"></div>
     </div>
 
-    <!-- 2. NUM & MAIL SECTION -->
+    <!-- 2. NUM & MAIL SECTION (Updated with exact screenshot style) -->
     <div id="numMailSection" class="section-view">
-        <h2 style="margin-bottom: 15px;">Num & Mail Services</h2>
-        <div class="product-grid">
-            <div class="card">
-                <div class="card-body">
-                    <h3 class="product-title">Hotmail / Outlook Token</h3>
-                    <p class="product-desc">অটোমেটেড মেইল অ্যাকাউন্ট এবং টোকেন সার্ভিস।</p>
-                    <div class="card-footer">
-                        <span class="price">৳৩০</span>
-                        <button class="buy-btn" onclick="alert('অর্ডার রিসিভ হয়েছে!')">Buy Now</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div class="product-grid" id="numMailGrid"></div>
     </div>
 
     <!-- 3. DEPOSIT SECTION -->
@@ -431,119 +490,53 @@
         </div>
     </div>
 
-    <!-- 4. PROXY SECTION (Replaces MB Check) -->
+    <!-- 4. PROXY SECTION -->
     <div id="proxySection" class="section-view">
-        <h2 style="margin-bottom: 15px;">প্রক্সি ও আইপি সার্ভিস (Proxy & IP)</h2>
-        <div class="product-grid">
-            <div class="card">
-                <div class="card-body">
-                    <h3 class="product-title">9Proxy / DataImpulse</h3>
-                    <p class="product-desc">হাই স্পিড ক্লিন প্রক্সি এবং আইপি সার্ভিস অটোমেটেড ডেলিভারি।</p>
-                    <div class="card-footer">
-                        <span class="price">৳১২০</span>
-                        <button class="buy-btn" onclick="alert('প্রক্সি সার্ভিস সিলেক্ট হয়েছে!')">Get Proxy</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div class="product-grid" id="proxyGrid"></div>
     </div>
 
-    <!-- 5. PROFILE SECTION (Matching Screenshot) -->
+    <!-- 5. PROFILE SECTION -->
     <div id="profileSection" class="section-view">
         <div class="profile-container">
-            <!-- Top Settings Toggle -->
             <div class="profile-top-settings">
                 <div class="setting-box">
                     <span>Theme</span>
                     <i class="fa-solid fa-toggle-on" style="color: var(--primary-glow); cursor: pointer; font-size: 18px;" onclick="toggleThemeMode()"></i>
                 </div>
-                <div class="setting-box">
-                    <span>LANG: EN</span>
-                </div>
-                <div class="setting-box" style="background: var(--btn-gradient); color: white;">
-                    <span>BDT</span>
-                </div>
+                <div class="setting-box"><span>LANG: EN</span></div>
+                <div class="setting-box" style="background: var(--btn-gradient); color: white;"><span>BDT</span></div>
             </div>
 
-            <!-- Stats Row -->
             <div class="stats-row">
-                <div class="stat-card">
-                    <h3>১৫</h3>
-                    <p>Orders</p>
-                </div>
-                <div class="stat-card">
-                    <h3>৳৪,৫৫০</h3>
-                    <p>Spent TK</p>
-                </div>
-                <div class="stat-card">
-                    <h3>০</h3>
-                    <p>Cancelled</p>
-                </div>
+                <div class="stat-card"><h3>১৫</h3><p>Orders</p></div>
+                <div class="stat-card"><h3>৳৪,৫৫০</h3><p>Spent TK</p></div>
+                <div class="stat-card"><h3>০</h3><p>Cancelled</p></div>
             </div>
 
-            <!-- User Details List -->
             <div class="user-info-list">
-                <div class="info-item">
-                    <span>Name</span>
-                    <span>অন্তর কুমার</span>
-                </div>
-                <div class="info-item">
-                    <span>Username</span>
-                    <span>@antorsaha1</span>
-                </div>
-                <div class="info-item">
-                    <span>Account ID</span>
-                    <span>৮৫৩৯৫০১</span>
-                </div>
-                <div class="info-item">
-                    <span>Balance</span>
-                    <span>৳২,১০৪.৮১</span>
-                </div>
-                <div class="info-item">
-                    <span>Referred By</span>
-                    <span>-</span>
-                </div>
-                <div class="info-item">
-                    <span>Joined At</span>
-                    <span>মে ২০২৬</span>
-                </div>
-                <div class="info-item">
-                    <span>Language</span>
-                    <span>Bangla / English</span>
-                </div>
+                <div class="info-item"><span>Name</span><span>অন্তর কুমার</span></div>
+                <div class="info-item"><span>Username</span><span>@antorsaha1</span></div>
+                <div class="info-item"><span>Account ID</span><span>৮৫৩৯৫০১</span></div>
+                <div class="info-item"><span>Balance</span><span>৳২,১০৪.৮১</span></div>
+                <div class="info-item"><span>Referred By</span><span>-</span></div>
+                <div class="info-item"><span>Joined At</span><span>মে ২০২৬</span></div>
+                <div class="info-item"><span>Language</span><span>Bangla / English</span></div>
             </div>
 
-            <!-- Referral & Earnings Button -->
-            <div class="referral-banner">
-                <i class="fa-solid fa-users"></i> Referral & Earnings
-            </div>
+            <div class="referral-banner"><i class="fa-solid fa-users"></i> Referral & Earnings</div>
         </div>
     </div>
 
     <!-- Bottom Navigation Bar -->
     <nav class="bottom-nav">
-        <button class="nav-item active" onclick="switchTab('home', this)">
-            <i class="fa-solid fa-house"></i>
-            <span>Home</span>
-        </button>
-        <button class="nav-item" onclick="switchTab('numMail', this)">
-            <i class="fa-solid fa-mobile-screen-button"></i>
-            <span>Num & Mail</span>
-        </button>
+        <button class="nav-item active" onclick="switchTab('home', this)"><i class="fa-solid fa-house"></i><span>Home</span></button>
+        <button class="nav-item" onclick="switchTab('numMail', this)"><i class="fa-solid fa-envelope-open-text"></i><span>Num & Mail</span></button>
         <button class="nav-item deposit-center" onclick="switchTab('deposit', this)">
-            <div class="deposit-icon-box">
-                <i class="fa-solid fa-wallet"></i>
-            </div>
+            <div class="deposit-icon-box"><i class="fa-solid fa-wallet"></i></div>
             <span>Deposit</span>
         </button>
-        <button class="nav-item" onclick="switchTab('proxy', this)">
-            <i class="fa-solid fa-gauge-high"></i>
-            <span>Proxy</span>
-        </button>
-        <button class="nav-item" onclick="switchTab('profile', this)">
-            <i class="fa-solid fa-user"></i>
-            <span>Profile</span>
-        </button>
+        <button class="nav-item" onclick="switchTab('proxy', this)"><i class="fa-solid fa-globe"></i><span>Proxy</span></button>
+        <button class="nav-item" onclick="switchTab('profile', this)"><i class="fa-solid fa-user"></i><span>Profile</span></button>
     </nav>
 
     <!-- Buy Modal -->
@@ -560,43 +553,88 @@
     </div>
 
     <script>
+        // Products data with categories matching your screenshot style
         const products = [
-            { id: 1, name: "CartFlows Pro License", image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80", stock: 15, price: "৳৪৯০", details: "সেলস ফানেল বিল্ডার ও ওয়ান ক্লিক আপসেল।" },
-            { id: 2, name: "RankMath Pro SEO", image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80", stock: 8, price: "৳৩৯০", details: "অ্যাডভান্সড এসইও অ্যানালাইসিস ও স্কিমা মার্কআপ।" },
-            { id: 3, name: "Elementor Pro Agency", image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=600&q=80", stock: 22, price: "৳৫৫০", details: "ওয়েবসাইট বিল্ডার ও প্রিমিয়াম টেমপ্লেট।" },
-            { id: 4, name: "WP Rocket Speed Plugin", image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80", stock: 0, price: "৳৩৫০", details: "ওয়েবসাইট স্পিড অপ্টিমাইজেশন প্লাগইন।" }
+            { id: 1, category: 'email', name: "Hotmail Trusted V1[span_1](start_span)[span_1](end_span)", image: "https://cdn-icons-png.flaticon.com/512/732/732200.png", stock: "46k PCS[span_2](start_span)[span_2](end_span)", sold: "2k sold[span_3](start_span)[span_3](end_span)", price: "৳0.57[span_4](start_span)[span_4](end_span)", details: "Hotmail trusted account with high longevity." },
+            { id: 2, category: 'email', name: "Outlook.com | OAuth2", image: "https://cdn-icons-png.flaticon.com/512/732/732221.png", stock: "48k PCS[span_5](start_span)[span_5](end_span)", sold: "1.4k sold[span_6](start_span)[span_6](end_span)", price: "৳0.48[span_7](start_span)[span_7](end_span)", details: "Outlook.com | OAuth2 | 12-36 Months | Original[span_8](start_span)[span_8](end_span)." },
+            { id: 3, category: 'email', name: "Outlook.Fr Trusted V1[span_9](start_span)[span_9](end_span)", image: "https://cdn-icons-png.flaticon.com/512/732/732221.png", stock: "41k PCS[span_10](start_span)[span_10](end_span)", sold: "1k sold[span_11](start_span)[span_11](end_span)", price: "৳0.80[span_12](start_span)[span_12](end_span)", details: "Outlook.Fr trusted account[span_13](start_span)[span_13](end_span)." },
+            { id: 4, category: 'email', name: "Hotmail Trusted - OAuth2", image: "https://cdn-icons-png.flaticon.com/512/732/732200.png", stock: "47k PCS[span_14](start_span)[span_14](end_span)", sold: "477 sold[span_15](start_span)[span_15](end_span)", price: "৳0.91[span_16](start_span)[span_16](end_span)", details: "Hotmail Trusted - OAuth2 [Graph] Live[span_17](start_span)[span_17](end_span)." },
+            { id: 5, category: 'proxy', name: "9Proxy Residential IP", image: "https://cdn-icons-png.flaticon.com/512/1006/1006771.png", stock: "15k PCS", sold: "3.5k sold", price: "৳১২০", details: "High speed clean residential proxy." },
+            { id: 6, category: 'tools', name: "CartFlows Pro License", image: "https://cdn-icons-png.flaticon.com/512/2885/2885437.png", stock: "15 PCS", sold: "120 sold", price: "৳৪৯০", details: "Sales funnel builder for WordPress." }
         ];
 
+        let currentCategory = 'all';
         let bookmarkedIds = JSON.parse(localStorage.getItem('bookmarkedProducts')) || [];
         const whatsappNumber = "8801700000000";
 
-        function renderProducts() {
+        function renderProducts(filterText = '') {
             const grid = document.getElementById('productGrid');
+            const numMailGrid = document.getElementById('numMailGrid');
+            const proxyGrid = document.getElementById('proxyGrid');
+            
             grid.innerHTML = '';
-            products.forEach(product => {
-                const isBookmarked = bookmarkedIds.includes(product.id);
-                const isAvailable = product.stock > 0;
-                const card = document.createElement('div');
-                card.className = 'card';
-                card.innerHTML = `
-                    <div class="card-top-bar">
-                        <div class="stock-badge"><span class="stock-dot"></span>স্টকে: ${product.stock} পিস</div>
-                        <button class="fav-btn ${isBookmarked ? 'active' : ''}" onclick="toggleBookmark(${product.id})">
-                            <i class="${isBookmarked ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
+            numMailGrid.innerHTML = '';
+            proxyGrid.innerHTML = '';
+
+            const filtered = products.filter(p => {
+                const matchesCat = currentCategory === 'all' || p.category === currentCategory;
+                const matchesSearch = p.name.toLowerCase().includes(filterText.toLowerCase());
+                return matchesCat && matchesSearch;
+            });
+
+            // Render main grid
+            filtered.forEach(product => {
+                grid.appendChild(createCard(product));
+            });
+
+            // Render Num & Mail tab specific items
+            products.filter(p => p.category === 'email').forEach(product => {
+                numMailGrid.appendChild(createCard(product));
+            });
+
+            // Render Proxy tab specific items
+            products.filter(p => p.category === 'proxy').forEach(product => {
+                proxyGrid.appendChild(createCard(product));
+            });
+        }
+
+        function createCard(product) {
+            const isBookmarked = bookmarkedIds.includes(product.id);
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+                <div class="card-top-bar">
+                    <div class="stock-badge">${product.stock}</div>
+                    <div class="sold-badge"><i class="fa-solid fa-fire" style="color: #ff5500;"></i> ${product.sold}</div>
+                    <button class="fav-btn ${isBookmarked ? 'active' : ''}" onclick="toggleBookmark(${product.id})">
+                        <i class="${isBookmarked ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
+                    </button>
+                </div>
+                <div class="card-img-wrapper"><img src="${product.image}" alt=""></div>
+                <div class="card-body">
+                    <h3 class="product-title">${product.name}</h3>
+                    <p class="product-desc">${product.details}</p>
+                    <div class="card-footer">
+                        <span class="price">${product.price}</span>
+                        <button class="buy-btn" onclick="openBuyModal(${product.id})">
+                            <i class="fa-solid fa-cart-shopping"></i> Buy now
                         </button>
                     </div>
-                    <div class="card-img-wrapper"><img src="${product.image}" alt=""></div>
-                    <div class="card-body">
-                        <h3 class="product-title">${product.name}</h3>
-                        <p class="product-desc">${product.details}</p>
-                        <div class="card-footer">
-                            <span class="price">${product.price}</span>
-                            <button class="buy-btn" ${!isAvailable ? 'disabled' : ''} onclick="openBuyModal(${product.id})">${isAvailable ? 'Buy Now' : 'Stock Out'}</button>
-                        </div>
-                    </div>
-                `;
-                grid.appendChild(card);
-            });
+                </div>
+            `;
+            return card;
+        }
+
+        function setCategory(cat, element) {
+            currentCategory = cat;
+            document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+            element.classList.add('active');
+            renderProducts(document.getElementById('searchInput').value);
+        }
+
+        function filterProducts() {
+            const query = document.getElementById('searchInput').value;
+            renderProducts(query);
         }
 
         function toggleBookmark(id) {
@@ -606,7 +644,7 @@
                 bookmarkedIds.push(id);
             }
             localStorage.setItem('bookmarkedProducts', JSON.stringify(bookmarkedIds));
-            renderProducts();
+            renderProducts(document.getElementById('searchInput').value);
         }
 
         function switchTab(tabName, element) {
