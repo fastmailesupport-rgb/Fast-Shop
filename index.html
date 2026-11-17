@@ -276,7 +276,7 @@
             box-shadow: 0 4px 12px rgba(255, 85, 0, 0.3);
         }
 
-        /* MAIL CATEGORY BAR (MARK-ED LOCATION STYLING) */
+        /* EXTENSIVE MAIL CATEGORY BAR FOR NUM & MAIL SECTION */
         .mail-category-bar {
             display: flex;
             gap: 8px;
@@ -1647,13 +1647,29 @@
 
     <!-- 2. NUM & MAIL SECTION -->
     <div id="numMailSection" class="section-view">
-        <!-- Mail Category Navigation Bar Added Here (Marked Area) -->
+        <!-- New Expanded Mail Category Navigation Bar -->
         <div class="mail-category-bar">
             <button class="mail-cat-btn active" onclick="filterMailCategory('all', this)"><i class="fa-solid fa-border-all"></i> All Mail</button>
-            <button class="mail-cat-btn" onclick="filterMailCategory('hotmail', this)"><i class="fa-brands fa-windows"></i> Hotmail</button>
-            <button class="mail-cat-btn" onclick="filterMailCategory('outlook', this)"><i class="fa-solid fa-envelope"></i> Outlook Mail</button>
-            <button class="mail-cat-btn" onclick="filterMailCategory('edu', this)"><i class="fa-solid fa-graduation-cap"></i> Edu Mail</button>
-            <button class="mail-cat-btn" onclick="filterMailCategory('gmail', this)"><i class="fa-brands fa-google"></i> Gmail.com</button>
+            <button class="mail-cat-btn" onclick="filterMailCategory('hotmail_com', this)"><i class="fa-brands fa-windows"></i> Hotmail.com</button>
+            <button class="mail-cat-btn" onclick="filterMailCategory('outlook_com', this)"><i class="fa-solid fa-envelope"></i> Outlook.com</button>
+            <button class="mail-cat-btn" onclick="filterMailCategory('outlook_fr_recovery', this)"><i class="fa-solid fa-key"></i> Outlook.Fr Recovery Add</button>
+            <button class="mail-cat-btn" onclick="filterMailCategory('hotmail_7days', this)"><i class="fa-solid fa-clock"></i> Hotmail.com 7 Days Skip</button>
+            <button class="mail-cat-btn" onclick="filterMailCategory('hotmail_fvia', this)"><i class="fa-solid fa-shield-halved"></i> Hotmail.com Fvia</button>
+            <button class="mail-cat-btn" onclick="filterMailCategory('hotmail_byom', this)"><i class="fa-solid fa-bolt"></i> Hotmail.com Byom De</button>
+            <button class="mail-cat-btn" onclick="filterMailCategory('outlook_de', this)"><i class="fa-solid fa-globe"></i> Outlook.de</button>
+            <button class="mail-cat-btn" onclick="filterMailCategory('outlook_at', this)"><i class="fa-solid fa-globe"></i> Outlook.at</button>
+            <button class="mail-cat-btn" onclick="filterMailCategory('outlook_sa', this)"><i class="fa-solid fa-globe"></i> Outlook.sa</button>
+            <button class="mail-cat-btn" onclick="filterMailCategory('outlook_jp', this)"><i class="fa-solid fa-globe"></i> Outlook.jp</button>
+            <button class="mail-cat-btn" onclick="filterMailCategory('outlook_co_th', this)"><i class="fa-solid fa-globe"></i> Outlook.co.th</button>
+            <button class="mail-cat-btn" onclick="filterMailCategory('outlook_co_id', this)"><i class="fa-solid fa-globe"></i> Outlook.co.id</button>
+            <button class="mail-cat-btn" onclick="filterMailCategory('outlook_in', this)"><i class="fa-solid fa-globe"></i> Outlook.in</button>
+            <button class="mail-cat-btn" onclick="filterMailCategory('outlook_kr', this)"><i class="fa-solid fa-globe"></i> Outlook.kr</button>
+            <button class="mail-cat-btn" onclick="filterMailCategory('outlook_lv', this)"><i class="fa-solid fa-globe"></i> Outlook.lv</button>
+            <button class="mail-cat-btn" onclick="filterMailCategory('outlook_ph', this)"><i class="fa-solid fa-globe"></i> Outlook.ph</button>
+            <button class="mail-cat-btn" onclick="filterMailCategory('outlook_sk', this)"><i class="fa-solid fa-globe"></i> Outlook.sk</button>
+            <button class="mail-cat-btn" onclick="filterMailCategory('outlook_com_ar', this)"><i class="fa-solid fa-globe"></i> Outlook.com.ar</button>
+            <button class="mail-cat-btn" onclick="filterMailCategory('outlook_co_li', this)"><i class="fa-solid fa-globe"></i> Outlook.co.li</button>
+            <button class="mail-cat-btn" onclick="filterMailCategory('outlook_sg', this)"><i class="fa-solid fa-globe"></i> Outlook.sg</button>
         </div>
 
         <h3 style="margin-bottom: 12px; font-size: 16px; color: var(--secondary-glow);"><i class="fa-solid fa-envelope-open-text"></i> Number & Mail Accounts</h3>
@@ -2235,7 +2251,7 @@
             {
                 id: 1,
                 category: 'email',
-                mailType: 'hotmail',
+                mailType: 'hotmail_com',
                 mode: 'quantity',
                 name: "Hotmail Trusted V1",
                 image: "https://cdn-icons-png.flaticon.com/512/732/732200.png",
@@ -2250,7 +2266,7 @@
             {
                 id: 2,
                 category: 'email',
-                mailType: 'outlook',
+                mailType: 'outlook_com',
                 mode: 'quantity',
                 name: "Outlook.com | OAuth2",
                 image: "https://cdn-icons-png.flaticon.com/512/732/732221.png",
@@ -2265,50 +2281,277 @@
             {
                 id: 3,
                 category: 'email',
-                mailType: 'outlook',
+                mailType: 'outlook_fr_recovery',
                 mode: 'quantity',
-                name: "Outlook.Fr Trusted V1",
+                name: "Outlook.Fr Recovery Add",
                 image: "https://cdn-icons-png.flaticon.com/512/732/732221.png",
                 stockCount: 41000,
                 stockText: "41k PCS",
                 sold: "1,050 sold",
                 unitPrice: 0.80,
                 delivery: "Instant",
-                shortDesc: "Outlook.Fr French domain trusted accounts.",
-                fullDetails: `<p>Premium French domain (.fr) Outlook accounts. Highly reliable for all platform verifications.</p>`
+                shortDesc: "Outlook.Fr French domain accounts with Recovery added.",
+                fullDetails: `<p>Premium French domain (.fr) Outlook accounts equipped with recovery details.</p>`
             },
             {
                 id: 4,
                 category: 'email',
-                mailType: 'edu',
+                mailType: 'hotmail_7days',
                 mode: 'quantity',
-                name: "Edu Mail Verified",
-                image: "https://cdn-icons-png.flaticon.com/512/2910/2910791.png",
+                name: "Hotmail 7 Days Skip",
+                image: "https://cdn-icons-png.flaticon.com/512/732/732200.png",
                 stockCount: 15000,
                 stockText: "15k PCS",
                 sold: "890 sold",
-                unitPrice: 1.20,
+                unitPrice: 0.75,
                 delivery: "Instant",
-                shortDesc: "Student institutional Edu mail with benefits.",
-                fullDetails: `<p>Original university Edu mail accounts for student pack activations and discounts.</p>`
+                shortDesc: "Hotmail accounts with 7 days security check skipped.",
+                fullDetails: `<p>Hotmail accounts pre-configured to bypass 7-day security lock restrictions.</p>`
             },
             {
                 id: 5,
                 category: 'email',
-                mailType: 'gmail',
+                mailType: 'hotmail_fvia',
                 mode: 'quantity',
-                name: "Gmail.com Fresh V1",
-                image: "https://cdn-icons-png.flaticon.com/512/281/281764.png",
+                name: "Hotmail.com Fvia",
+                image: "https://cdn-icons-png.flaticon.com/512/732/732200.png",
                 stockCount: 32000,
                 stockText: "32k PCS",
                 sold: "1,850 sold",
-                unitPrice: 1.50,
+                unitPrice: 0.65,
                 delivery: "Instant",
-                shortDesc: "Fresh Gmail.com accounts with recovery mail.",
-                fullDetails: `<p>High quality fresh Gmail accounts created with clean IPs.</p>`
+                shortDesc: "Hotmail Fvia verified series accounts.",
+                fullDetails: `<p>High quality Hotmail Fvia batch verified accounts.</p>`
             },
             {
                 id: 6,
+                category: 'email',
+                mailType: 'hotmail_byom',
+                mode: 'quantity',
+                name: "Hotmail.com Byom De",
+                image: "https://cdn-icons-png.flaticon.com/512/732/732200.png",
+                stockCount: 22000,
+                stockText: "22k PCS",
+                sold: "740 sold",
+                unitPrice: 0.70,
+                delivery: "Instant",
+                shortDesc: "Hotmail Byom De specialized series.",
+                fullDetails: `<p>Specialized Hotmail Byom De accounts for automated workflows.</p>`
+            },
+            {
+                id: 7,
+                category: 'email',
+                mailType: 'outlook_de',
+                mode: 'quantity',
+                name: "Outlook.de Germany",
+                image: "https://cdn-icons-png.flaticon.com/512/732/732221.png",
+                stockCount: 19000,
+                stockText: "19k PCS",
+                sold: "520 sold",
+                unitPrice: 0.85,
+                delivery: "Instant",
+                shortDesc: "German domain Outlook.de accounts.",
+                fullDetails: `<p>Official Outlook.de German regional domain accounts.</p>`
+            },
+            {
+                id: 8,
+                category: 'email',
+                mailType: 'outlook_at',
+                mode: 'quantity',
+                name: "Outlook.at Austria",
+                image: "https://cdn-icons-png.flaticon.com/512/732/732221.png",
+                stockCount: 14000,
+                stockText: "14k PCS",
+                sold: "310 sold",
+                unitPrice: 0.90,
+                delivery: "Instant",
+                shortDesc: "Austrian regional Outlook.at accounts.",
+                fullDetails: `<p>Outlook.at Austrian domain accounts with high reliability.</p>`
+            },
+            {
+                id: 9,
+                category: 'email',
+                mailType: 'outlook_sa',
+                mode: 'quantity',
+                name: "Outlook.sa Saudi",
+                image: "https://cdn-icons-png.flaticon.com/512/732/732221.png",
+                stockCount: 12000,
+                stockText: "12k PCS",
+                sold: "410 sold",
+                unitPrice: 0.95,
+                delivery: "Instant",
+                shortDesc: "Saudi Arabian regional Outlook.sa accounts.",
+                fullDetails: `<p>Outlook.sa domain accounts optimized for Middle East region.</p>`
+            },
+            {
+                id: 10,
+                category: 'email',
+                mailType: 'outlook_jp',
+                mode: 'quantity',
+                name: "Outlook.jp Japan",
+                image: "https://cdn-icons-png.flaticon.com/512/732/732221.png",
+                stockCount: 16000,
+                stockText: "16k PCS",
+                sold: "680 sold",
+                unitPrice: 0.88,
+                delivery: "Instant",
+                shortDesc: "Japanese regional Outlook.jp accounts.",
+                fullDetails: `<p>Outlook.jp Japan domain clean accounts.</p>`
+            },
+            {
+                id: 11,
+                category: 'email',
+                mailType: 'outlook_co_th',
+                mode: 'quantity',
+                name: "Outlook.co.th Thailand",
+                image: "https://cdn-icons-png.flaticon.com/512/732/732221.png",
+                stockCount: 11000,
+                stockText: "11k PCS",
+                sold: "290 sold",
+                unitPrice: 0.75,
+                delivery: "Instant",
+                shortDesc: "Thai regional Outlook.co.th accounts.",
+                fullDetails: `<p>Outlook.co.th Thailand domain accounts.</p>`
+            },
+            {
+                id: 12,
+                category: 'email',
+                mailType: 'outlook_co_id',
+                mode: 'quantity',
+                name: "Outlook.co.id Indonesia",
+                image: "https://cdn-icons-png.flaticon.com/512/732/732221.png",
+                stockCount: 13500,
+                stockText: "13.5k PCS",
+                sold: "450 sold",
+                unitPrice: 0.72,
+                delivery: "Instant",
+                shortDesc: "Indonesian regional Outlook.co.id accounts.",
+                fullDetails: `<p>Outlook.co.id Indonesia domain accounts.</p>`
+            },
+            {
+                id: 13,
+                category: 'email',
+                mailType: 'outlook_in',
+                mode: 'quantity',
+                name: "Outlook.in India",
+                image: "https://cdn-icons-png.flaticon.com/512/732/732221.png",
+                stockCount: 25000,
+                stockText: "25k PCS",
+                sold: "1,120 sold",
+                unitPrice: 0.60,
+                delivery: "Instant",
+                shortDesc: "Indian regional Outlook.in accounts.",
+                fullDetails: `<p>Outlook.in Indian regional domain accounts.</p>`
+            },
+            {
+                id: 14,
+                category: 'email',
+                mailType: 'outlook_kr',
+                mode: 'quantity',
+                name: "Outlook.kr Korea",
+                image: "https://cdn-icons-png.flaticon.com/512/732/732221.png",
+                stockCount: 9500,
+                stockText: "9.5k PCS",
+                sold: "210 sold",
+                unitPrice: 0.92,
+                delivery: "Instant",
+                shortDesc: "Korean regional Outlook.kr accounts.",
+                fullDetails: `<p>Outlook.kr South Korea domain accounts.</p>`
+            },
+            {
+                id: 15,
+                category: 'email',
+                mailType: 'outlook_lv',
+                mode: 'quantity',
+                name: "Outlook.lv Latvia",
+                image: "https://cdn-icons-png.flaticon.com/512/732/732221.png",
+                stockCount: 8000,
+                stockText: "8k PCS",
+                sold: "180 sold",
+                unitPrice: 0.85,
+                delivery: "Instant",
+                shortDesc: "Latvian regional Outlook.lv accounts.",
+                fullDetails: `<p>Outlook.lv Latvia domain accounts.</p>`
+            },
+            {
+                id: 16,
+                category: 'email',
+                mailType: 'outlook_ph',
+                mode: 'quantity',
+                name: "Outlook.ph Philippines",
+                image: "https://cdn-icons-png.flaticon.com/512/732/732221.png",
+                stockCount: 10500,
+                stockText: "10.5k PCS",
+                sold: "340 sold",
+                unitPrice: 0.70,
+                delivery: "Instant",
+                shortDesc: "Philippine regional Outlook.ph accounts.",
+                fullDetails: `<p>Outlook.ph Philippines domain accounts.</p>`
+            },
+            {
+                id: 17,
+                category: 'email',
+                mailType: 'outlook_sk',
+                mode: 'quantity',
+                name: "Outlook.sk Slovakia",
+                image: "https://cdn-icons-png.flaticon.com/512/732/732221.png",
+                stockCount: 7500,
+                stockText: "7.5k PCS",
+                sold: "150 sold",
+                unitPrice: 0.88,
+                delivery: "Instant",
+                shortDesc: "Slovak regional Outlook.sk accounts.",
+                fullDetails: `<p>Outlook.sk Slovakia domain accounts.</p>`
+            },
+            {
+                id: 18,
+                category: 'email',
+                mailType: 'outlook_com_ar',
+                mode: 'quantity',
+                name: "Outlook.com.ar Argentina",
+                image: "https://cdn-icons-png.flaticon.com/512/732/732221.png",
+                stockCount: 9000,
+                stockText: "9k PCS",
+                sold: "230 sold",
+                unitPrice: 0.78,
+                delivery: "Instant",
+                shortDesc: "Argentine regional Outlook.com.ar accounts.",
+                fullDetails: `<p>Outlook.com.ar Argentina domain accounts.</p>`
+            },
+            {
+                id: 19,
+                category: 'email',
+                mailType: 'outlook_co_li',
+                mode: 'quantity',
+                name: "Outlook.co.li Liechtenstein",
+                image: "https://cdn-icons-png.flaticon.com/512/732/732221.png",
+                stockCount: 6000,
+                stockText: "6k PCS",
+                sold: "95 sold",
+                unitPrice: 0.99,
+                delivery: "Instant",
+                shortDesc: "Liechtenstein regional Outlook.co.li accounts.",
+                fullDetails: `<p>Outlook.co.li Liechtenstein domain accounts.</p>`
+            },
+            {
+                id: 20,
+                category: 'email',
+                mailType: 'outlook_sg',
+                mode: 'quantity',
+                name: "Outlook.sg Singapore",
+                image: "https://cdn-icons-png.flaticon.com/512/732/732221.png",
+                stockCount: 14500,
+                stockText: "14.5k PCS",
+                sold: "560 sold",
+                unitPrice: 0.85,
+                delivery: "Instant",
+                shortDesc: "Singapore regional Outlook.sg accounts.",
+                fullDetails: `<p>Outlook.sg Singapore domain clean accounts.</p>`
+            },
+
+            // Proxy & Social items
+            {
+                id: 21,
                 category: 'proxy',
                 proxyType: 'gp',
                 mode: 'plan',
@@ -2330,7 +2573,7 @@
                 fullDetails: `<p>Original GP Proxy residential IP packages. Select your required data plan below.</p>`
             },
             {
-                id: 7,
+                id: 22,
                 category: 'proxy',
                 proxyType: 'ip',
                 mode: 'plan',
@@ -2350,7 +2593,7 @@
                 fullDetails: `<p>Clean dedicated static IP proxy for secure browsing and account management.</p>`
             },
             {
-                id: 8,
+                id: 23,
                 category: 'proxy',
                 proxyType: 'vpn',
                 mode: 'plan',
