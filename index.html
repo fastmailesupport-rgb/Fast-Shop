@@ -151,7 +151,7 @@
         .section-view.active { display: block; }
 
         /* =========================================================
-           BANNER SLIDER STYLING (আপনার দেওয়া ৩টি ইমেজের জন্য রানিং স্লাইডার)
+           BANNER SLIDER STYLING (সঠিকভাবে কাজ করার জন্য ফিক্সড স্লাইডার)
         ========================================================= */
         .banner-slider-container {
             width: 100%;
@@ -181,6 +181,7 @@
             display: block;
             object-fit: cover;
             aspect-ratio: 16 / 9;
+            background: #000;
         }
 
         .slider-dots {
@@ -848,12 +849,12 @@
     <!-- 1. HOME SECTION -->
     <div id="homeSection" class="section-view active">
         
-        <!-- BANNER RUNNING SLIDER EFFECT (আপনার দেওয়া ৩টি ইমেজ সহ) -->
+        <!-- BANNER RUNNING SLIDER EFFECT -->
         <div class="banner-slider-container" id="bannerSlider">
             <div class="banner-slides" id="bannerSlides">
-                <div class="banner-slide"><img src="7217_2.jpg" alt="Fast Mail Shop Banner"></div>
-                <div class="banner-slide"><img src="7218_2.jpg" alt="Instant Add Balance Banner"></div>
-                <div class="banner-slide"><img src="7219_2.jpg" alt="24/7 Support Banner"></div>
+                <div class="banner-slide"><img src="7217_2.jpg" alt="Banner 1" onerror="this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1000&q=80'"></div>
+                <div class="banner-slide"><img src="7218_2.jpg" alt="Banner 2" onerror="this.src='https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&w=1000&q=80'"></div>
+                <div class="banner-slide"><img src="7219_2.jpg" alt="Banner 3" onerror="this.src='https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=1000&q=80'"></div>
             </div>
             <div class="slider-dots" id="sliderDots">
                 <span class="slider-dot active" onclick="currentSlide(0)"></span>
@@ -1027,7 +1028,9 @@
 
         function showSlide(index) {
             slideIndex = (index + totalSlides) % totalSlides;
-            slides.style.transform = `translateX(-${slideIndex * 100}%)`;
+            if (slides) {
+                slides.style.transform = `translateX(-${slideIndex * 100}%)`;
+            }
             dots.forEach((dot, idx) => {
                 dot.classList.toggle('active', idx === slideIndex);
             });
