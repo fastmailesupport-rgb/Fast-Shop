@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fast Mail Shop - Digital Store</title>
+    <title>Fast Shop - Digital Store</title>
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -19,6 +19,18 @@
             --text-muted: #c2a294;
         }
 
+        body.light-theme {
+            --bg-dark: #f8fafc;
+            --bg-gradient: radial-gradient(circle at top, #fee2e2 0%, #f1f5f9 75%);
+            --card-bg: #ffffff;
+            --primary-glow: #ff5500;
+            --secondary-glow: #ea580c;
+            --btn-gradient: linear-gradient(90deg, #ff5500, #ea580c);
+            --border-color: rgba(255, 85, 0, 0.25);
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -31,7 +43,8 @@
             background-image: var(--bg-gradient);
             color: var(--text-main);
             min-height: 100vh;
-            padding-bottom: 90px;
+            padding-bottom: 95px;
+            transition: all 0.3s ease;
         }
 
         /* Top Header */
@@ -40,7 +53,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 15px 5%;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.35);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border-color);
             position: sticky;
@@ -95,14 +108,35 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
+            position: relative;
         }
 
-        /* Notice Banner */
-        .notice-banner {
+        .fav-count-badge {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            background: #ff2a6d;
+            color: white;
+            font-size: 10px;
+            width: 17px;
+            height: 17px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        /* Section Views */
+        .section-view {
+            display: none;
             max-width: 1100px;
-            margin: 15px auto;
+            margin: 15px auto 25px;
             padding: 0 20px;
         }
+        .section-view.active { display: block; }
+
+        /* Home Top Features (From Video Layout) */
         .notice-box {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -111,59 +145,51 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            margin-bottom: 18px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
         }
-        .notice-left { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; }
-        .notice-left i { color: var(--secondary-glow); }
-        .bot-btn-sm {
-            background: var(--btn-gradient);
-            color: white;
-            border: none;
-            padding: 6px 14px;
+        .notice-left { display: flex; align-items: center; gap: 10px; font-size: 13.5px; font-weight: 600; }
+        .notice-left i { color: var(--secondary-glow); font-size: 16px; }
+        .status-pill {
+            background: rgba(34, 197, 94, 0.15);
+            color: #4ade80;
+            border: 1px solid rgba(34, 197, 94, 0.4);
+            padding: 4px 12px;
             border-radius: 20px;
-            font-size: 12px;
-            font-weight: bold;
-            cursor: pointer;
+            font-size: 11.5px;
+            font-weight: 600;
         }
 
         /* Instant Add Balance Banner */
-        .deposit-banner {
-            max-width: 1100px;
-            margin: 0 auto 20px;
-            padding: 0 20px;
-        }
         .deposit-card {
-            background: linear-gradient(135deg, #2b0e00, #1a0700);
+            background: linear-gradient(135deg, rgba(255, 85, 0, 0.18), rgba(30, 9, 2, 0.95));
             border: 1.5px solid var(--primary-glow);
             border-radius: 20px;
             padding: 20px;
-            box-shadow: 0 0 25px rgba(255,85,0,0.25);
+            margin-bottom: 22px;
+            box-shadow: 0 0 25px rgba(255,85,0,0.2);
             text-align: center;
         }
-        .deposit-card h3 { font-size: 20px; margin-bottom: 8px; color: #fff; }
-        .deposit-card p { font-size: 13px; color: var(--text-muted); margin-bottom: 15px; }
+        .deposit-card h3 { font-size: 19px; margin-bottom: 6px; color: var(--text-main); }
+        .deposit-card p { font-size: 13px; color: var(--text-muted); margin-bottom: 14px; }
         .payment-logos {
             display: flex;
             justify-content: center;
-            gap: 12px;
+            gap: 10px;
             margin-bottom: 15px;
             flex-wrap: wrap;
         }
         .pay-badge {
-            background: rgba(0,0,0,0.5);
+            background: rgba(0,0,0,0.4);
             border: 1px solid var(--border-color);
-            padding: 6px 14px;
+            color: var(--text-main);
+            padding: 5px 14px;
             border-radius: 30px;
-            font-size: 13px;
+            font-size: 12.5px;
             font-weight: 600;
         }
 
-        /* Search & Filter Categories */
-        .search-filter-container {
-            max-width: 1100px;
-            margin: 20px auto 12px;
-            padding: 0 20px;
-        }
+        /* Search & Filter Bar */
         .search-box {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -173,22 +199,24 @@
             align-items: center;
             gap: 12px;
             margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
         .search-box input {
             background: none;
             border: none;
             outline: none;
             color: var(--text-main);
-            font-size: 15px;
+            font-size: 14.5px;
             width: 100%;
         }
-        .search-box i { color: var(--primary-glow); font-size: 18px; }
+        .search-box i { color: var(--primary-glow); font-size: 17px; }
 
         .filter-tabs {
             display: flex;
             gap: 10px;
             overflow-x: auto;
-            padding-bottom: 5px;
+            padding-bottom: 8px;
+            margin-bottom: 18px;
             scrollbar-width: none;
         }
         .filter-tabs::-webkit-scrollbar { display: none; }
@@ -197,9 +225,9 @@
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             color: var(--text-main);
-            padding: 9px 18px;
+            padding: 8px 18px;
             border-radius: 50px;
-            font-size: 13.5px;
+            font-size: 13px;
             font-weight: 600;
             cursor: pointer;
             white-space: nowrap;
@@ -214,10 +242,6 @@
             color: white;
             box-shadow: 0 0 15px rgba(255, 85, 0, 0.4);
         }
-
-        /* Section Views */
-        .section-view { display: none; max-width: 1100px; margin: 15px auto 25px; padding: 0 20px; }
-        .section-view.active { display: block; }
 
         /* Product Grid & Cards */
         .product-grid {
@@ -251,25 +275,33 @@
             right: 12px;
             display: flex;
             justify-content: space-between;
+            align-items: center;
             z-index: 5;
         }
+
+        .badges-left {
+            display: flex;
+            gap: 6px;
+        }
+
         .stock-badge {
-            background: rgba(0, 0, 0, 0.75);
+            background: rgba(0, 0, 0, 0.78);
             backdrop-filter: blur(5px);
             color: #fff;
-            padding: 4px 11px;
+            padding: 4px 10px;
             border-radius: 20px;
-            font-size: 11.5px;
+            font-size: 11px;
             font-weight: 600;
             border: 1px solid var(--primary-glow);
         }
+
         .sold-badge {
-            background: rgba(0, 0, 0, 0.75);
+            background: rgba(0, 0, 0, 0.78);
             backdrop-filter: blur(5px);
             color: #ff9900;
-            padding: 4px 11px;
+            padding: 4px 10px;
             border-radius: 20px;
-            font-size: 11.5px;
+            font-size: 11px;
             font-weight: 600;
             border: 1px solid rgba(255,153,0,0.4);
             display: flex;
@@ -277,36 +309,54 @@
             gap: 4px;
         }
 
+        .fav-btn {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.78);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #fff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+        .fav-btn:hover { transform: scale(1.1); }
+        .fav-btn.active { color: #ff2a6d; border-color: #ff2a6d; box-shadow: 0 0 10px rgba(255,42,109,0.5); }
+
         .card-img-wrapper {
-            height: 170px;
+            height: 165px;
             overflow: hidden;
             background: rgba(0,0,0,0.15);
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 22px;
         }
         .card-img-wrapper img { max-width: 100%; max-height: 100%; object-fit: contain; transition: 0.3s; }
         .card:hover .card-img-wrapper img { transform: scale(1.06); }
 
-        .card-body { padding: 18px; display: flex; flex-direction: column; flex-grow: 1; }
-        .product-title { font-size: 16.5px; font-weight: 700; margin-bottom: 6px; color: var(--text-main); }
-        .product-desc { font-size: 12.5px; color: var(--text-muted); margin-bottom: 18px; flex-grow: 1; line-height: 1.45; }
+        .card-body { padding: 16px 18px; display: flex; flex-direction: column; flex-grow: 1; }
+        .product-title { font-size: 16px; font-weight: 700; margin-bottom: 6px; color: var(--text-main); }
+        .product-desc { font-size: 12.5px; color: var(--text-muted); margin-bottom: 16px; flex-grow: 1; line-height: 1.45; }
 
         .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 12px; }
-        .price { font-size: 19px; font-weight: 700; color: var(--primary-glow); }
+        .price { font-size: 18.5px; font-weight: 700; color: var(--primary-glow); }
 
         .buy-btn {
             background: var(--btn-gradient);
             color: white;
             border: none;
-            padding: 9px 20px;
+            padding: 8px 18px;
             border-radius: 50px;
-            font-size: 13.5px;
+            font-size: 13px;
             font-weight: 600;
             cursor: pointer;
             box-shadow: 0 4px 15px rgba(255,85,0,0.3);
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: 6px;
             transition: 0.2s;
@@ -322,6 +372,27 @@
             padding: 25px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
+
+        .profile-top-settings {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .setting-box {
+            background: rgba(0,0,0,0.12);
+            border: 1px solid var(--border-color);
+            padding: 6px 14px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
         .stats-row {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -355,6 +426,17 @@
         }
         .info-item span:first-child { color: var(--text-muted); }
         .info-item span:last-child { font-weight: 600; }
+
+        .referral-banner {
+            background: var(--btn-gradient);
+            color: white;
+            padding: 15px;
+            border-radius: 14px;
+            text-align: center;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255,85,0,0.3);
+        }
 
         /* Bottom Navigation Bar */
         .bottom-nav {
@@ -401,6 +483,29 @@
             font-size: 24px;
         }
         .nav-item.deposit-center span { margin-top: 4px; font-weight: 600; color: var(--text-main); }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .modal-content {
+            background: var(--card-bg);
+            border: 2px solid var(--primary-glow);
+            border-radius: 20px;
+            padding: 25px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(255,85,0,0.4);
+        }
     </style>
 </head>
 <body>
@@ -418,26 +523,29 @@
             <div class="wallet-pill">
                 <i class="fa-solid fa-wallet"></i> ৳২,১০৪
             </div>
-            <button class="notif-btn"><i class="fa-solid fa-bell"></i></button>
+            <button class="notif-btn" onclick="toggleBookmarksOnly()" title="বুকমার্ক করা প্রোডাক্ট">
+                <i class="fa-solid fa-heart" style="color: #ff2a6d;"></i>
+                <span class="fav-count-badge" id="favCount">0</span>
+            </button>
         </div>
     </header>
 
-    <!-- Notice Banner -->
-    <div class="notice-banner">
+    <!-- 1. HOME SECTION (With Video Layout Features + Your Original Theme) -->
+    <div id="homeSection" class="section-view active">
+        
+        <!-- Live Notice Banner -->
         <div class="notice-box">
             <div class="notice-left">
                 <i class="fa-solid fa-bullhorn"></i>
-                <span>Fast Automated Delivery Active</span>
+                <span>ইনস্ট্যান্ট অটোমেটেড ডেলিভারি এবং ২৪/৭ সাপোর্ট চালু আছে</span>
             </div>
-            <button class="bot-btn-sm" onclick="window.open('https://t.me/Fast_Earning_Mail_Bot', '_blank')">Open Bot</button>
+            <span class="status-pill"><i class="fa-solid fa-circle" style="font-size: 8px;"></i> Live</span>
         </div>
-    </div>
 
-    <!-- Auto Gateway Instant Add Balance Banner -->
-    <div class="deposit-banner">
+        <!-- Instant Add Balance Card -->
         <div class="deposit-card">
-            <h3>⚡ AUTO PAYMENT GATEWAY</h3>
-            <p>বিকাশ, নগদ, রকেট এবং বাইন্যান্স ক্রিপ্টো মাধ্যমে খুব সহজেই ব্যালেন্স অ্যাড করুন।</p>
+            <h3>⚡ INSTANT ADD BALANCE</h3>
+            <p>বিকাশ, নগদ, রকেট এবং বাইন্যান্স পেমেন্টের মাধ্যমে খুব সহজেই ব্যালেন্স যোগ করুন।</p>
             <div class="payment-logos">
                 <span class="pay-badge">বিকাশ</span>
                 <span class="pay-badge">নগদ</span>
@@ -445,29 +553,25 @@
                 <span class="pay-badge">উপায়</span>
                 <span class="pay-badge">Binance Pay</span>
             </div>
-            <button class="buy-btn" style="margin: 0 auto;" onclick="switchTab('deposit', document.querySelectorAll('.nav-item')[2])">
-                <i class="fa-solid fa-plus-circle"></i> + Add Balance
+            <button class="buy-btn" onclick="switchTab('deposit', document.querySelectorAll('.nav-item')[2])">
+                <i class="fa-solid fa-plus-circle"></i> Add Balance
             </button>
         </div>
-    </div>
 
-    <!-- Search & Filter Categories -->
-    <div class="search-filter-container">
+        <!-- Search & Filter Categories -->
         <div class="search-box">
             <i class="fa-solid fa-magnifying-glass"></i>
             <input type="text" id="searchInput" placeholder="Search products, mail, proxy..." onkeyup="filterProducts()">
         </div>
+
         <div class="filter-tabs">
             <button class="filter-tab active" onclick="setCategory('all', this)"><i class="fa-solid fa-border-all"></i> All Products</button>
             <button class="filter-tab" onclick="setCategory('email', this)"><i class="fa-solid fa-envelope"></i> Email / Mail</button>
             <button class="filter-tab" onclick="setCategory('proxy', this)"><i class="fa-solid fa-globe"></i> Proxy Items</button>
             <button class="filter-tab" onclick="setCategory('tools', this)"><i class="fa-solid fa-toolbox"></i> Tools & Apps</button>
         </div>
-    </div>
 
-    <!-- 1. HOME SECTION -->
-    <div id="homeSection" class="section-view active">
-        <h3 style="margin-bottom: 15px; font-size: 18px; color: var(--secondary-glow);"><i class="fa-solid fa-fire"></i> Top Selling Products</h3>
+        <h3 style="margin-bottom: 15px; font-size: 17px; color: var(--secondary-glow);"><i class="fa-solid fa-fire"></i> Top Selling Products</h3>
         <div class="product-grid" id="productGrid"></div>
     </div>
 
@@ -481,12 +585,14 @@
     <div id="depositSection" class="section-view">
         <div class="profile-container" style="text-align: center;">
             <h2 style="margin-bottom: 15px;"><i class="fa-solid fa-wallet" style="color: var(--primary-glow);"></i> ফান্ড ডিপোজিট করুন</h2>
-            <p style="color: var(--text-muted); margin-bottom: 20px;">বিকাশ, নগদ বা বাইন্যান্স পেমেন্টের মাধ্যমে ইনস্ট্যান্ট ব্যালেন্স যোগ করুন।</p>
-            <div style="background: rgba(0,0,0,0.1); padding: 20px; border-radius: 12px; border: 1px solid var(--border-color); margin-bottom: 20px;">
-                <p style="font-size: 15px; font-weight: 600;">বিকাশ / নগদ পার্সোনাল নম্বর:</p>
-                <h3 style="color: var(--primary-glow); margin-top: 5px; font-size: 22px;">01700-000000</h3>
+            <p style="color: var(--text-muted); margin-bottom: 20px;">বিকাশ, নগদ বা বাইন্যান্স পেমেন্টের মাধ্যমে ব্যালেন্স যোগ করুন।</p>
+            <div style="background: rgba(0,0,0,0.12); padding: 20px; border-radius: 14px; border: 1px solid var(--border-color); margin-bottom: 20px;">
+                <p style="font-size: 14px; font-weight: 600;">বিকাশ / নগদ পার্সোনাল নম্বর:</p>
+                <h3 style="color: var(--primary-glow); margin-top: 6px; font-size: 22px;">01700-000000</h3>
             </div>
-            <a href="https://wa.me/8801700000000?text=হ্যালো,%20আমি%20ডিপোজিট%20করতে%20চাই।" target="_blank" class="buy-btn" style="padding: 12px 25px; display: inline-block; text-decoration: none; margin: 0 auto;">টাকা পাঠিয়ে WhatsApp-এ স্ক্রিনশট দিন</a>
+            <a href="https://wa.me/8801700000000?text=হ্যালো,%20আমি%20ডিপোজিট%20করতে%20চাই।" target="_blank" class="buy-btn" style="padding: 12px 25px;">
+                <i class="fa-brands fa-whatsapp"></i> টাকা পাঠিয়ে WhatsApp-এ স্ক্রিনশট দিন
+            </a>
         </div>
     </div>
 
@@ -499,21 +605,32 @@
     <!-- 5. PROFILE SECTION -->
     <div id="profileSection" class="section-view">
         <div class="profile-container">
+            <div class="profile-top-settings">
+                <div class="setting-box">
+                    <span>Theme</span>
+                    <i class="fa-solid fa-toggle-on" style="color: var(--primary-glow); cursor: pointer; font-size: 18px;" onclick="toggleThemeMode()"></i>
+                </div>
+                <div class="setting-box"><span>LANG: EN</span></div>
+                <div class="setting-box" style="background: var(--btn-gradient); color: white;"><span>BDT</span></div>
+            </div>
+
             <div class="stats-row">
                 <div class="stat-card"><h3>১৫</h3><p>Orders</p></div>
                 <div class="stat-card"><h3>৳৪,৫৫০</h3><p>Spent TK</p></div>
                 <div class="stat-card"><h3>০</h3><p>Cancelled</p></div>
             </div>
+
             <div class="user-info-list">
                 <div class="info-item"><span>Name</span><span>অন্তর কুমার</span></div>
                 <div class="info-item"><span>Username</span><span>@antorsaha1</span></div>
                 <div class="info-item"><span>Account ID</span><span>৮৫৩৯৫০১</span></div>
                 <div class="info-item"><span>Balance</span><span>৳২,১০৪.৮১</span></div>
+                <div class="info-item"><span>Referred By</span><span>-</span></div>
                 <div class="info-item"><span>Joined At</span><span>মে ২০২৬</span></div>
+                <div class="info-item"><span>Language</span><span>Bangla / English</span></div>
             </div>
-            <a href="https://t.me/Fast_Earning_Mail_Bot" target="_blank" class="buy-btn" style="text-decoration: none; justify-content: center; width: 100%; padding: 12px;">
-                <i class="fa-brands fa-telegram"></i> Open Telegram Bot Support
-            </a>
+
+            <div class="referral-banner"><i class="fa-solid fa-users"></i> Referral & Earnings</div>
         </div>
     </div>
 
@@ -529,6 +646,19 @@
         <button class="nav-item" onclick="switchTab('profile', this)"><i class="fa-solid fa-user"></i><span>Profile</span></button>
     </nav>
 
+    <!-- Buy Modal -->
+    <div class="modal" id="buyModal">
+        <div class="modal-content">
+            <span style="float: right; cursor: pointer; font-size: 22px; color: var(--text-muted);" onclick="closeModal()">&times;</span>
+            <h3 id="modalTitle" style="margin-bottom: 10px; font-size: 20px;">প্রোডাক্ট</h3>
+            <p id="modalDetails" style="color: var(--text-muted); font-size: 13.5px; margin-bottom: 18px;"></p>
+            <h4 style="font-size: 22px; margin-bottom: 20px;"><span id="modalPrice" style="color: var(--secondary-glow);"></span></h4>
+            <a href="#" id="whatsappOrderBtn" target="_blank" class="buy-btn" style="text-decoration: none; display: flex; justify-content: center; padding: 12px; width: 100%;">
+                <i class="fa-brands fa-whatsapp"></i> WhatsApp-এ অর্ডার করুন
+            </a>
+        </div>
+    </div>
+
     <script>
         const products = [
             { id: 1, category: 'email', name: "Hotmail Trusted V1", image: "https://cdn-icons-png.flaticon.com/512/732/732200.png", stock: "46k PCS", sold: "2k sold", price: "৳০.৫৭", details: "Hotmail trusted account with high longevity." },
@@ -540,6 +670,8 @@
         ];
 
         let currentCategory = 'all';
+        let showOnlyBookmarks = false;
+        let bookmarkedIds = JSON.parse(localStorage.getItem('bookmarkedProducts')) || [];
         const whatsappNumber = "8801700000000";
 
         function renderProducts(filterText = '') {
@@ -554,21 +686,34 @@
             const filtered = products.filter(p => {
                 const matchesCat = currentCategory === 'all' || p.category === currentCategory;
                 const matchesSearch = p.name.toLowerCase().includes(filterText.toLowerCase());
-                return matchesCat && matchesSearch;
+                const matchesFav = !showOnlyBookmarks || bookmarkedIds.includes(p.id);
+                return matchesCat && matchesSearch && matchesFav;
             });
 
-            filtered.forEach(product => grid.appendChild(createCard(product)));
+            if (filtered.length === 0) {
+                grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 30px;">কোনো প্রোডাক্ট পাওয়া যায়নি!</p>`;
+            } else {
+                filtered.forEach(product => grid.appendChild(createCard(product)));
+            }
+
             products.filter(p => p.category === 'email').forEach(product => numMailGrid.appendChild(createCard(product)));
             products.filter(p => p.category === 'proxy').forEach(product => proxyGrid.appendChild(createCard(product)));
+            document.getElementById('favCount').innerText = bookmarkedIds.length;
         }
 
         function createCard(product) {
+            const isBookmarked = bookmarkedIds.includes(product.id);
             const card = document.createElement('div');
             card.className = 'card';
             card.innerHTML = `
                 <div class="card-top-bar">
-                    <div class="stock-badge">${product.stock}</div>
-                    <div class="sold-badge"><i class="fa-solid fa-fire" style="color: #ff5500;"></i> ${product.sold}</div>
+                    <div class="badges-left">
+                        <div class="stock-badge">${product.stock}</div>
+                        <div class="sold-badge"><i class="fa-solid fa-fire" style="color: #ff5500;"></i> ${product.sold}</div>
+                    </div>
+                    <button class="fav-btn ${isBookmarked ? 'active' : ''}" onclick="toggleBookmark(${product.id})">
+                        <i class="${isBookmarked ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
+                    </button>
                 </div>
                 <div class="card-img-wrapper"><img src="${product.image}" alt=""></div>
                 <div class="card-body">
@@ -576,9 +721,9 @@
                     <p class="product-desc">${product.details}</p>
                     <div class="card-footer">
                         <span class="price">${product.price}</span>
-                        <a href="https://wa.me/${whatsappNumber}?text=I want to buy ${product.name} for ${product.price}" target="_blank" class="buy-btn">
+                        <button class="buy-btn" onclick="openBuyModal(${product.id})">
                             <i class="fa-solid fa-cart-shopping"></i> Buy now
-                        </a>
+                        </button>
                     </div>
                 </div>
             `;
@@ -587,12 +732,29 @@
 
         function setCategory(cat, element) {
             currentCategory = cat;
+            showOnlyBookmarks = false;
             document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
             element.classList.add('active');
             renderProducts(document.getElementById('searchInput').value);
         }
 
+        function toggleBookmarksOnly() {
+            showOnlyBookmarks = !showOnlyBookmarks;
+            switchTab('home', document.querySelectorAll('.nav-item')[0]);
+            renderProducts(document.getElementById('searchInput').value);
+        }
+
         function filterProducts() {
+            renderProducts(document.getElementById('searchInput').value);
+        }
+
+        function toggleBookmark(id) {
+            if (bookmarkedIds.includes(id)) {
+                bookmarkedIds = bookmarkedIds.filter(i => i !== id);
+            } else {
+                bookmarkedIds.push(id);
+            }
+            localStorage.setItem('bookmarkedProducts', JSON.stringify(bookmarkedIds));
             renderProducts(document.getElementById('searchInput').value);
         }
 
@@ -603,11 +765,27 @@
             if(tabName === 'home') document.getElementById('homeSection').classList.add('active');
             if(tabName === 'numMail') document.getElementById('numMailSection').classList.add('active');
             if(tabName === 'deposit') document.getElementById('depositSection').classList.add('active');
-            if(tabName === 'proxy') document.getElementById('proxySection').classList.0 ? '' : document.getElementById('proxySection').classList.add('active');
+            if(tabName === 'proxy') document.getElementById('proxySection').classList.add('active');
             if(tabName === 'profile') document.getElementById('profileSection').classList.add('active');
 
-            if(tabName === 'proxy') document.getElementById('proxySection').classList.add('active');
             element.classList.add('active');
+        }
+
+        function toggleThemeMode() {
+            document.body.classList.toggle('light-theme');
+        }
+
+        function openBuyModal(id) {
+            const p = products.find(item => item.id === id);
+            document.getElementById('modalTitle').innerText = p.name;
+            document.getElementById('modalDetails').innerText = p.details;
+            document.getElementById('modalPrice').innerText = p.price;
+            document.getElementById('whatsappOrderBtn').href = `https://wa.me/${whatsappNumber}?text=I want to buy ${p.name} for ${p.price}`;
+            document.getElementById('buyModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('buyModal').style.display = 'none';
         }
 
         renderProducts();
