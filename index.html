@@ -150,6 +150,64 @@
         }
         .section-view.active { display: block; }
 
+        /* =========================================================
+           BANNER SLIDER STYLING (আপনার দেওয়া ৩টি ইমেজের জন্য রানিং স্লাইডার)
+        ========================================================= */
+        .banner-slider-container {
+            width: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 8px 25px rgba(255, 85, 0, 0.2);
+            margin-bottom: 20px;
+            border: 1.5px solid var(--border-color);
+            background: var(--card-bg);
+        }
+
+        .banner-slides {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 100%;
+        }
+
+        .banner-slide {
+            min-width: 100%;
+            box-sizing: border-box;
+        }
+
+        .banner-slide img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            aspect-ratio: 16 / 9;
+        }
+
+        .slider-dots {
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 6px;
+            z-index: 10;
+        }
+
+        .slider-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .slider-dot.active {
+            background: var(--primary-glow);
+            width: 22px;
+            border-radius: 4px;
+        }
+
         .notice-box {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -470,7 +528,6 @@
             padding-left: 10px;
         }
 
-        /* FORMAT & DELIVERY OPTIONS STYLING */
         .options-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -790,6 +847,21 @@
 
     <!-- 1. HOME SECTION -->
     <div id="homeSection" class="section-view active">
+        
+        <!-- BANNER RUNNING SLIDER EFFECT (আপনার দেওয়া ৩টি ইমেজ সহ) -->
+        <div class="banner-slider-container" id="bannerSlider">
+            <div class="banner-slides" id="bannerSlides">
+                <div class="banner-slide"><img src="7217_2.jpg" alt="Fast Mail Shop Banner"></div>
+                <div class="banner-slide"><img src="7218_2.jpg" alt="Instant Add Balance Banner"></div>
+                <div class="banner-slide"><img src="7219_2.jpg" alt="24/7 Support Banner"></div>
+            </div>
+            <div class="slider-dots" id="sliderDots">
+                <span class="slider-dot active" onclick="currentSlide(0)"></span>
+                <span class="slider-dot" onclick="currentSlide(1)"></span>
+                <span class="slider-dot" onclick="currentSlide(2)"></span>
+            </div>
+        </div>
+
         <div class="notice-box">
             <div class="notice-left">
                 <i class="fa-solid fa-bullhorn"></i>
@@ -947,6 +1019,30 @@
     </nav>
 
     <script>
+        // Banner Slider Logic (Auto Running Slider)
+        let slideIndex = 0;
+        const slides = document.getElementById('bannerSlides');
+        const dots = document.querySelectorAll('.slider-dot');
+        const totalSlides = 3;
+
+        function showSlide(index) {
+            slideIndex = (index + totalSlides) % totalSlides;
+            slides.style.transform = `translateX(-${slideIndex * 100}%)`;
+            dots.forEach((dot, idx) => {
+                dot.classList.toggle('active', idx === slideIndex);
+            });
+        }
+
+        function currentSlide(index) {
+            showSlide(index);
+        }
+
+        // Auto play slider every 3 seconds
+        setInterval(() => {
+            showSlide(slideIndex + 1);
+        }, 3000);
+
+        // Currency Conversion & Products Logic
         const USDT_RATE = 120;
         let currentCurrency = localStorage.getItem('siteCurrency') || 'BDT';
 
