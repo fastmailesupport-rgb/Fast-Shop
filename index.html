@@ -1,1 +1,560 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Product Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            /* Default Theme: Neon Orange & Dark (Image 1 Style) */
+            --bg-dark: #140500;
+            --bg-gradient: radial-gradient(circle at top, #3b1200 0%, #140500 70%);
+            --card-bg: rgba(35, 14, 5, 0.85);
+            --primary-glow: #ff5500;
+            --secondary-glow: #ff9900;
+            --btn-gradient: linear-gradient(90deg, #ff5500, #ff8800);
+            --border-color: rgba(255, 102, 0, 0.4);
+            --text-main: #ffffff;
+            --text-muted: #d1b8ae;
+        }
 
+        /* Alternative Theme: Neon Purple & Blue (Image 2 Style) */
+        body.purple-theme {
+            --bg-dark: #0e0424;
+            --bg-gradient: radial-gradient(circle at top, #2e0f6e 0%, #0e0424 70%);
+            --card-bg: rgba(26, 11, 58, 0.85);
+            --primary-glow: #9333ea;
+            --secondary-glow: #3b82f6;
+            --btn-gradient: linear-gradient(90deg, #9333ea, #3b82f6);
+            --border-color: rgba(147, 51, 234, 0.45);
+            --text-main: #ffffff;
+            --text-muted: #c4b5fd;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Hind Siliguri', sans-serif;
+        }
+
+        body {
+            background: var(--bg-dark);
+            background-image: var(--bg-gradient);
+            color: var(--text-main);
+            min-height: 100vh;
+            transition: all 0.4s ease;
+        }
+
+        /* Navbar */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 6%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            background: var(--btn-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .nav-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 8px 16px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+
+        .nav-btn:hover {
+            border-color: var(--primary-glow);
+            box-shadow: 0 0 15px var(--primary-glow);
+        }
+
+        .badge-count {
+            background: var(--btn-gradient);
+            color: white;
+            font-size: 12px;
+            padding: 2px 7px;
+            border-radius: 50%;
+            font-weight: bold;
+        }
+
+        /* Hero Banner */
+        .hero {
+            text-align: center;
+            padding: 45px 20px 25px;
+        }
+
+        .hero h1 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px var(--primary-glow);
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Product Grid */
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        /* Product Card */
+        .card {
+            background: var(--card-bg);
+            border: 1.5px solid var(--border-color);
+            border-radius: 18px;
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: var(--primary-glow);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6), 0 0 18px var(--border-color);
+        }
+
+        /* Top Badges (Stock & Bookmark) */
+        .card-top-bar {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            right: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .stock-badge {
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(6px);
+            border: 1px solid var(--primary-glow);
+            color: #fff;
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .stock-dot {
+            width: 8px;
+            height: 8px;
+            background: #22c55e;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #22c55e;
+        }
+
+        .stock-badge.out .stock-dot {
+            background: #ef4444;
+            box-shadow: 0 0 8px #ef4444;
+        }
+
+        .fav-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #fff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .fav-btn:hover {
+            transform: scale(1.1);
+            border-color: #ff2a6d;
+        }
+
+        .fav-btn.active {
+            color: #ff2a6d;
+            border-color: #ff2a6d;
+            box-shadow: 0 0 12px rgba(255, 42, 109, 0.6);
+        }
+
+        /* Product Image */
+        .card-img-wrapper {
+            width: 100%;
+            height: 190px;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border-color);
+            background: #0a0a0a;
+        }
+
+        .card-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .card:hover .card-img-wrapper img {
+            transform: scale(1.06);
+        }
+
+        /* Card Content */
+        .card-body {
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-title {
+            font-size: 19px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .product-desc {
+            font-size: 13.5px;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-bottom: 16px;
+            flex-grow: 1;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .price {
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .buy-btn {
+            background: var(--btn-gradient);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 0 15px var(--border-color);
+            transition: 0.3s;
+        }
+
+        .buy-btn:hover {
+            filter: brightness(1.15);
+            box-shadow: 0 0 22px var(--primary-glow);
+        }
+
+        .buy-btn:disabled {
+            background: #4b5563;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        /* Modal for Buy / Details */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 200;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: var(--bg-dark);
+            border: 2px solid var(--primary-glow);
+            border-radius: 20px;
+            padding: 25px;
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 0 30px var(--primary-glow);
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 18px;
+            font-size: 22px;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+
+        .modal-content h3 {
+            margin-bottom: 10px;
+            font-size: 22px;
+        }
+
+        .modal-content p {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .order-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 12px;
+            background: #25D366;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 50px;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 26px; }
+            header { padding: 14px 4%; }
+            .logo { font-size: 19px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo"><i class="fa-solid fa-bolt"></i> FAST SHOP</div>
+        <div class="nav-controls">
+            <button class="nav-btn" onclick="toggleTheme()" title="Change Color Theme">
+                <i class="fa-solid fa-palette"></i> থিম বদলান
+            </button>
+            <button class="nav-btn" onclick="toggleWishlistFilter()" id="wishlistFilterBtn">
+                <i class="fa-solid fa-heart" style="color: #ff2a6d;"></i> বুকমার্ক <span class="badge-count" id="favCount">0</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>প্রিমিয়াম ডিজিটাল প্রোডাক্ট স্টোর</h1>
+        <p>১০০% অরিজিনাল প্রোডাক্ট, ইনস্ট্যান্ট ডেলিভারি এবং ২৪/৭ প্রিমিয়াম সাপোর্ট</p>
+    </section>
+
+    <!-- Product Grid Container -->
+    <main class="container">
+        <div class="product-grid" id="productGrid">
+            <!-- Products will be injected here via JavaScript -->
+        </div>
+    </main>
+
+    <!-- Buy Modal -->
+    <div class="modal" id="buyModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h3 id="modalTitle">প্রোডাক্টের নাম</h3>
+            <p id="modalDetails">প্রোডাক্টের বিস্তারিত তথ্য এখানে দেখাবে।</p>
+            <h4 style="margin-bottom: 18px; font-size: 20px;">মূল্য: <span id="modalPrice" style="color: var(--secondary-glow);">৳0</span></h4>
+            <a href="#" id="whatsappOrderBtn" target="_blank" class="order-link">
+                <i class="fa-brands fa-whatsapp"></i> WhatsApp-এ অর্ডার করুন
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // আপনার প্রোডাক্টের তালিকা (এখান থেকে সহজেই প্রোডাক্ট যোগ বা পরিবর্তন করতে পারবেন)
+        const products = [
+            {
+                id: 1,
+                name: "CartFlows Pro License",
+                image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80",
+                stock: 15,
+                price: "৳৪৯০",
+                details: "সেলস ফানেল বিল্ডার, ওয়ান ক্লিক আপসেল এবং অর্ডার বাম্প ফিচারসহ অরিজিনাল লাইসেন্স।"
+            },
+            {
+                id: 2,
+                name: "RankMath Pro SEO",
+                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80",
+                stock: 8,
+                price: "৳৩৯০",
+                details: "অ্যাডভান্সড এসইও অ্যানালাইসিস, রিচ স্কিমা মার্কআপ এবং কিওয়ার্ড অপ্টিমাইজেশন টুল।"
+            },
+            {
+                id: 3,
+                name: "Elementor Pro Agency",
+                image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=600&q=80",
+                stock: 22,
+                price: "৳৫৫০",
+                details: "ড্র্যাগ অ্যান্ড ড্রপ ওয়েবসাইট বিল্ডার, প্রিমিয়াম টেমপ্লেট এবং কাস্টম সিএসএস সাপোর্ট।"
+            },
+            {
+                id: 4,
+                name: "WP Rocket Speed Plugin",
+                image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80",
+                stock: 0,
+                price: "৳৩৫০",
+                details: "ওয়েবসাইটের স্পিড সুপার ফাস্ট করার জন্য সেরা ক্যাশিং এবং অপ্টিমাইজেশন প্লাগইন।"
+            }
+        ];
+
+        // ইউজারের বুকমার্ক বা লাভ রিঅ্যাক্ট ব্রাউজারে সেভ রাখার জন্য LocalStorage
+        let bookmarkedIds = JSON.parse(localStorage.getItem('bookmarkedProducts')) || [];
+        let showOnlyBookmarked = false;
+
+        // আপনার WhatsApp নম্বর এখানে দিন (কান্ট্রি কোডসহ, যেমন: 8801700000000)
+        const whatsappNumber = "8801700000000";
+
+        function renderProducts() {
+            const grid = document.getElementById('productGrid');
+            grid.innerHTML = '';
+
+            const filteredProducts = showOnlyBookmarked 
+                ? products.filter(p => bookmarkedIds.includes(p.id))
+                : products;
+
+            if (filteredProducts.length === 0) {
+                grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 40px;">কোনো বুকমার্ক করা প্রোডাক্ট পাওয়া যায়নি!</p>`;
+                return;
+            }
+
+            filteredProducts.forEach(product => {
+                const isBookmarked = bookmarkedIds.includes(product.id);
+                const isAvailable = product.stock > 0;
+
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="card-top-bar">
+                        <div class="stock-badge ${isAvailable ? '' : 'out'}">
+                            <span class="stock-dot"></span>
+                            ${isAvailable ? `স্টকে আছে: ${product.stock} পিস` : 'স্টক আউট'}
+                        </div>
+                        <button class="fav-btn ${isBookmarked ? 'active' : ''}" onclick="toggleBookmark(${product.id})" title="বুকমার্ক করুন">
+                            <i class="${isBookmarked ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="card-img-wrapper">
+                        <img src="${product.image}" alt="${product.name}">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="product-title">${product.name}</h3>
+                        <p class="product-desc">${product.details}</p>
+                        <div class="card-footer">
+                            <span class="price">${product.price}</span>
+                            <button class="buy-btn" ${!isAvailable ? 'disabled' : ''} onclick="openBuyModal(${product.id})">
+                                <i class="fa-solid fa-cart-shopping"></i> ${isAvailable ? 'Buy Now' : 'Out of Stock'}
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+
+            document.getElementById('favCount').innerText = bookmarkedIds.length;
+        }
+
+        // বুকমার্ক / লাভ রিঅ্যাক্ট ফাংশন
+        function toggleBookmark(id) {
+            if (bookmarkedIds.includes(id)) {
+                bookmarkedIds = bookmarkedIds.filter(item => item !== id);
+            } else {
+                bookmarkedIds.push(id);
+            }
+            localStorage.setItem('bookmarkedProducts', JSON.stringify(bookmarkedIds));
+            renderProducts();
+        }
+
+        // শুধুমাত্র বুকমার্ক করা প্রোডাক্ট দেখার ফিল্টার
+        function toggleWishlistFilter() {
+            showOnlyBookmarked = !showOnlyBookmarked;
+            const btn = document.getElementById('wishlistFilterBtn');
+            btn.style.borderColor = showOnlyBookmarked ? '#ff2a6d' : 'var(--border-color)';
+            renderProducts();
+        }
+
+        // দুই ছবির কালার থিম সুইচ করার ফাংশন (Orange <-> Purple)
+        function toggleTheme() {
+            document.body.classList.toggle('purple-theme');
+        }
+
+        // Buy বাটনে ক্লিক করলে পপ-আপ ওপেন হবে
+        function openBuyModal(id) {
+            const product = products.find(p => p.id === id);
+            if (!product) return;
+
+            document.getElementById('modalTitle').innerText = product.name;
+            document.getElementById('modalDetails').innerText = product.details;
+            document.getElementById('modalPrice').innerText = product.price;
+
+            const message = encodeURIComponent(`হ্যালো, আমি "${product.name}" (মূল্য: ${product.price}) প্রোডাক্টটি কিনতে চাই।`);
+            document.getElementById('whatsappOrderBtn').href = `https://wa.me/${whatsappNumber}?text=${message}`;
+
+            document.getElementById('buyModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('buyModal').style.display = 'none';
+        }
+
+        // পেজ লোড হলে প্রোডাক্ট দেখাবে
+        renderProducts();
+    </script>
+</body>
+</html>
