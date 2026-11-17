@@ -397,22 +397,22 @@
         }
         .buy-btn:hover { filter: brightness(1.1); }
 
-        /* EXACT TOP-UP / DEPOSIT INTERFACE STYLING */
+        /* REDESIGNED PROFESSIONAL TOP-UP / DEPOSIT INTERFACE */
         .deposit-container {
-            max-width: 500px;
-            margin: 10px auto;
+            max-width: 520px;
+            margin: 15px auto;
             background: var(--card-bg);
             border: 1.5px solid var(--border-color);
-            border-radius: 24px;
-            padding: 24px 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            border-radius: 26px;
+            padding: 28px 22px;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.06);
         }
 
         .deposit-top-title {
             display: flex;
             align-items: center;
             gap: 10px;
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 700;
             color: var(--text-main);
             margin-bottom: 6px;
@@ -420,55 +420,56 @@
         .deposit-top-title i { color: var(--primary-glow); }
 
         .deposit-subtitle {
-            font-size: 12.5px;
+            font-size: 13px;
             color: var(--text-muted);
-            margin-bottom: 18px;
+            margin-bottom: 22px;
         }
 
         .section-label-text {
-            font-size: 13px;
+            font-size: 13.5px;
             font-weight: 600;
             color: var(--text-main);
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .gateway-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            margin-bottom: 20px;
+            gap: 12px;
+            margin-bottom: 22px;
         }
 
         .gateway-card {
             background: #f8fafc;
-            border: 1.5px solid var(--border-color);
-            border-radius: 14px;
-            padding: 12px 14px;
+            border: 2px solid var(--border-color);
+            border-radius: 16px;
+            padding: 14px 16px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             cursor: pointer;
-            transition: 0.2s;
+            transition: 0.25s;
         }
-        .gateway-card:hover { border-color: var(--primary-glow); }
+        .gateway-card:hover { border-color: var(--primary-glow); transform: translateY(-2px); }
         .gateway-card.active {
             border-color: #2563eb;
             background: rgba(37,99,235,0.04);
+            box-shadow: 0 4px 15px rgba(37,99,235,0.1);
         }
 
         .gateway-logo {
-            width: 28px;
-            height: 28px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
             object-fit: contain;
             background: #fff;
-            padding: 2px;
+            padding: 3px;
             border: 1px solid var(--border-color);
             flex-shrink: 0;
         }
 
         .gateway-name {
-            font-size: 13px;
+            font-size: 13.5px;
             font-weight: 600;
             color: var(--text-main);
         }
@@ -476,76 +477,82 @@
         .divider-line {
             border: none;
             border-top: 1px solid var(--border-color);
-            margin: 18px 0;
+            margin: 20px 0;
         }
 
         .selected-account-box {
             background: #f8fafc;
             border: 1.5px solid var(--border-color);
-            border-radius: 14px;
-            padding: 14px 16px;
+            border-radius: 16px;
+            padding: 16px 18px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 15px;
+            margin-bottom: 18px;
         }
 
         .selected-acc-left {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
         .copy-btn-box {
             background: #fff;
             border: 1.5px solid var(--border-color);
-            width: 36px;
-            height: 36px;
-            border-radius: 10px;
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             color: var(--text-main);
             transition: 0.2s;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
         }
-        .copy-btn-box:hover { border-color: var(--primary-glow); color: var(--primary-glow); }
+        .copy-btn-box:hover { border-color: var(--primary-glow); color: var(--primary-glow); transform: scale(1.05); }
 
         .instructions-toggle {
             display: flex;
             align-items: center;
             gap: 8px;
-            font-size: 13px;
+            font-size: 13.5px;
             font-weight: 600;
             color: var(--text-main);
             cursor: pointer;
             margin-bottom: 18px;
+            background: #f8fafc;
+            padding: 12px 16px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            justify-content: space-between;
         }
-        .instructions-toggle i { font-size: 11px; transition: 0.2s; }
-        .instructions-toggle.open i { transform: rotate(90deg); }
+        .instructions-toggle i { font-size: 12px; transition: 0.3s; }
+        .instructions-toggle.open i { transform: rotate(90deg); color: var(--primary-glow); }
 
         .instructions-content {
             background: #f8fafc;
             border: 1px solid var(--border-color);
-            border-radius: 10px;
-            padding: 10px 14px;
-            font-size: 12px;
+            border-radius: 12px;
+            padding: 14px 16px;
+            font-size: 12.5px;
             color: var(--text-muted);
-            margin-bottom: 15px;
+            margin-bottom: 18px;
             display: none;
-            line-height: 1.5;
+            line-height: 1.6;
         }
         .instructions-content.show { display: block; }
 
         .deposit-form-group {
             display: flex;
             flex-direction: column;
-            gap: 6px;
-            margin-bottom: 14px;
+            gap: 7px;
+            margin-bottom: 16px;
         }
 
         .deposit-form-group label {
-            font-size: 12.5px;
+            font-size: 13px;
             font-weight: 600;
             color: var(--text-main);
         }
@@ -560,9 +567,9 @@
             width: 100%;
             background: #f8fafc;
             border: 1.5px solid var(--border-color);
-            padding: 12px 16px;
-            border-radius: 12px;
-            font-size: 13.5px;
+            padding: 13px 18px;
+            border-radius: 14px;
+            font-size: 14px;
             color: var(--text-main);
             outline: none;
             transition: 0.2s;
@@ -570,31 +577,113 @@
         .deposit-input-wrapper input:focus {
             border-color: var(--primary-glow);
             background: #fff;
-            box-shadow: 0 0 0 3px rgba(255,85,0,0.08);
+            box-shadow: 0 0 0 4px rgba(255,85,0,0.08);
         }
         .deposit-input-wrapper input::placeholder { color: #94a3b8; }
 
         .submit-request-btn {
-            background: #0b192c; /* Screenshot navy blue submit button */
+            background: #0b192c;
             color: white;
             border: none;
-            padding: 14px;
-            border-radius: 14px;
-            font-size: 14.5px;
+            padding: 15px;
+            border-radius: 16px;
+            font-size: 15px;
             font-weight: 700;
             cursor: pointer;
             width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            box-shadow: 0 4px 15px rgba(11,25,44,0.25);
-            transition: 0.2s;
-            margin-top: 10px;
+            gap: 10px;
+            box-shadow: 0 6px 20px rgba(11,25,44,0.25);
+            transition: 0.25s;
+            margin-top: 12px;
         }
-        .submit-request-btn:hover { background: #132640; }
+        .submit-request-btn:hover { background: #132640; transform: translateY(-2px); }
 
-        /* ACCOUNT DASHBOARD SECTION */
+        /* UNIQUE PROFESSIONAL SUCCESS MODAL (REPLACING BROWSER ALERT) */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.3s ease;
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .success-modal-card {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            width: 90%;
+            max-width: 400px;
+            border-radius: 24px;
+            padding: 30px 24px;
+            text-align: center;
+            transform: scale(0.9);
+            transition: 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        .modal-overlay.active .success-modal-card {
+            transform: scale(1);
+        }
+
+        .success-icon-circle {
+            width: 70px;
+            height: 70px;
+            background: rgba(34, 197, 94, 0.12);
+            border: 2px solid rgba(34, 197, 94, 0.3);
+            color: #16a34a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            margin: 0 auto 18px;
+            box-shadow: 0 8px 20px rgba(34, 197, 94, 0.2);
+        }
+
+        .success-modal-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+
+        .success-modal-card p {
+            font-size: 13.5px;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-bottom: 24px;
+        }
+
+        .modal-ok-btn {
+            background: var(--btn-gradient);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 14px;
+            font-size: 14.5px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            box-shadow: 0 4px 15px rgba(255,85,0,0.3);
+            transition: 0.2s;
+        }
+        .modal-ok-btn:hover { filter: brightness(1.1); }
+
+        /* ACCOUNT DASHBOARD & OTHERS */
         .dashboard-container {
             max-width: 550px;
             margin: 10px auto;
@@ -921,7 +1010,7 @@
             align-items: center;
             justify-content: space-between;
             background: #f8fafc;
-            border: 1px solid var(--border-color);
+            border: 1.5px solid var(--border-color);
             border-radius: 14px;
             padding: 10px 20px;
             margin-bottom: 14px;
@@ -949,7 +1038,7 @@
         }
         .preset-btn {
             background: #f8fafc;
-            border: 1px solid var(--border-color);
+            border: 1.5px solid var(--border-color);
             color: var(--text-main);
             padding: 9px 0;
             border-radius: 10px;
@@ -1083,8 +1172,6 @@
 
     <!-- 1. HOME SECTION -->
     <div id="homeSection" class="section-view active">
-        
-        <!-- BANNER RUNNING SLIDER EFFECT -->
         <div class="banner-slider-container" id="bannerSlider">
             <div class="banner-slides" id="bannerSlides">
                 <div class="banner-slide"><img src="7217_2.jpg" alt="Banner 1" onerror="this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1000&q=80'"></div>
@@ -1128,7 +1215,7 @@
         <div class="product-grid" id="numMailGrid"></div>
     </div>
 
-    <!-- 3. DEPOSIT SECTION (EXACT SCREENSHOT TOP-UP REQUEST INTERFACE) -->
+    <!-- 3. DEPOSIT SECTION (REDESIGNED PROFESSIONAL INTERFACE) -->
     <div id="depositSection" class="section-view">
         <div class="deposit-container">
             <div class="deposit-top-title">
@@ -1138,14 +1225,10 @@
 
             <div class="section-label-text">Payment Method</div>
             
-            <!-- Gateway Selection Grid -->
-            <div class="gateway-grid" id="gatewayGrid">
-                <!-- Dynamically populated or rendered -->
-            </div>
+            <div class="gateway-grid" id="gatewayGrid"></div>
 
             <hr class="divider-line">
 
-            <!-- Selected Account & Copy Box -->
             <div class="selected-account-box">
                 <div class="selected-acc-left">
                     <img id="selectedGatewayLogo" src="" alt="Logo" class="gateway-logo">
@@ -1159,9 +1242,9 @@
                 </div>
             </div>
 
-            <!-- Payment Instructions Toggle -->
             <div class="instructions-toggle" id="instructionToggle" onclick="toggleInstructions()">
-                <i class="fa-solid fa-chevron-right"></i> Payment instructions
+                <span><i class="fa-solid fa-circle-info" style="color: var(--primary-glow); margin-right: 6px;"></i> Payment instructions</span>
+                <i class="fa-solid fa-chevron-right"></i>
             </div>
             <div class="instructions-content" id="instructionContent">
                 1. Open your <span id="instrWalletName">Nagad</span> app and select "Send Money".<br>
@@ -1170,8 +1253,7 @@
                 4. Copy the Transaction ID (TrxID) and fill the form below.
             </div>
 
-            <!-- Form Fields -->
-            <form onsubmit="event.preventDefault(); alert('Top-up request submitted successfully! Admin will verify within 5-10 minutes.');">
+            <form onsubmit="event.preventDefault(); showSuccessModal();">
                 <div class="deposit-form-group">
                     <label>Amount (৳)</label>
                     <div class="deposit-input-wrapper">
@@ -1197,6 +1279,18 @@
                     <i class="fa-solid fa-paper-plane"></i> রিকোয়েস্ট পাঠান
                 </button>
             </form>
+        </div>
+    </div>
+
+    <!-- UNIQUE PROFESSIONAL SUCCESS MODAL -->
+    <div class="modal-overlay" id="successModalOverlay">
+        <div class="success-modal-card">
+            <div class="success-icon-circle">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <h3>Top-up Request Submitted!</h3>
+            <p>Your deposit request has been successfully submitted. Admin will verify and update your balance within 5-10 minutes.</p>
+            <button class="modal-ok-btn" onclick="closeSuccessModal()">OK</button>
         </div>
     </div>
 
@@ -1367,7 +1461,7 @@
             showSlide(slideIndex + 1);
         }, 3000);
 
-        // Deposit Gateways Data with Official Logos/Icons
+        // Deposit Gateways Data
         const depositGateways = [
             { id: 'bkash1', name: 'BKash', number: '01700-111111', logo: 'https://cdn.iconscout.com/icon/free/png-256/free-bkash-logo-icon-download-in-svg-png-gif-file-formats--mobile-financial-service-brand-vol-7-pack-logos-icons-3215352.png?f=webp&w=256' },
             { id: 'nagad', name: 'Nagad', number: '01700-222222', logo: 'https://seeklogo.com/images/N/nagad-logo-A2DE3F1545-seeklogo.com.png' },
@@ -1423,6 +1517,14 @@
             const num = document.getElementById('selectedGatewayNumber').innerText;
             navigator.clipboard.writeText(num);
             alert(`Copied number: ${num}`);
+        }
+
+        function showSuccessModal() {
+            document.getElementById('successModalOverlay').classList.add('active');
+        }
+
+        function closeSuccessModal() {
+            document.getElementById('successModalOverlay').classList.remove('active');
         }
 
         // Currency & Products Logic
