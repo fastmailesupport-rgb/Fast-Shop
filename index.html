@@ -140,6 +140,7 @@
         }
         .section-view.active { display: block; }
 
+        /* BANNER SLIDER STYLING */
         .banner-slider-container {
             width: 100%;
             border-radius: 20px;
@@ -275,6 +276,41 @@
             box-shadow: 0 4px 12px rgba(255, 85, 0, 0.3);
         }
 
+        /* MAIL CATEGORY BAR */
+        .mail-category-bar {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+            scrollbar-width: none;
+        }
+        .mail-category-bar::-webkit-scrollbar { display: none; }
+
+        .mail-cat-btn {
+            background: var(--card-bg);
+            border: 1.5px solid var(--border-color);
+            color: var(--text-main);
+            padding: 7px 15px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: 0.3s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+        .mail-cat-btn.active {
+            background: var(--btn-gradient);
+            border-color: transparent;
+            color: white;
+            box-shadow: 0 4px 12px rgba(255, 85, 0, 0.3);
+        }
+
+        /* PROXY CATEGORY BAR */
         .proxy-category-bar {
             display: flex;
             gap: 8px;
@@ -1611,6 +1647,30 @@
 
     <!-- 2. NUM & MAIL SECTION -->
     <div id="numMailSection" class="section-view">
+        <div class="mail-category-bar">
+            <button class="mail-cat-btn active" onclick="filterMailCategory('all', this)"><i class="fa-solid fa-border-all"></i> All Mail</button>
+            <button class="mail-cat-btn" onclick="filterMailCategory('hotmail_com', this)"><i class="fa-brands fa-windows"></i> Hotmail.com</button>
+            <button class="mail-cat-btn" onclick="filterMailCategory('outlook_com', this)"><i class="fa-solid fa-envelope"></i> Outlook.com</button>
+            <button class="mail-cat-btn" onclick="filterMailCategory('outlook_fr_recovery', this)"><i class="fa-solid fa-key"></i> Outlook.Fr Recovery Add</button>
+            <button class="mail-cat-btn" onclick="filterMailCategory('hotmail_7days', this)"><i class="fa-solid fa-clock"></i> Hotmail.com 7 Days Skip</button>
+            <button class="mail-cat-btn" onclick="filterMailCategory('hotmail_fvia', this)"><i class="fa-solid fa-shield-halved"></i> Hotmail.com Fvia</button>
+            <button class="mail-cat-btn" onclick="filterMailCategory('hotmail_byom', this)"><i class="fa-solid fa-bolt"></i> Hotmail.com Byom De</button>
+            <button class="mail-cat-btn" onclick="filterMailCategory('outlook_de', this)"><i class="fa-solid fa-globe"></i> Outlook.de</button>
+            <button class="mail-cat-btn" onclick="filterMailCategory('outlook_at', this)"><i class="fa-solid fa-globe"></i> Outlook.at</button>
+            <button class="mail-cat-btn" onclick="filterMailCategory('outlook_sa', this)"><i class="fa-solid fa-globe"></i> Outlook.sa</button>
+            <button class="mail-cat-btn" onclick="filterMailCategory('outlook_jp', this)"><i class="fa-solid fa-globe"></i> Outlook.jp</button>
+            <button class="mail-cat-btn" onclick="filterMailCategory('outlook_co_th', this)"><i class="fa-solid fa-globe"></i> Outlook.co.th</button>
+            <button class="mail-cat-btn" onclick="filterMailCategory('outlook_co_id', this)"><i class="fa-solid fa-globe"></i> Outlook.co.id</button>
+            <button class="mail-cat-btn" onclick="filterMailCategory('outlook_in', this)"><i class="fa-solid fa-globe"></i> Outlook.in</button>
+            <button class="mail-cat-btn" onclick="filterMailCategory('outlook_kr', this)"><i class="fa-solid fa-globe"></i> Outlook.kr</button>
+            <button class="mail-cat-btn" onclick="filterMailCategory('outlook_lv', this)"><i class="fa-solid fa-globe"></i> Outlook.lv</button>
+            <button class="mail-cat-btn" onclick="filterMailCategory('outlook_ph', this)"><i class="fa-solid fa-globe"></i> Outlook.ph</button>
+            <button class="mail-cat-btn" onclick="filterMailCategory('outlook_sk', this)"><i class="fa-solid fa-globe"></i> Outlook.sk</button>
+            <button class="mail-cat-btn" onclick="filterMailCategory('outlook_com_ar', this)"><i class="fa-solid fa-globe"></i> Outlook.com.ar</button>
+            <button class="mail-cat-btn" onclick="filterMailCategory('outlook_co_li', this)"><i class="fa-solid fa-globe"></i> Outlook.co.li</button>
+            <button class="mail-cat-btn" onclick="filterMailCategory('outlook_sg', this)"><i class="fa-solid fa-globe"></i> Outlook.sg</button>
+        </div>
+
         <h3 style="margin-bottom: 12px; font-size: 16px; color: var(--secondary-glow);"><i class="fa-solid fa-envelope-open-text"></i> Number & Mail Accounts</h3>
         <div class="product-grid" id="numMailGrid"></div>
     </div>
@@ -2112,6 +2172,7 @@
             document.getElementById('customModalOverlay').classList.remove('active');
         }
 
+        // Deposit Gateways Data
         const depositGateways = [
             { id: 'bkash1', name: 'BKash', number: '01700-111111', logo: 'https://cdn.iconscout.com/icon/free/png-256/free-bkash-logo-icon-download-in-svg-png-gif-file-formats--mobile-financial-service-brand-vol-7-pack-logos-icons-3215352.png?f=webp&w=256' },
             { id: 'nagad', name: 'Nagad', number: '01700-222222', logo: 'https://seeklogo.com/images/N/nagad-logo-A2DE3F1545-seeklogo.com.png' },
@@ -2170,6 +2231,7 @@
             showModal('Copied!', `Number ${num} copied to clipboard.`, 'success');
         }
 
+        // Currency & Products Logic
         const USDT_RATE = 120;
         let currentCurrency = localStorage.getItem('siteCurrency') || 'BDT';
         const userWalletBDT = 2104.81;
@@ -2185,10 +2247,10 @@
         }
 
         const products = [
-            /* --- EXISTING MAIL PRODUCTS --- */
             {
                 id: 1,
                 category: 'email',
+                mailType: 'hotmail_com',
                 mode: 'quantity',
                 name: "Hotmail Trusted V1",
                 image: "https://cdn-icons-png.flaticon.com/512/732/732200.png",
@@ -2203,6 +2265,7 @@
             {
                 id: 2,
                 category: 'email',
+                mailType: 'outlook_com',
                 mode: 'quantity',
                 name: "Outlook.com | OAuth2",
                 image: "https://cdn-icons-png.flaticon.com/512/732/732221.png",
@@ -2217,262 +2280,807 @@
             {
                 id: 3,
                 category: 'email',
+                mailType: 'outlook_fr_recovery',
                 mode: 'quantity',
-                name: "Outlook.Fr Trusted V1",
+                name: "Outlook.Fr Recovery Add",
                 image: "https://cdn-icons-png.flaticon.com/512/732/732221.png",
                 stockCount: 41000,
                 stockText: "41k PCS",
                 sold: "1,050 sold",
                 unitPrice: 0.80,
                 delivery: "Instant",
-                shortDesc: "Outlook.Fr French domain trusted accounts.",
-                fullDetails: `<p>Premium French domain (.fr) Outlook accounts. Highly reliable for all platform verifications.</p>`
+                shortDesc: "Outlook.Fr French domain accounts with Recovery added.",
+                fullDetails: `<p>Premium French domain (.fr) Outlook accounts equipped with recovery details.</p>`
             },
             {
                 id: 4,
                 category: 'email',
+                mailType: 'hotmail_7days',
                 mode: 'quantity',
-                name: "Edu Mail Verified",
-                image: "https://cdn-icons-png.flaticon.com/512/2910/2910791.png",
+                name: "Hotmail 7 Days Skip",
+                image: "https://cdn-icons-png.flaticon.com/512/732/732200.png",
                 stockCount: 15000,
                 stockText: "15k PCS",
                 sold: "890 sold",
-                unitPrice: 1.20,
+                unitPrice: 0.75,
                 delivery: "Instant",
-                shortDesc: "Student institutional Edu mail with benefits.",
-                fullDetails: `<p>Original university Edu mail accounts for student pack activations and discounts.</p>`
+                shortDesc: "Hotmail accounts with 7 days security check skipped.",
+                fullDetails: `<p>Hotmail accounts pre-configured to bypass 7-day security lock restrictions.</p>`
             },
             {
                 id: 5,
                 category: 'email',
-                mode: 'quantity',
-                name: "Gmail.com Fresh V1",
-                image: "https://cdn-icons-png.flaticon.com/512/281/281764.png",
-                stockCount: 32000,
-                stockText: "32k PCS",
-                sold: "1,850 sold",
-                unitPrice: 1.50,
-                delivery: "Instant",
-                shortDesc: "Fresh Gmail.com accounts with recovery mail.",
-                fullDetails: `<p>High quality fresh Gmail accounts created with clean IPs.</p>`
-            },
-
-            /* --- ALL NEW OUTLOOK & HOTMAIL PRODUCTS ADDED DIRECTLY UNDER EMAIL CATEGORY --- */
-            {
-                id: 301,
-                category: 'email',
-                mode: 'quantity',
-                name: "Hotmail.com",
-                image: "https://cdn-icons-png.flaticon.com/512/732/732200.png",
-                stockCount: 25000,
-                stockText: "25k PCS",
-                sold: "920 sold",
-                unitPrice: 0.55,
-                delivery: "Instant",
-                shortDesc: "Hotmail.com standard trusted accounts.",
-                fullDetails: `<p>Standard Hotmail.com accounts with verified status.</p>`
-            },
-            {
-                id: 302,
-                category: 'email',
-                mode: 'quantity',
-                name: "Outlook.com",
-                image: "https://cdn-icons-png.flaticon.com/512/732/732221.png",
-                stockCount: 30000,
-                stockText: "30k PCS",
-                sold: "1,150 sold",
-                unitPrice: 0.50,
-                delivery: "Instant",
-                shortDesc: "Outlook.com clean fresh accounts.",
-                fullDetails: `<p>Outlook.com official clean domain accounts.</p>`
-            },
-            {
-                id: 303,
-                category: 'email',
-                mode: 'quantity',
-                name: "Outlook.Fr Recovery Add",
-                image: "https://cdn-icons-png.flaticon.com/512/732/732221.png",
-                stockCount: 18000,
-                stockText: "18k PCS",
-                sold: "640 sold",
-                unitPrice: 0.85,
-                delivery: "Instant",
-                shortDesc: "Outlook.Fr with recovery mail added.",
-                fullDetails: `<p>Outlook.Fr accounts pre-equipped with recovery details.</p>`
-            },
-            {
-                id: 304,
-                category: 'email',
-                mode: 'quantity',
-                name: "Hotmail.com 7 Days Skip",
-                image: "https://cdn-icons-png.flaticon.com/512/732/732200.png",
-                stockCount: 12000,
-                stockText: "12k PCS",
-                sold: "410 sold",
-                unitPrice: 0.70,
-                delivery: "Instant",
-                shortDesc: "Hotmail 7 days security check skipped.",
-                fullDetails: `<p>Hotmail accounts with 7-day security lock bypassed.</p>`
-            },
-            {
-                id: 305,
-                category: 'email',
+                mailType: 'hotmail_fvia',
                 mode: 'quantity',
                 name: "Hotmail.com Fvia",
                 image: "https://cdn-icons-png.flaticon.com/512/732/732200.png",
-                stockCount: 15000,
-                stockText: "15k PCS",
-                sold: "530 sold",
+                stockCount: 32000,
+                stockText: "32k PCS",
+                sold: "1,850 sold",
                 unitPrice: 0.65,
                 delivery: "Instant",
-                shortDesc: "Hotmail.com Fvia series accounts.",
-                fullDetails: `<p>Hotmail.com Fvia verified accounts.</p>`
+                shortDesc: "Hotmail Fvia verified series accounts.",
+                fullDetails: `<p>High quality Hotmail Fvia batch verified accounts.</p>`
             },
             {
-                id: 306,
+                id: 6,
                 category: 'email',
+                mailType: 'hotmail_byom',
                 mode: 'quantity',
                 name: "Hotmail.com Byom De",
                 image: "https://cdn-icons-png.flaticon.com/512/732/732200.png",
-                stockCount: 10000,
-                stockText: "10k PCS",
-                sold: "300 sold",
-                unitPrice: 0.75,
+                stockCount: 22000,
+                stockText: "22k PCS",
+                sold: "740 sold",
+                unitPrice: 0.70,
                 delivery: "Instant",
-                shortDesc: "Hotmail.com Byom De batch accounts.",
-                fullDetails: `<p>Hotmail.com Byom De specialized series.</p>`
+                shortDesc: "Hotmail Byom De specialized series.",
+                fullDetails: `<p>Specialized Hotmail Byom De accounts for automated workflows.</p>`
             },
             {
-                id: 307,
+                id: 7,
                 category: 'email',
+                mailType: 'outlook_de',
                 mode: 'quantity',
-                name: "Outlook.de",
+                name: "Outlook.de Germany",
+                image: "https://cdn-icons-png.flaticon.com/512/732/732221.png",
+                stockCount: 19000,
+                stockText: "19k PCS",
+                sold: "520 sold",
+                unitPrice: 0.85,
+                delivery: "Instant",
+                shortDesc: "German domain Outlook.de accounts.",
+                fullDetails: `<p>Official Outlook.de German regional domain accounts.</p>`
+            },
+            {
+                id: 8,
+                category: 'email',
+                mailType: 'outlook_at',
+                mode: 'quantity',
+                name: "Outlook.at Austria",
                 image: "https://cdn-icons-png.flaticon.com/512/732/732221.png",
                 stockCount: 14000,
                 stockText: "14k PCS",
-                sold: "380 sold",
-                unitPrice: 0.80,
+                sold: "310 sold",
+                unitPrice: 0.90,
                 delivery: "Instant",
-                shortDesc: "Outlook.de German domain accounts.",
-                fullDetails: `<p>Outlook.de German domain clean accounts.</p>`
+                shortDesc: "Austrian regional Outlook.at accounts.",
+                fullDetails: `<p>Outlook.at Austrian domain accounts with high reliability.</p>`
             },
             {
-                id: 308,
+                id: 9,
                 category: 'email',
+                mailType: 'outlook_sa',
                 mode: 'quantity',
-                name: "Outlook.at",
+                name: "Outlook.sa Saudi",
                 image: "https://cdn-icons-png.flaticon.com/512/732/732221.png",
-                stockCount: 9000,
-                stockText: "9k PCS",
-                sold: "210 sold",
-                unitPrice: 0.85,
+                stockCount: 12000,
+                stockText: "12k PCS",
+                sold: "410 sold",
+                unitPrice: 0.95,
                 delivery: "Instant",
-                shortDesc: "Outlook.at Austrian domain accounts.",
-                fullDetails: `<p>Outlook.at Austrian domain accounts.</p>`
+                shortDesc: "Saudi Arabian regional Outlook.sa accounts.",
+                fullDetails: `<p>Outlook.sa domain accounts optimized for Middle East region.</p>`
             },
             {
-                id: 309,
+                id: 10,
                 category: 'email',
+                mailType: 'outlook_jp',
                 mode: 'quantity',
-                name: "Outlook.sa",
+                name: "Outlook.jp Japan",
+                image: "https://cdn-icons-png.flaticon.com/512/732/732221.png",
+                stockCount: 16000,
+                stockText: "16k PCS",
+                sold: "680 sold",
+                unitPrice: 0.88,
+                delivery: "Instant",
+                shortDesc: "Japanese regional Outlook.jp accounts.",
+                fullDetails: `<p>Outlook.jp Japan domain clean accounts.</p>`
+            },
+            {
+                id: 11,
+                category: 'email',
+                mailType: 'outlook_co_th',
+                mode: 'quantity',
+                name: "Outlook.co.th Thailand",
                 image: "https://cdn-icons-png.flaticon.com/512/732/732221.png",
                 stockCount: 11000,
                 stockText: "11k PCS",
                 sold: "290 sold",
-                unitPrice: 0.90,
+                unitPrice: 0.75,
                 delivery: "Instant",
-                shortDesc: "Outlook.sa Saudi domain accounts.",
-                fullDetails: `<p>Outlook.sa Saudi domain accounts.</p>`
-            },
-            {
-                id: 310,
-                category: 'email',
-                mode: 'quantity',
-                name: "Outlook.jp",
-                image: "https://cdn-icons-png.flaticon.com/512/732/732221.png",
-                stockCount: 13000,
-                stockText: "13k PCS",
-                sold: "450 sold",
-                unitPrice: 0.88,
-                delivery: "Instant",
-                shortDesc: "Outlook.jp Japanese domain accounts.",
-                fullDetails: `<p>Outlook.jp Japanese domain accounts.</p>`
-            },
-            {
-                id: 311,
-                category: 'email',
-                mode: 'quantity',
-                name: "Outlook.co.th",
-                image: "https://cdn-icons-png.flaticon.com/512/732/732221.png",
-                stockCount: 8500,
-                stockText: "8.5k PCS",
-                sold: "190 sold",
-                unitPrice: 0.78,
-                delivery: "Instant",
-                shortDesc: "Outlook.co.th Thailand domain accounts.",
+                shortDesc: "Thai regional Outlook.co.th accounts.",
                 fullDetails: `<p>Outlook.co.th Thailand domain accounts.</p>`
             },
             {
-                id: 312,
+                id: 12,
                 category: 'email',
+                mailType: 'outlook_co_id',
                 mode: 'quantity',
-                name: "Outlook.co.id",
+                name: "Outlook.co.id Indonesia",
                 image: "https://cdn-icons-png.flaticon.com/512/732/732221.png",
-                stockCount: 12000,
-                stockText: "12k PCS",
-                sold: "340 sold",
-                unitPrice: 0.75,
+                stockCount: 13500,
+                stockText: "13.5k PCS",
+                sold: "450 sold",
+                unitPrice: 0.72,
                 delivery: "Instant",
-                shortDesc: "Outlook.co.id Indonesia domain accounts.",
+                shortDesc: "Indonesian regional Outlook.co.id accounts.",
                 fullDetails: `<p>Outlook.co.id Indonesia domain accounts.</p>`
             },
             {
-                id: 313,
+                id: 13,
                 category: 'email',
+                mailType: 'outlook_in',
                 mode: 'quantity',
-                name: "Outlook.in",
+                name: "Outlook.in India",
                 image: "https://cdn-icons-png.flaticon.com/512/732/732221.png",
-                stockCount: 20000,
-                stockText: "20k PCS",
-                sold: "850 sold",
+                stockCount: 25000,
+                stockText: "25k PCS",
+                sold: "1,120 sold",
                 unitPrice: 0.60,
                 delivery: "Instant",
-                shortDesc: "Outlook.in Indian domain accounts.",
-                fullDetails: `<p>Outlook.in Indian domain accounts.</p>`
+                shortDesc: "Indian regional Outlook.in accounts.",
+                fullDetails: `<p>Outlook.in Indian regional domain accounts.</p>`
             },
             {
-                id: 314,
+                id: 14,
                 category: 'email',
+                mailType: 'outlook_kr',
                 mode: 'quantity',
-                name: "Outlook.kr",
+                name: "Outlook.kr Korea",
+                image: "https://cdn-icons-png.flaticon.com/512/732/732221.png",
+                stockCount: 9500,
+                stockText: "9.5k PCS",
+                sold: "210 sold",
+                unitPrice: 0.92,
+                delivery: "Instant",
+                shortDesc: "Korean regional Outlook.kr accounts.",
+                fullDetails: `<p>Outlook.kr South Korea domain accounts.</p>`
+            },
+            {
+                id: 15,
+                category: 'email',
+                mailType: 'outlook_lv',
+                mode: 'quantity',
+                name: "Outlook.lv Latvia",
+                image: "https://cdn-icons-png.flaticon.com/512/732/732221.png",
+                stockCount: 8000,
+                stockText: "8k PCS",
+                sold: "180 sold",
+                unitPrice: 0.85,
+                delivery: "Instant",
+                shortDesc: "Latvian regional Outlook.lv accounts.",
+                fullDetails: `<p>Outlook.lv Latvia domain accounts.</p>`
+            },
+            {
+                id: 16,
+                category: 'email',
+                mailType: 'outlook_ph',
+                mode: 'quantity',
+                name: "Outlook.ph Philippines",
+                image: "https://cdn-icons-png.flaticon.com/512/732/732221.png",
+                stockCount: 10500,
+                stockText: "10.5k PCS",
+                sold: "340 sold",
+                unitPrice: 0.70,
+                delivery: "Instant",
+                shortDesc: "Philippine regional Outlook.ph accounts.",
+                fullDetails: `<p>Outlook.ph Philippines domain accounts.</p>`
+            },
+            {
+                id: 17,
+                category: 'email',
+                mailType: 'outlook_sk',
+                mode: 'quantity',
+                name: "Outlook.sk Slovakia",
                 image: "https://cdn-icons-png.flaticon.com/512/732/732221.png",
                 stockCount: 7500,
                 stockText: "7.5k PCS",
-                sold: "160 sold",
-                unitPrice: 0.92,
+                sold: "150 sold",
+                unitPrice: 0.88,
                 delivery: "Instant",
-                shortDesc: "Outlook.kr Korean domain accounts.",
-                fullDetails: `<p>Outlook.kr Korean domain accounts.</p>`
+                shortDesc: "Slovak regional Outlook.sk accounts.",
+                fullDetails: `<p>Outlook.sk Slovakia domain accounts.</p>`
             },
             {
-                id: 315,
+                id: 18,
                 category: 'email',
+                mailType: 'outlook_com_ar',
                 mode: 'quantity',
-                name: "Outlook.lv",
+                name: "Outlook.com.ar Argentina",
                 image: "https://cdn-icons-png.flaticon.com/512/732/732221.png",
-                stockCount: 6500,
-                stockText: "6.5k PCS",
-                sold: "120 sold",
+                stockCount: 9000,
+                stockText: "9k PCS",
+                sold: "230 sold",
+                unitPrice: 0.78,
+                delivery: "Instant",
+                shortDesc: "Argentine regional Outlook.com.ar accounts.",
+                fullDetails: `<p>Outlook.com.ar Argentina domain accounts.</p>`
+            },
+            {
+                id: 19,
+                category: 'email',
+                mailType: 'outlook_co_li',
+                mode: 'quantity',
+                name: "Outlook.co.li Liechtenstein",
+                image: "https://cdn-icons-png.flaticon.com/512/732/732221.png",
+                stockCount: 6000,
+                stockText: "6k PCS",
+                sold: "95 sold",
+                unitPrice: 0.99,
+                delivery: "Instant",
+                shortDesc: "Liechtenstein regional Outlook.co.li accounts.",
+                fullDetails: `<p>Outlook.co.li Liechtenstein domain accounts.</p>`
+            },
+            {
+                id: 20,
+                category: 'email',
+                mailType: 'outlook_sg',
+                mode: 'quantity',
+                name: "Outlook.sg Singapore",
+                image: "https://cdn-icons-png.flaticon.com/512/732/732221.png",
+                stockCount: 14500,
+                stockText: "14.5k PCS",
+                sold: "560 sold",
                 unitPrice: 0.85,
                 delivery: "Instant",
-                shortDesc: "Outlook.lv Latvian domain accounts.",
-                fullDetails: `<p>Outlook.lv Latvian domain accounts.</p>`
+                shortDesc: "Singapore regional Outlook.sg accounts.",
+                fullDetails: `<p>Outlook.sg Singapore domain clean accounts.</p>`
+            },
+
+            // Proxy & Social items
+            {
+                id: 21,
+                category: 'proxy',
+                proxyType: 'gp',
+                mode: 'plan',
+                planTitle: "SELECT DATA PLAN",
+                name: "GP Proxy 9Proxy",
+                image: "https://cdn-icons-png.flaticon.com/512/1006/1006771.png",
+                stockCount: 999,
+                stockText: "100 MB - 1GB",
+                sold: "408 sold",
+                unitPrice: 15.00,
+                delivery: "Instant / within 1 hour",
+                shortDesc: "High speed clean residential GP Proxy CD Key / Sub User.",
+                plans: [
+                    { label: "100 MB", price: 15.00 },
+                    { label: "200 MB", price: 25.00 },
+                    { label: "500 MB", price: 60.00 },
+                    { label: "1 GB", price: 115.00 }
+                ],
+                fullDetails: `<p>Original GP Proxy residential IP packages. Select your required data plan below.</p>`
             },
             {
-                id: 316,
-                category: 'email',
-                mode: 'quantity',
-                name: "Outlook.ph",
-                image: "https://cdn-icons-png.flaticon.com/512/732/732221.png",
-                stockCount: 9500,
-                stockText: "9.5k
+                id: 22,
+                category: 'proxy',
+                proxyType: 'ip',
+                mode: 'plan',
+                planTitle: "SELECT IP PLAN",
+                name: "Dedicated IP Proxy",
+                image: "https://cdn-icons-png.flaticon.com/512/2885/2885437.png",
+                stockCount: 450,
+                stockText: "Static IP",
+                sold: "230 sold",
+                unitPrice: 25.00,
+                delivery: "Instant",
+                shortDesc: "Clean static dedicated IP Proxy for multi-login.",
+                plans: [
+                    { label: "1 Month", price: 25.00 },
+                    { label: "3 Months", price: 70.00 }
+                ],
+                fullDetails: `<p>Clean dedicated static IP proxy for secure browsing and account management.</p>`
+            },
+            {
+                id: 23,
+                category: 'proxy',
+                proxyType: 'vpn',
+                mode: 'plan',
+                planTitle: "SELECT DAYS / PLAN",
+                name: "NordVPN Premium",
+                image: "https://cdn-icons-png.flaticon.com/512/6124/6124998.png",
+                stockCount: 500,
+                stockText: "7 - 30 Days",
+                sold: "356 sold",
+                unitPrice: 20.00,
+                delivery: "Instant / within 1 hour",
+                shortDesc: "NordVPN Private & Shared premium subscription.",
+                plans: [
+                    { label: "7 Days", price: 20.00 },
+                    { label: "30 Days", price: 120.00 }
+                ],
+                fullDetails: `<p>High-speed NordVPN premium accounts with global server access unlocked.</p>`
+            },
+            {
+                id: 101,
+                category: 'social',
+                mode: 'plan',
+                planTitle: "SUBSCRIPTION PLAN",
+                name: "Canva Pro – 1 Year",
+                image: "https://cdn-icons-png.flaticon.com/512/3855/3855909.png",
+                stockCount: 1200,
+                stockText: "1 Year",
+                sold: "940 sold",
+                unitPrice: 350.00,
+                delivery: "Instant",
+                shortDesc: "Canva Pro official team invite for 1 full year access.",
+                plans: [{ label: "1 Year Access", price: 350.00 }],
+                fullDetails: `<p>Get 1 full year of Canva Pro access with team invite link. Enjoy all premium templates, brand kits, and background remover.</p>`
+            },
+            {
+                id: 102,
+                category: 'social',
+                mode: 'plan',
+                planTitle: "SUBSCRIPTION PLAN",
+                name: "Google Storage (Gmail) – 2TB – 1 Year",
+                image: "https://cdn-icons-png.flaticon.com/512/281/281764.png",
+                stockCount: 800,
+                stockText: "2TB / 1 Yr",
+                sold: "620 sold",
+                unitPrice: 1200.00,
+                delivery: "Instant",
+                shortDesc: "Google One 2TB cloud storage upgrade on your personal Gmail.",
+                plans: [{ label: "2TB - 1 Year", price: 1200.00 }],
+                fullDetails: `<p>Upgrade your Google account storage to 2TB for Google Drive, Gmail, and Google Photos for 1 full year.</p>`
+            },
+            {
+                id: 103,
+                category: 'social',
+                mode: 'plan',
+                planTitle: "SUBSCRIPTION PLAN",
+                name: "Gemini Pro (Veo 3) – 1 Year",
+                image: "https://www.gstatic.com/lamda/images/gemini_favicon_f06b31541cfa25732c25a.png",
+                stockCount: 450,
+                stockText: "1 Year",
+                sold: "310 sold",
+                unitPrice: 1500.00,
+                delivery: "Instant",
+                shortDesc: "Gemini Advanced / Pro subscription including Veo 3 features for 1 year.",
+                plans: [{ label: "1 Year Plan", price: 1500.00 }],
+                fullDetails: `<p>Full access to Gemini Pro and Veo video generation features for 1 year.</p>`
+            },
+            {
+                id: 104,
+                category: 'social',
+                mode: 'plan',
+                planTitle: "SUBSCRIPTION PLAN",
+                name: "YouTube Premium – 1 Month",
+                image: "https://cdn-icons-png.flaticon.com/512/1384/1384060.png",
+                stockCount: 2500,
+                stockText: "1 Month",
+                sold: "1,820 sold",
+                unitPrice: 80.00,
+                delivery: "Instant",
+                shortDesc: "YouTube Premium 1 month individual / family invite.",
+                plans: [{ label: "1 Month", price: 80.00 }],
+                fullDetails: `<p>Ad-free YouTube streaming, background play, and YouTube Music for 1 month.</p>`
+            },
+            {
+                id: 105,
+                category: 'social',
+                mode: 'plan',
+                planTitle: "SUBSCRIPTION PLAN",
+                name: "Netflix Premium – 1 Month",
+                image: "https://cdn-icons-png.flaticon.com/512/5977/5977590.png",
+                stockCount: 1500,
+                stockText: "4K UHD",
+                sold: "2,400 sold",
+                unitPrice: 150.00,
+                delivery: "Instant",
+                shortDesc: "Netflix Premium 4K UHD private profile for 1 month.",
+                plans: [{ label: "1 Month Profile", price: 150.00 }],
+                fullDetails: `<p>Enjoy ultra HD streaming on Netflix with private locked profile for 1 month.</p>`
+            },
+            {
+                id: 106,
+                category: 'social',
+                mode: 'plan',
+                planTitle: "SUBSCRIPTION PLAN",
+                name: "CapCut Pro – Full Access – 1 Month",
+                image: "https://cdn-icons-png.flaticon.com/512/6125/6125884.png",
+                stockCount: 950,
+                stockText: "1 Month",
+                sold: "710 sold",
+                unitPrice: 200.00,
+                delivery: "Instant",
+                shortDesc: "CapCut Pro full feature unlocked account for 1 month.",
+                plans: [{ label: "1 Month Access", price: 200.00 }],
+                fullDetails: `<p>Access all CapCut Pro video editing effects, transitions, and AI tools for 1 month.</p>`
+            },
+            {
+                id: 107,
+                category: 'social',
+                mode: 'plan',
+                planTitle: "SUBSCRIPTION PLAN",
+                name: "ChatGPT Plus – 1 Month",
+                image: "https://cdn-icons-png.flaticon.com/512/6125/6125016.png",
+                stockCount: 600,
+                stockText: "GPT-4o",
+                sold: "1,150 sold",
+                unitPrice: 450.00,
+                delivery: "Instant",
+                shortDesc: "ChatGPT Plus shared/private account access with GPT-4o for 1 month.",
+                plans: [{ label: "1 Month", price: 450.00 }],
+                fullDetails: `<p>Unlock advanced reasoning, GPT-4o, DALL-E 3 image generation, and data analysis for 1 month.</p>`
+            },
+            {
+                id: 108,
+                category: 'social',
+                mode: 'plan',
+                planTitle: "SUBSCRIPTION PLAN",
+                name: "Cloud AI – 1 Month",
+                image: "https://cdn-icons-png.flaticon.com/512/3855/3855841.png",
+                stockCount: 400,
+                stockText: "1 Month",
+                sold: "290 sold",
+                unitPrice: 300.00,
+                delivery: "Instant",
+                shortDesc: "Cloud AI premium subscription plan for 1 month.",
+                plans: [{ label: "1 Month", price: 300.00 }],
+                fullDetails: `<p>High performance Cloud AI assistant service for 1 month.</p>`
+            },
+            {
+                id: 109,
+                category: 'social',
+                mode: 'plan',
+                planTitle: "SUBSCRIPTION PLAN",
+                name: "Amazon Prime – 1 Month",
+                image: "https://cdn-icons-png.flaticon.com/512/5977/5977585.png",
+                stockCount: 700,
+                stockText: "Prime Video",
+                sold: "480 sold",
+                unitPrice: 100.00,
+                delivery: "Instant",
+                shortDesc: "Amazon Prime Video official account access for 1 month.",
+                plans: [{ label: "1 Month", price: 100.00 }],
+                fullDetails: `<p>Stream award-winning movies and Prime Video Originals for 1 month.</p>`
+            }
+        ];
+
+        let currentCategory = 'all';
+        let currentMailCategory = 'all';
+        let currentProxyCategory = 'all';
+        let showOnlyBookmarks = false;
+        let bookmarkedIds = JSON.parse(localStorage.getItem('bookmarkedProducts')) || [];
+        let lastActiveTab = 'home';
+        const whatsappNumber = "8801740249310";
+
+        let activeProduct = null;
+        let detailQty = 1;
+        let selectedPlanIndex = 0;
+        let selectedFileFormat = 'CSV'; 
+
+        function setCurrency(curr) {
+            currentCurrency = curr;
+            localStorage.setItem('siteCurrency', curr);
+            updateCurrencyUI();
+        }
+
+        function toggleCurrency() {
+            setCurrency(currentCurrency === 'BDT' ? 'USDT' : 'BDT');
+        }
+
+        function updateCurrencyUI() {
+            document.getElementById('headerCurrBtn').innerText = currentCurrency;
+            if (currentCurrency === 'USDT') {
+                document.getElementById('headerWalletDisplay').innerText = `$ ${(userWalletBDT / USDT_RATE).toFixed(2)}`;
+            } else {
+                document.getElementById('headerWalletDisplay').innerText = `৳ ${Math.floor(userWalletBDT).toLocaleString()}`;
+            }
+
+            renderProducts(document.getElementById('searchInput').value);
+            if (activeProduct && document.getElementById('productDetailSection').classList.contains('active')) {
+                renderDetailSelectionBox();
+                updateDetailCalculation();
+            }
+        }
+
+        function renderProducts(filterText = '') {
+            const grid = document.getElementById('productGrid');
+            const numMailGrid = document.getElementById('numMailGrid');
+            const proxyGrid = document.getElementById('proxyGrid');
+            
+            if(!grid) return;
+            grid.innerHTML = '';
+            numMailGrid.innerHTML = '';
+            proxyGrid.innerHTML = '';
+
+            const filtered = products.filter(p => {
+                const matchesCat = currentCategory === 'all' || p.category === currentCategory;
+                const matchesSearch = p.name.toLowerCase().includes(filterText.toLowerCase());
+                const matchesFav = !showOnlyBookmarks || bookmarkedIds.includes(p.id);
+                return matchesCat && matchesSearch && matchesFav;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 30px;">No products found!</p>`;
+            } else {
+                filtered.forEach(product => grid.appendChild(createCard(product)));
+            }
+
+            const mailFiltered = products.filter(p => {
+                if (p.category !== 'email') return false;
+                if (currentMailCategory === 'all') return true;
+                return p.mailType === currentMailCategory;
+            });
+
+            if (mailFiltered.length === 0) {
+                numMailGrid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 30px;">No mail products found in this category!</p>`;
+            } else {
+                mailFiltered.forEach(product => numMailGrid.appendChild(createCard(product)));
+            }
+
+            products.filter(p => p.category === 'proxy').forEach(product => proxyGrid.appendChild(createCard(product)));
+
+            document.getElementById('favCount').innerText = bookmarkedIds.length;
+        }
+
+        function filterMailCategory(cat, element) {
+            currentMailCategory = cat;
+            document.querySelectorAll('.mail-cat-btn').forEach(b => b.classList.remove('active'));
+            if(element) element.classList.add('active');
+            renderProducts(document.getElementById('searchInput').value);
+        }
+
+        function filterProxyCategory(cat, element) {
+            currentProxyCategory = cat;
+            document.querySelectorAll('.proxy-cat-btn').forEach(b => b.classList.remove('active'));
+            if(element) element.classList.add('active');
+            renderProducts(document.getElementById('searchInput').value);
+        }
+
+        function createCard(product) {
+            const isBookmarked = bookmarkedIds.includes(product.id);
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.onclick = (e) => {
+                if (!e.target.closest('.fav-btn')) {
+                    openProductDetail(product.id);
+                }
+            };
+
+            card.innerHTML = `
+                <div class="card-top-bar">
+                    <div class="badges-left">
+                        <div class="stock-badge">${product.stockText}</div>
+                        <div class="sold-badge"><i class="fa-solid fa-fire" style="color: #ff5500;"></i> ${product.sold}</div>
+                    </div>
+                    <button class="fav-btn ${isBookmarked ? 'active' : ''}" onclick="toggleBookmark(${product.id}, event)">
+                        <i class="${isBookmarked ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
+                    </button>
+                </div>
+                <div class="card-img-wrapper"><img src="${product.image}" alt="${product.name}" onerror="this.src='https://cdn-icons-png.flaticon.com/512/906/906334.png'"></div>
+                <div class="card-body">
+                    <h3 class="product-title">${product.name}</h3>
+                    <p class="product-desc">${product.shortDesc}</p>
+                    <div class="card-footer">
+                        <span class="price">${formatPrice(product.unitPrice)}</span>
+                        <button class="buy-btn" onclick="openProductDetail(${product.id})">
+                            <i class="fa-solid fa-cart-shopping"></i> Buy now
+                        </button>
+                    </div>
+                </div>
+            `;
+            return card;
+        }
+
+        function openProductDetail(id) {
+            activeProduct = products.find(p => p.id === id);
+            if (!activeProduct) return;
+
+            detailQty = 1;
+            selectedPlanIndex = 0;
+            selectedFileFormat = 'CSV'; 
+
+            document.querySelectorAll('.section-view').forEach(sec => sec.classList.remove('active'));
+            document.getElementById('productDetailSection').classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            document.getElementById('dImg').src = activeProduct.image;
+            document.getElementById('dStockPill').innerHTML = `<span style="width:7px; height:7px; background:#16a34a; border-radius:50%; display:inline-block; margin-right:6px;"></span>${activeProduct.stockCount.toLocaleString()} in stock`;
+            document.getElementById('dName').innerText = activeProduct.name;
+            document.getElementById('dSubText').innerText = activeProduct.mode === 'quantity' ? `${activeProduct.stockCount} pcs available` : `Ready to order`;
+            document.getElementById('dDeliveryTime').innerText = activeProduct.delivery;
+            document.getElementById('dSold').innerText = activeProduct.sold;
+            document.getElementById('dFullDetails').innerHTML = activeProduct.fullDetails;
+            document.getElementById('dBtnText').innerText = activeProduct.mode === 'quantity' ? 'Buy Now' : 'Place Order';
+
+            renderDetailSelectionBox();
+            updateDetailCalculation();
+        }
+
+        function renderDetailSelectionBox() {
+            const box = document.getElementById('dSelectionBox');
+            if (!box) return;
+            
+            if (activeProduct.category === 'email') {
+                box.innerHTML = `
+                    <div class="detail-sec-header"><span>File format</span></div>
+                    <div class="options-grid">
+                        <div class="option-card ${selectedFileFormat === 'CSV' ? 'active' : ''}" onclick="selectFileFormat('CSV')">
+                            <div class="option-top">
+                                <h4>CSV</h4>
+                                <span class="opt-badge">BEST</span>
+                                <div class="opt-check"><i class="fa-solid fa-check"></i></div>
+                            </div>
+                            <p>Excel & Sheets</p>
+                        </div>
+                        <div class="option-card ${selectedFileFormat === 'TXT' ? 'active' : ''}" onclick="selectFileFormat('TXT')">
+                            <div class="option-top">
+                                <h4>TXT</h4>
+                                <div class="opt-check"><i class="fa-solid fa-check"></i></div>
+                            </div>
+                            <p>Plain text</p>
+                        </div>
+                    </div>
+
+                    <div class="detail-sec-header" style="margin-top: 15px;">
+                        <span>QUANTITY</span>
+                        <span style="font-size:12px; color:var(--text-muted); font-weight:normal;">Max ${activeProduct.stockCount} · ${formatPrice(activeProduct.unitPrice)}/pc</span>
+                    </div>
+                    <div class="counter-box">
+                        <button class="counter-btn" onclick="changeDetailQty(-1)"><i class="fa-solid fa-minus"></i></button>
+                        <div class="counter-val" id="dQtyVal">${detailQty}</div>
+                        <button class="counter-btn" onclick="changeDetailQty(1)"><i class="fa-solid fa-plus"></i></button>
+                    </div>
+                    <div class="preset-grid">
+                        ${[1, 5, 10, 25, 50, 100].map(num => `
+                            <button class="preset-btn ${detailQty === num ? 'active' : ''}" onclick="setDetailQty(${num})">${num}</button>
+                        `).join('')}
+                    </div>
+                `;
+            } else {
+                box.innerHTML = `
+                    <div class="detail-sec-header"><span>${activeProduct.planTitle || 'SELECT PLAN'}</span></div>
+                    <div class="plan-grid">
+                        ${activeProduct.plans.map((plan, idx) => `
+                            <div class="plan-item ${selectedPlanIndex === idx ? 'active' : ''}" onclick="selectDetailPlan(${idx})">
+                                <i class="fa-solid fa-circle-check plan-check"></i>
+                                <h4>${plan.label}</h4>
+                                <span>${formatPrice(plan.price)}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            }
+        }
+
+        function selectFileFormat(format) {
+            selectedFileFormat = format;
+            renderDetailSelectionBox();
+            updateDetailCalculation();
+        }
+
+        function changeDetailQty(delta) {
+            let next = detailQty + delta;
+            if (next >= 1 && next <= activeProduct.stockCount) {
+                detailQty = next;
+                renderDetailSelectionBox();
+                updateDetailCalculation();
+            }
+        }
+
+        function setDetailQty(val) {
+            detailQty = val;
+            renderDetailSelectionBox();
+            updateDetailCalculation();
+        }
+
+        function selectDetailPlan(index) {
+            selectedPlanIndex = index;
+            renderDetailSelectionBox();
+            updateDetailCalculation();
+        }
+
+        function updateDetailCalculation() {
+            let unitP = activeProduct.unitPrice;
+            let totalBDT = 0;
+            let orderSummary = "";
+
+            if (activeProduct.mode === 'quantity') {
+                totalBDT = unitP * detailQty;
+                document.getElementById('dUnitPrice').innerText = formatPrice(unitP);
+                orderSummary = `${activeProduct.name} (${detailQty} pcs) [Format: ${selectedFileFormat}]`;
+            } else {
+                let chosenPlan = activeProduct.plans[selectedPlanIndex];
+                unitP = chosenPlan.price;
+                totalBDT = unitP;
+                document.getElementById('dUnitPrice').innerText = formatPrice(unitP);
+                orderSummary = `${activeProduct.name} - Plan: ${chosenPlan.label}`;
+            }
+
+            let formattedTotal = formatPrice(totalBDT);
+            document.getElementById('dTotalPrice').innerText = formattedTotal;
+
+            let msg = encodeURIComponent(`Hello, I want to order "${orderSummary}". Total Price: ${formattedTotal} (${currentCurrency})`);
+            document.getElementById('dOrderBtn').href = `https://wa.me/${whatsappNumber}?text=${msg}`;
+        }
+
+        function goBackToPrevious() {
+            document.getElementById('productDetailSection').classList.remove('active');
+            const navButtons = document.querySelectorAll('.nav-item');
+            if(lastActiveTab === 'home') switchTab('home', navButtons[0]);
+            else if(lastActiveTab === 'numMail') switchTab('numMail', navButtons[1]);
+            else if(lastActiveTab === 'proxy') switchTab('proxy', navButtons[3]);
+            else switchTab('home', navButtons[0]);
+        }
+
+        function setCategory(cat, element) {
+            currentCategory = cat;
+            showOnlyBookmarks = false;
+            document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+            element.classList.add('active');
+            renderProducts(document.getElementById('searchInput').value);
+        }
+
+        function toggleBookmarksOnly() {
+            showOnlyBookmarks = !showOnlyBookmarks;
+            switchTab('home', document.querySelectorAll('.nav-item')[0]);
+            renderProducts(document.getElementById('searchInput').value);
+        }
+
+        function filterProducts() {
+            renderProducts(document.getElementById('searchInput').value);
+        }
+
+        function toggleBookmark(id, event) {
+            if (event) event.stopPropagation();
+            if (bookmarkedIds.includes(id)) {
+                bookmarkedIds = bookmarkedIds.filter(i => i !== id);
+            } else {
+                bookmarkedIds.push(id);
+            }
+            localStorage.setItem('bookmarkedProducts', JSON.stringify(bookmarkedIds));
+            renderProducts(document.getElementById('searchInput').value);
+        }
+
+        function switchTab(tabName, element) {
+            lastActiveTab = tabName;
+            document.querySelectorAll('.section-view').forEach(sec => sec.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+
+            if(tabName === 'home') document.getElementById('homeSection').classList.add('active');
+            if(tabName === 'numMail') document.getElementById('numMailSection').classList.add('active');
+            if(tabName === 'deposit') {
+                document.getElementById('depositSection').classList.add('active');
+                renderDepositGateways();
+            }
+            if(tabName === 'proxy') document.getElementById('proxySection').classList.add('active');
+            if(tabName === 'profile') {
+                document.getElementById('profileSection').classList.add('active');
+                renderProfileSection();
+            }
+            if(tabName === 'refund') {
+                document.getElementById('refundPolicySection').classList.add('active');
+            }
+
+            if (element) element.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        renderDepositGateways();
+        updateCurrencyUI();
+        updateAuthUI();
+    </script>
+</body>
+</html>
