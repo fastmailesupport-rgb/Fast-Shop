@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fast Shop - Admin Control Panel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-main: #f1f5f9;
+            --sidebar-bg: #0f172a;
+            --card-bg: #ffffff;
+            --primary: #ff5500;
+            --primary-hover: #ea580c;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --success: #16a34a;
+            --danger: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: var(--bg-main);
+            color: var(--text-dark);
+            min-height: 100vh;
+        }
+
+        /* LOGIN SCREEN */
+        #loginScreen {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            padding: 20px;
+        }
+
+        .login-box {
+            background: #ffffff;
+            width: 100%;
+            max-width: 400px;
+            border-radius: 24px;
+            padding: 36px 28px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        .login-logo {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 85, 0, 0.1);
+            color: var(--primary);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin: 0 auto 16px;
+        }
+
+        .login-box h2 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+        .login-box p { font-size: 13px; color: var(--text-muted); margin-bottom: 24px; }
+
+        .form-group {
+            text-align: left;
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 12.5px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text-dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1.5px solid var(--border-color);
+            border-radius: 12px;
+            font-size: 14px;
+            outline: none;
+            transition: 0.2s;
+            background: #f8fafc;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(255, 85, 0, 0.1);
+        }
+
+        .btn-primary {
+            width: 100%;
+            background: linear-gradient(90deg, #ff5500, #ea580c);
+            color: #fff;
+            border: none;
+            padding: 13px;
+            border-radius: 12px;
+            font-size: 14.5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary:hover { filter: brightness(1.08); transform: translateY(-1px); }
+
+        /* DASHBOARD LAYOUT */
+        #adminDashboard {
+            display: none;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 260px;
+            background: var(--sidebar-bg);
+            color: #fff;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            padding: 24px 16px;
+            display: flex;
+            flex-direction: column;
+            z-index: 1000;
+            transition: 0.3s;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0 10px 24px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            margin-bottom: 20px;
+        }
+
+        .brand i { font-size: 24px; color: var(--primary); }
+        .brand h3 { font-size: 18px; font-weight: 700; letter-spacing: 0.5px; }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border-radius: 12px;
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 13.5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: rgba(255, 85, 0, 0.15);
+            color: #fff;
+        }
+
+        .nav-link.active {
+            background: var(--primary);
+            font-weight: 600;
+        }
+
+        .nav-link i { width: 18px; text-align: center; font-size: 15px; }
+
+        .main-content {
+            margin-left: 260px;
+            padding: 24px 30px;
+        }
+
+        .topbar {
+            background: var(--card-bg);
+            padding: 16px 24px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+        }
+
+        .topbar-left { display: flex; align-items: center; gap: 12px; }
+        .menu-toggle { display: none; background: none; border: none; font-size: 20px; cursor: pointer; color: var(--text-dark); }
+
+        .live-sync-badge {
+            background: rgba(22, 163, 74, 0.1);
+            color: var(--success);
+            border: 1px solid rgba(22, 163, 74, 0.25);
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* STATS CARDS */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 14px;
+            background: rgba(255, 85, 0, 0.1);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .stat-info h4 { font-size: 12px; color: var(--text-muted); font-weight: 500; }
+        .stat-info h2 { font-size: 22px; font-weight: 700; color: var(--text-dark); }
+
+        /* PANELS */
+        .panel-section { display: none; }
+        .panel-section.active { display: block; }
+
+        .card-box {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid var(--border-color);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .card-header h3 { font-size: 17px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+        .card-header h3 i { color: var(--primary); }
+
+        /* TABLES */
+        .table-responsive { overflow-x: auto; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 13.5px;
+        }
+
+        th {
+            background: #f8fafc;
+            padding: 12px 14px;
+            font-weight: 600;
+            color: var(--text-muted);
+            border-bottom: 1.5px solid var(--border-color);
+            white-space: nowrap;
+        }
+
+        td {
+            padding: 12px 14px;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: middle;
+        }
+
+        .inline-input {
+            width: 100px;
+            padding: 6px 10px;
+            border: 1.5px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .inline-input:focus { border-color: var(--primary); outline: none; }
+
+        .badge {
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        .badge-success { background: rgba(22, 163, 74, 0.12); color: var(--success); }
+        .badge-danger { background: rgba(239, 68, 68, 0.12); color: var(--danger); }
+        .badge-orange { background: rgba(255, 85, 0, 0.12); color: var(--primary); }
+
+        .btn-sm {
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .btn-save { background: var(--success); color: #fff; }
+        .btn-edit { background: #2563eb; color: #fff; }
+        .btn-del { background: var(--danger); color: #fff; }
+        .btn-orange { background: var(--primary); color: #fff; }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #0f172a;
+            color: #fff;
+            padding: 14px 22px;
+            border-radius: 12px;
+            font-size: 13.5px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: 0.3s;
+            z-index: 9999;
+        }
+        .toast.show { transform: translateY(0); opacity: 1; }
+        .toast i { color: #22c55e; font-size: 16px; }
+
+        @media (max-width: 992px) {
+            .sidebar { left: -260px; }
+            .sidebar.open { left: 0; }
+            .main-content { margin-left: 0; padding: 16px; }
+            .menu-toggle { display: block; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .grid-2, .grid-3 { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SECURE ADMIN LOGIN -->
+    <div id="loginScreen">
+        <div class="login-box">
+            <div class="login-logo"><i class="fa-solid fa-shield-halved"></i></div>
+            <h2>Fast Shop Admin</h2>
+            <p>Authorized Personnel Only. Sign in to manage store.</p>
+            <form onsubmit="handleAdminLogin(event)">
+                <div class="form-group">
+                    <label>Admin Username</label>
+                    <input type="text" id="adminUser" class="form-control" placeholder="admin" required>
+                </div>
+                <div class="form-group">
+                    <label>Security Password</label>
+                    <input type="password" id="adminPass" class="form-control" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn-primary"><i class="fa-solid fa-right-to-bracket"></i> Access Admin Panel</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MAIN ADMIN DASHBOARD -->
+    <div id="adminDashboard">
+        <aside class="sidebar" id="sidebar">
+            <div class="brand">
+                <i class="fa-solid fa-bolt"></i>
+                <h3>Fast Shop CMS</h3>
+            </div>
+            <ul class="nav-menu">
+                <li><a class="nav-link active" onclick="switchPanel('salesPanel', this)"><i class="fa-solid fa-chart-line"></i> Sales Report</a></li>
+                <li><a class="nav-link" onclick="switchPanel('pricePanel', this)"><i class="fa-solid fa-tags"></i> Price Management</a></li>
+                <li><a class="nav-link" onclick="switchPanel('stockPanel', this)"><i class="fa-solid fa-boxes-stacked"></i> Stock Management</a></li>
+                <li><a class="nav-link" onclick="switchPanel('categoryPanel', this)"><i class="fa-solid fa-layer-group"></i> Category Management</a></li>
+                <li><a class="nav-link" onclick="switchPanel('offerPanel', this)"><i class="fa-solid fa-percent"></i> Offer & Discount</a></li>
+                <li><a class="nav-link" onclick="switchPanel('userPanel', this)"><i class="fa-solid fa-users"></i> User Management</a></li>
+                <li><a class="nav-link" onclick="switchPanel('sheetsPanel', this)"><i class="fa-solid fa-table"></i> Google Sheets Sync</a></li>
+                <li><a class="nav-link" onclick="switchPanel('securityPanel', this)"><i class="fa-solid fa-key"></i> Admin Security</a></li>
+            </ul>
+            <div style="margin-top: auto; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.08);">
+                <a href="index.html" target="_blank" class="nav-link" style="color: #38bdf8;"><i class="fa-solid fa-arrow-up-right-from-square"></i> View Live Website</a>
+                <a class="nav-link" onclick="adminLogout()" style="color: #f87171;"><i class="fa-solid fa-power-off"></i> Logout</a>
+            </div>
+        </aside>
+
+        <div class="main-content">
+            <div class="topbar">
+                <div class="topbar-left">
+                    <button class="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')"><i class="fa-solid fa-bars"></i></button>
+                    <div>
+                        <h3 style="font-size: 16px; font-weight: 700;">Store Control Center</h3>
+                        <span style="font-size: 12px; color: var(--text-muted);">All changes sync automatically with index.html</span>
+                    </div>
+                </div>
+                <div class="live-sync-badge">
+                    <i class="fa-solid fa-circle" style="font-size: 8px;"></i> Live Sync Active
+                </div>
+            </div>
+
+            <!-- 1. SALES REPORT PANEL -->
+            <div id="salesPanel" class="panel-section active">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fa-solid fa-bangladeshi-taka-sign"></i></div>
+                        <div class="stat-info">
+                            <h4>Today's Revenue</h4>
+                            <h2 id="statTodayRev">৳ 14,850</h2>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fa-solid fa-cart-check"></i></div>
+                        <div class="stat-info">
+                            <h4>Today's Units Sold</h4>
+                            <h2 id="statTodayUnits">1,420 pcs</h2>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fa-solid fa-sack-dollar"></i></div>
+                        <div class="stat-info">
+                            <h4>Total Monthly Sales</h4>
+                            <h2>৳ 2,84,500</h2>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fa-solid fa-box"></i></div>
+                        <div class="stat-info">
+                            <h4>Total Active Stock</h4>
+                            <h2 id="statTotalStock">0</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-box">
+                    <div class="card-header">
+                        <h3><i class="fa-solid fa-receipt"></i> Daily Sales Report & Order Logs</h3>
+                        <button class="btn-sm btn-orange" onclick="addSampleSale()"><i class="fa-solid fa-plus"></i> Record Manual Sale</button>
+                    </div>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Product Name</th>
+                                    <th>Category</th>
+                                    <th>Qty Sold</th>
+                                    <th>Total Amount</th>
+                                    <th>Customer</th>
+                                </tr>
+                            </thead>
+                            <tbody id="salesTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. PRICE MANAGEMENT PANEL -->
+            <div id="pricePanel" class="panel-section">
+                <div class="card-box">
+                    <div class="card-header">
+                        <h3><i class="fa-solid fa-tags"></i> Product Price Management</h3>
+                        <button class="btn-sm btn-save" onclick="saveAllPrices()"><i class="fa-solid fa-floppy-disk"></i> Save All Prices</button>
+                    </div>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Product Name</th>
+                                    <th>Category / Mail Type</th>
+                                    <th>Current Unit Price (৳)</th>
+                                    <th>New Price (৳)</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="priceTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. STOCK MANAGEMENT PANEL -->
+            <div id="stockPanel" class="panel-section">
+                <div class="card-box">
+                    <div class="card-header">
+                        <h3><i class="fa-solid fa-plus-circle"></i> Add New Product / Stock Item</h3>
+                    </div>
+                    <form onsubmit="addNewProduct(event)" class="grid-3">
+                        <div class="form-group">
+                            <label>Product Name</label>
+                            <input type="text" id="newProdName" class="form-control" placeholder="e.g. Hotmail.com VIP" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Mail / Product Category</label>
+                            <select id="newProdCat" class="form-control" required></select>
+                        </div>
+                        <div class="form-group">
+                            <label>Unit Price (৳ BDT)</label>
+                            <input type="number" step="0.01" id="newProdPrice" class="form-control" placeholder="0.65" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Initial Stock Quantity</label>
+                            <input type="number" id="newProdStock" class="form-control" placeholder="5000" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Short Description</label>
+                            <input type="text" id="newProdDesc" class="form-control" placeholder="Instant automated delivery..." required>
+                        </div>
+                        <div class="form-group" style="display: flex; align-items: flex-end;">
+                            <button type="submit" class="btn-primary"><i class="fa-solid fa-plus"></i> Add Product to Store</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="card-box">
+                    <div class="card-header">
+                        <h3><i class="fa-solid fa-boxes-stacked"></i> Live Inventory & Stock Control</h3>
+                    </div>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Product Name</th>
+                                    <th>Category</th>
+                                    <th>Available Stock</th>
+                                    <th>Add / Update Stock</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="stockTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. CATEGORY MANAGEMENT PANEL -->
+            <div id="categoryPanel" class="panel-section">
+                <div class="card-box">
+                    <div class="card-header">
+                        <h3><i class="fa-solid fa-folder-plus"></i> Create New Mail Category</h3>
+                    </div>
+                    <form onsubmit="addNewCategory(event)" class="grid-3">
+                        <div class="form-group">
+                            <label>Category Display Name</label>
+                            <input type="text" id="newCatLabel" class="form-control" placeholder="e.g. Outlook.uk" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Category Slug / Key (Unique)</label>
+                            <input type="text" id="newCatKey" class="form-control" placeholder="e.g. outlook_uk" required>
+                        </div>
+                        <div class="form-group" style="display: flex; align-items: flex-end;">
+                            <button type="submit" class="btn-primary"><i class="fa-solid fa-plus"></i> Create Category</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="card-box">
+                    <div class="card-header">
+                        <h3><i class="fa-solid fa-layer-group"></i> Manage Num & Mail Categories</h3>
+                    </div>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Category Name</th>
+                                    <th>System Key</th>
+                                    <th>Linked Products</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="categoryTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. OFFER & DISCOUNT PANEL -->
+            <div id="offerPanel" class="panel-section">
+                <div class="card-box">
+                    <div class="card-header">
+                        <h3><i class="fa-solid fa-percent"></i> Global Store Offer & Discount Control</h3>
+                    </div>
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label>Offer Status</label>
+                            <select id="offerActive" class="form-control">
+                                <option value="false">Disabled (Normal Prices)</option>
+                                <option value="true">Active (Apply Discount to All Products)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Discount Percentage (%)</label>
+                            <input type="number" id="offerPercent" class="form-control" placeholder="e.g. 10" min="1" max="90">
+                        </div>
+                        <div class="form-group">
+                            <label>Promotional Notice Banner Text (Top Notice Bar)</label>
+                            <input type="text" id="offerBannerText" class="form-control" placeholder="Instant automated delivery & 24/7 support active">
+                        </div>
+                        <div class="form-group" style="display: flex; align-items: flex-end;">
+                            <button onclick="saveOfferSettings()" class="btn-primary"><i class="fa-solid fa-check-circle"></i> Apply Offer & Notice</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. USER MANAGEMENT PANEL -->
+            <div id="userPanel" class="panel-section">
+                <div class="card-box">
+                    <div class="card-header">
+                        <h3><i class="fa-solid fa-users"></i> Registered Users & Access Control</h3>
+                    </div>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>User Name</th>
+                                    <th>Email</th>
+                                    <th>Wallet Balance</th>
+                                    <th>Account Status</th>
+                                    <th>Access Control</th>
+                                </tr>
+                            </thead>
+                            <tbody id="userTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7. GOOGLE SHEETS INTEGRATION PANEL -->
+            <div id="sheetsPanel" class="panel-section">
+                <div class="card-box">
+                    <div class="card-header">
+                        <h3><i class="fa-solid fa-table"></i> Google Sheets Live Stock & Price Sync</h3>
+                    </div>
+                    <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 18px; line-height: 1.6;">
+                        Connect your Google Sheet (Published as CSV or Google Apps Script Web App URL) to automatically sync stock quantities and unit prices directly to your website.<br>
+                        <strong>Required CSV Columns:</strong> <code>id, name, stock, price</code>
+                    </p>
+                    <div class="form-group">
+                        <label>Google Sheet Published CSV Link / Apps Script API URL</label>
+                        <input type="url" id="googleSheetUrl" class="form-control" placeholder="https://docs.google.com/spreadsheets/d/e/2PACX-.../pub?output=csv">
+                    </div>
+                    <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                        <button onclick="syncFromGoogleSheets()" class="btn-primary" style="width: auto; padding: 12px 24px;">
+                            <i class="fa-solid fa-rotate"></i> Sync Stock Now
+                        </button>
+                        <button onclick="saveSheetUrl()" class="btn-sm btn-edit" style="padding: 12px 20px; font-size: 13.5px;">
+                            <i class="fa-solid fa-floppy-disk"></i> Save Sheet URL
+                        </button>
+                    </div>
+                    <div id="sheetSyncLog" style="margin-top: 16px; font-size: 13px; color: var(--success); font-weight: 600;"></div>
+                </div>
+            </div>
+
+            <!-- 8. ADMIN SECURITY PANEL -->
+            <div id="securityPanel" class="panel-section">
+                <div class="card-box" style="max-width: 500px;">
+                    <div class="card-header">
+                        <h3><i class="fa-solid fa-key"></i> Change Admin Credentials</h3>
+                    </div>
+                    <form onsubmit="updateAdminCredentials(event)">
+                        <div class="form-group">
+                            <label>New Admin Username</label>
+                            <input type="text" id="newAdminUser" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>New Admin Password</label>
+                            <input type="password" id="newAdminPass" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn-primary"><i class="fa-solid fa-shield-check"></i> Update Login Security</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="toast" id="toastMsg"><i class="fa-solid fa-circle-check"></i> <span id="toastText">Changes Saved!</span></div>
+
+    <script>
+        // DEFAULT CREDENTIALS
+        const DEFAULT_CRED = { user: 'admin', pass: 'fastshop2026' };
+
+        function getCredentials() {
+            return JSON.parse(localStorage.getItem('fastshop_admin_cred')) || DEFAULT_CRED;
+        }
+
+        function handleAdminLogin(e) {
+            e.preventDefault();
+            const u = document.getElementById('adminUser').value.trim();
+            const p = document.getElementById('adminPass').value.trim();
+            const cred = getCredentials();
+
+            if (u === cred.user && p === cred.pass) {
+                sessionStorage.setItem('fastshop_admin_auth', 'true');
+                initDashboard();
+            } else {
+                alert('Invalid Admin Username or Password!');
+            }
+        }
+
+        function adminLogout() {
+            sessionStorage.removeItem('fastshop_admin_auth');
+            location.reload();
+        }
+
+        // DEFAULT CATEGORIES & PRODUCTS SYNC ENGINE
+        const defaultMailCategories = [
+            { key: 'hotmail_com', label: 'Hotmail.com', icon: 'fa-brands fa-windows' },
+            { key: 'outlook_com', label: 'Outlook.com', icon: 'fa-solid fa-envelope' },
+            { key: 'outlook_fr_recovery', label: 'Outlook.Fr Recovery Add', icon: 'fa-solid fa-key' },
+            { key: 'hotmail_7days', label: 'Hotmail.com 7 Days Skip', icon: 'fa-solid fa-clock' },
+            { key: 'hotmail_fvia', label: 'Hotmail.com Fvia', icon: 'fa-solid fa-shield-halved' },
+            { key: 'hotmail_byom', label: 'Hotmail.com Byom De', icon: 'fa-solid fa-bolt' },
+            { key: 'outlook_de', label: 'Outlook.de', icon: 'fa-solid fa-globe' },
+            { key: 'outlook_at', label: 'Outlook.at', icon: 'fa-solid fa-globe' },
+            { key: 'outlook_sa', label: 'Outlook.sa', icon: 'fa-solid fa-globe' },
+            { key: 'outlook_jp', label: 'Outlook.jp', icon: 'fa-solid fa-globe' },
+            { key: 'outlook_co_th', label: 'Outlook.co.th', icon: 'fa-solid fa-globe' },
+            { key: 'outlook_co_id', label: 'Outlook.co.id', icon: 'fa-solid fa-globe' },
+            { key: 'outlook_in', label: 'Outlook.in', icon: 'fa-solid fa-globe' },
+            { key: 'outlook_kr', label: 'Outlook.kr', icon: 'fa-solid fa-globe' },
+            { key: 'outlook_lv', label: 'Outlook.lv', icon: 'fa-solid fa-globe' },
+            { key: 'outlook_ph', label: 'Outlook.ph', icon: 'fa-solid fa-globe' },
+            { key: 'outlook_sk', label: 'Outlook.sk', icon: 'fa-solid fa-globe' },
+            { key: 'outlook_com_ar', label: 'Outlook.com.ar', icon: 'fa-solid fa-globe' },
+            { key: 'outlook_co_li', label: 'Outlook.co.li', icon: 'fa-solid fa-globe' },
+            { key: 'outlook_sg', label: 'Outlook.sg', icon: 'fa-solid fa-globe' }
+        ];
+
+        const defaultProducts = [
+            { id: 1, category: 'email', mailType: 'hotmail_com', mode: 'quantity', name: "Hotmail Trusted V1", image: "https://cdn-icons-png.flaticon.com/512/732/732200.png", stockCount: 45768, stockText: "45.7k PCS", sold: "2,012 sold", unitPrice: 0.57, delivery: "Instant", shortDesc: "Hotmail trusted account with high longevity.", fullDetails: "<p>100% original and trusted Hotmail accounts.</p>" },
+            { id: 2, category: 'email', mailType: 'outlook_com', mode: 'quantity', name: "Outlook.com | OAuth2", image: "https://cdn-icons-png.flaticon.com/512/732/732221.png", stockCount: 48200, stockText: "48k PCS", sold: "1,420 sold", unitPrice: 0.48, delivery: "Instant", shortDesc: "Outlook.com | OAuth2 | 12-36 Months | Original.", fullDetails: "<p>Aged and high-trusted Outlook accounts.</p>" },
+            { id: 3, category: 'email', mailType: 'outlook_fr_recovery', mode: 'quantity', name: "Outlook.Fr Recovery Add", image: "https://cdn-icons-png.flaticon.com/512/732/732221.png", stockCount: 41000, stockText: "41k PCS", sold: "1,050 sold", unitPrice: 0.80, delivery: "Instant", shortDesc: "Outlook.Fr French domain accounts with Recovery added.", fullDetails: "<p>Premium French domain (.fr) Outlook accounts.</p>" },
+            { id: 4, category: 'email', mailType: 'hotmail_7days', mode: 'quantity', name: "Hotmail 7 Days Skip", image: "https://cdn-icons-png.flaticon.com/512/732/732200.png", stockCount: 15000, stockText: "15k PCS", sold: "890 sold", unitPrice: 0.75, delivery: "Instant", shortDesc: "Hotmail accounts with 7 days security check skipped.", fullDetails: "<p>Hotmail accounts pre-configured to bypass 7-day security lock.</p>" },
+            { id: 5, category: 'email', mailType: 'hotmail_fvia', mode: 'quantity', name: "Hotmail.com Fvia", image: "https://cdn-icons-png.flaticon.com/512/732/732200.png", stockCount: 32000, stockText: "32k PCS", sold: "1,850 sold", unitPrice: 0.65, delivery: "Instant", shortDesc: "Hotmail Fvia verified series accounts.", fullDetails: "<p>High quality Hotmail Fvia batch verified accounts.</p>" },
+            { id: 6, category: 'email', mailType: 'hotmail_byom', mode: 'quantity', name: "Hotmail.com Byom De", image: "https://cdn-icons-png.flaticon.com/512/732/732200.png", stockCount: 22000, stockText: "22k PCS", sold: "740 sold", unitPrice: 0.70, delivery: "Instant", shortDesc: "Hotmail Byom De specialized series.", fullDetails: "<p>Specialized Hotmail Byom De accounts.</p>" },
+            { id: 7, category: 'email', mailType: 'outlook_de', mode: 'quantity', name: "Outlook.de Germany", image: "https://cdn-icons-png.flaticon.com/512/732/732221.png", stockCount: 19000, stockText: "19k PCS", sold: "520 sold", unitPrice: 0.85, delivery: "Instant", shortDesc: "German domain Outlook.de accounts.", fullDetails: "<p>Official Outlook.de German regional domain accounts.</p>" },
+            { id: 8, category: 'email', mailType: 'outlook_at', mode: 'quantity', name: "Outlook.at Austria", image: "https://cdn-icons-png.flaticon.com/512/732/732221.png", stockCount: 14000, stockText: "14k PCS", sold: "310 sold", unitPrice: 0.90, delivery: "Instant", shortDesc: "Austrian regional Outlook.at accounts.", fullDetails: "<p>Outlook.at Austrian domain accounts.</p>" },
+            { id: 9, category: 'email', mailType: 'outlook_sa', mode: 'quantity', name: "Outlook.sa Saudi", image: "https://cdn-icons-png.flaticon.com/512/732/732221.png", stockCount: 12000, stockText: "12k PCS", sold: "410 sold", unitPrice: 0.95, delivery: "Instant", shortDesc: "Saudi Arabian regional Outlook.sa accounts.", fullDetails: "<p>Outlook.sa domain accounts.</p>" },
+            { id: 10, category: 'email', mailType: 'outlook_jp', mode: 'quantity', name: "Outlook.jp Japan", image: "https://cdn-icons-png.flaticon.com/512/732/732221.png", stockCount: 16000, stockText: "16k PCS", sold: "680 sold", unitPrice: 0.88, delivery: "Instant", shortDesc: "Japanese regional Outlook.jp accounts.", fullDetails: "<p>Outlook.jp Japan domain clean accounts.</p>" },
+            { id: 11, category: 'email', mailType: 'outlook_co_th', mode: 'quantity', name: "Outlook.co.th Thailand", image: "https://cdn-icons-png.flaticon.com/512/732/732221.png", stockCount: 11000, stockText: "11k PCS", sold: "290 sold", unitPrice: 0.75, delivery: "Instant", shortDesc: "Thai regional Outlook.co.th accounts.", fullDetails: "<p>Outlook.co.th Thailand domain accounts.</p>" },
+            { id: 12, category: 'email', mailType: 'outlook_co_id', mode: 'quantity', name: "Outlook.co.id Indonesia", image: "https://cdn-icons-png.flaticon.com/512/732/732221.png", stockCount: 13500, stockText: "13.5k PCS", sold: "450 sold", unitPrice: 0.72, delivery: "Instant", shortDesc: "Indonesian regional Outlook.co.id accounts.", fullDetails: "<p>Outlook.co.id Indonesia domain accounts.</p>" },
+            { id: 13, category: 'email', mailType: 'outlook_in', mode: 'quantity', name: "Outlook.in India", image: "https://cdn-icons-png.flaticon.com/512/732/732221.png", stockCount: 25000, stockText: "25k PCS", sold: "1,120 sold", unitPrice: 0.60, delivery: "Instant", shortDesc: "Indian regional Outlook.in accounts.", fullDetails: "<p>Outlook.in Indian regional domain accounts.</p>" },
+            { id: 14, category: 'email', mailType: 'outlook_kr', mode: 'quantity', name: "Outlook.kr Korea", image: "https://cdn-icons-png.flaticon.com/512/732/732221.png", stockCount: 9500, stockText: "9.5k PCS", sold: "210 sold", unitPrice: 0.92, delivery: "Instant", shortDesc: "Korean regional Outlook.kr accounts.", fullDetails: "<p>Outlook.kr South Korea domain accounts.</p>" },
+            { id: 15, category: 'email', mailType: 'outlook_lv', mode: 'quantity', name: "Outlook.lv Latvia", image: "https://cdn-icons-png.flaticon.com/512/732/732221.png", stockCount: 8000, stockText: "8k PCS", sold: "180 sold", unitPrice: 0.85, delivery: "Instant", shortDesc: "Latvian regional Outlook.lv accounts.", fullDetails: "<p>Outlook.lv Latvia domain accounts.</p>" },
+            { id: 16, category: 'email', mailType: 'outlook_ph', mode: 'quantity', name: "Outlook.ph Philippines", image: "https://cdn-icons-png.flaticon.com/512/732/732221.png", stockCount: 10500, stockText: "10.5k PCS", sold: "340 sold", unitPrice: 0.70, delivery: "Instant", shortDesc: "Philippine regional Outlook.ph accounts.", fullDetails: "<p>Outlook.ph Philippines domain accounts.</p>" },
+            { id: 17, category: 'email', mailType: 'outlook_sk', mode: 'quantity', name: "Outlook.sk Slovakia", image: "https://cdn-icons-png.flaticon.com/512/732/732221.png", stockCount: 7500, stockText: "7.5k PCS", sold: "150 sold", unitPrice: 0.88, delivery: "Instant", shortDesc: "Slovak regional Outlook.sk accounts.", fullDetails: "<p>Outlook.sk Slovakia domain accounts.</p>" },
+            { id: 18, category: 'email', mailType: 'outlook_com_ar', mode: 'quantity', name: "Outlook.com.ar Argentina", image: "https://cdn-icons-png.flaticon.com/512/732/732221.png", stockCount: 9000, stockText: "9k PCS", sold: "230 sold", unitPrice: 0.78, delivery: "Instant", shortDesc: "Argentine regional Outlook.com.ar accounts.", fullDetails: "<p>Outlook.com.ar Argentina domain accounts.</p>" },
+            { id: 19, category: 'email', mailType: 'outlook_co_li', mode: 'quantity', name: "Outlook.co.li Liechtenstein", image: "https://cdn-icons-png.flaticon.com/512/732/732221.png", stockCount: 6000, stockText: "6k PCS", sold: "95 sold", unitPrice: 0.99, delivery: "Instant", shortDesc: "Liechtenstein regional Outlook.co.li accounts.", fullDetails: "<p>Outlook.co.li Liechtenstein domain accounts.</p>" },
+            { id: 20, category: 'email', mailType: 'outlook_sg', mode: 'quantity', name: "Outlook.sg Singapore", image: "https://cdn-icons-png.flaticon.com/512/732/732221.png", stockCount: 14500, stockText: "14.5k PCS", sold: "560 sold", unitPrice: 0.85, delivery: "Instant", shortDesc: "Singapore regional Outlook.sg accounts.", fullDetails: "<p>Outlook.sg Singapore domain clean accounts.</p>" },
+            { id: 21, category: 'proxy', proxyType: 'gp', mode: 'plan', planTitle: "SELECT DATA PLAN", name: "GP Proxy 9Proxy", image: "https://cdn-icons-png.flaticon.com/512/1006/1006771.png", stockCount: 999, stockText: "100 MB - 1GB", sold: "408 sold", unitPrice: 15.00, delivery: "Instant / within 1 hour", shortDesc: "High speed clean residential GP Proxy CD Key / Sub User.", plans: [{ label: "100 MB", price: 15.00 }, { label: "200 MB", price: 25.00 }, { label: "500 MB", price: 60.00 }, { label: "1 GB", price: 115.00 }], fullDetails: "<p>Original GP Proxy residential IP packages.</p>" },
+            { id: 22, category: 'proxy', proxyType: 'ip', mode: 'plan', planTitle: "SELECT IP PLAN", name: "Dedicated IP Proxy", image: "https://cdn-icons-png.flaticon.com/512/2885/2885437.png", stockCount: 450, stockText: "Static IP", sold: "230 sold", unitPrice: 25.00, delivery: "Instant", shortDesc: "Clean static dedicated IP Proxy for multi-login.", plans: [{ label: "1 Month", price: 25.00 }, { label: "3 Months", price: 70.00 }], fullDetails: "<p>Clean dedicated static IP proxy.</p>" },
+            { id: 23, category: 'proxy', proxyType: 'vpn', mode: 'plan', planTitle: "SELECT DAYS / PLAN", name: "NordVPN Premium", image: "https://cdn-icons-png.flaticon.com/512/6124/6124998.png", stockCount: 500, stockText: "7 - 30 Days", sold: "356 sold", unitPrice: 20.00, delivery: "Instant / within 1 hour", shortDesc: "NordVPN Private & Shared premium subscription.", plans: [{ label: "7 Days", price: 20.00 }, { label: "30 Days", price: 120.00 }], fullDetails: "<p>High-speed NordVPN premium accounts.</p>" },
+            { id: 101, category: 'social', mode: 'plan', planTitle: "SUBSCRIPTION PLAN", name: "Canva Pro – 1 Year", image: "https://cdn-icons-png.flaticon.com/512/3855/3855909.png", stockCount: 1200, stockText: "1 Year", sold: "940 sold", unitPrice: 350.00, delivery: "Instant", shortDesc: "Canva Pro official team invite for 1 full year access.", plans: [{ label: "1 Year Access", price: 350.00 }], fullDetails: "<p>Get 1 full year of Canva Pro access.</p>" },
+            { id: 102, category: 'social', mode: 'plan', planTitle: "SUBSCRIPTION PLAN", name: "Google Storage (Gmail) – 2TB – 1 Year", image: "https://cdn-icons-png.flaticon.com/512/281/281764.png", stockCount: 800, stockText: "2TB / 1 Yr", sold: "620 sold", unitPrice: 1200.00, delivery: "Instant", shortDesc: "Google One 2TB cloud storage upgrade on your personal Gmail.", plans: [{ label: "2TB - 1 Year", price: 1200.00 }], fullDetails: "<p>Upgrade your Google account storage to 2TB.</p>" },
+            { id: 103, category: 'social', mode: 'plan', planTitle: "SUBSCRIPTION PLAN", name: "Gemini Pro (Veo 3) – 1 Year", image: "https://www.gstatic.com/lamda/images/gemini_favicon_f06b31541cfa25732c25a.png", stockCount: 450, stockText: "1 Year", sold: "310 sold", unitPrice: 1500.00, delivery: "Instant", shortDesc: "Gemini Advanced / Pro subscription including Veo 3 features for 1 year.", plans: [{ label: "1 Year Plan", price: 1500.00 }], fullDetails: "<p>Full access to Gemini Pro and Veo 3.</p>" },
+            { id: 104, category: 'social', mode: 'plan', planTitle: "SUBSCRIPTION PLAN", name: "YouTube Premium – 1 Month", image: "https://cdn-icons-png.flaticon.com/512/1384/1384060.png", stockCount: 2500, stockText: "1 Month", sold: "1,820 sold", unitPrice: 80.00, delivery: "Instant", shortDesc: "YouTube Premium 1 month individual / family invite.", plans: [{ label: "1 Month", price: 80.00 }], fullDetails: "<p>Ad-free YouTube streaming.</p>" },
+            { id: 105, category: 'social', mode: 'plan', planTitle: "SUBSCRIPTION PLAN", name: "Netflix Premium – 1 Month", image: "https://cdn-icons-png.flaticon.com/512/5977/5977590.png", stockCount: 1500, stockText: "4K UHD", sold: "2,400 sold", unitPrice: 150.00, delivery: "Instant", shortDesc: "Netflix Premium 4K UHD private profile for 1 month.", plans: [{ label: "1 Month Profile", price: 150.00 }], fullDetails: "<p>Enjoy ultra HD streaming on Netflix.</p>" },
+            { id: 106, category: 'social', mode: 'plan', planTitle: "SUBSCRIPTION PLAN", name: "CapCut Pro – Full Access – 1 Month", image: "https://cdn-icons-png.flaticon.com/512/6125/6125884.png", stockCount: 950, stockText: "1 Month", sold: "710 sold", unitPrice: 200.00, delivery: "Instant", shortDesc: "CapCut Pro full feature unlocked account for 1 month.", plans: [{ label: "1 Month Access", price: 200.00 }], fullDetails: "<p>Access all CapCut Pro video editing effects.</p>" },
+            { id: 107, category: 'social', mode: 'plan', planTitle: "SUBSCRIPTION PLAN", name: "ChatGPT Plus – 1 Month", image: "https://cdn-icons-png.flaticon.com/512/6125/6125016.png", stockCount: 600, stockText: "GPT-4o", sold: "1,150 sold", unitPrice: 450.00, delivery: "Instant", shortDesc: "ChatGPT Plus shared/private account access with GPT-4o for 1 month.", plans: [{ label: "1 Month", price: 450.00 }], fullDetails: "<p>Unlock GPT-4o and DALL-E 3.</p>" },
+            { id: 108, category: 'social', mode: 'plan', planTitle: "SUBSCRIPTION PLAN", name: "Cloud AI – 1 Month", image: "https://cdn-icons-png.flaticon.com/512/3855/3855841.png", stockCount: 400, stockText: "1 Month", sold: "290 sold", unitPrice: 300.00, delivery: "Instant", shortDesc: "Cloud AI premium subscription plan for 1 month.", plans: [{ label: "1 Month", price: 300.00 }], fullDetails: "<p>High performance Cloud AI assistant.</p>" },
+            { id: 109, category: 'social', mode: 'plan', planTitle: "SUBSCRIPTION PLAN", name: "Amazon Prime – 1 Month", image: "https://cdn-icons-png.flaticon.com/512/5977/5977585.png", stockCount: 700, stockText: "Prime Video", sold: "480 sold", unitPrice: 100.00, delivery: "Instant", shortDesc: "Amazon Prime Video official account access for 1 month.", plans: [{ label: "1 Month", price: 100.00 }], fullDetails: "<p>Stream award-winning movies on Prime Video.</p>" }
+        ];
+
+        const defaultUsers = [
+            { id: 1, name: "অন্তর কুমার", email: "antorsaha1@gmail.com", balance: 2104.81, status: "Active" },
+            { id: 2, name: "Tanvir Ahmed", email: "tanvir.bd@gmail.com", balance: 850.00, status: "Active" },
+            { id: 3, name: "Sajib Hasan", email: "sajib.pro@gmail.com", balance: 120.50, status: "Active" },
+            { id: 4, name: "Rafiul Islam", email: "rafi99@gmail.com", balance: 0.00, status: "Blocked" }
+        ];
+
+        const defaultSales = [
+            { date: "2026-11-18", product: "Hotmail Trusted V1", category: "Hotmail.com", qty: 500, amount: 285.00, customer: "antorsaha1@gmail.com" },
+            { date: "2026-11-18", product: "Outlook.Fr Recovery Add", category: "Outlook.Fr Recovery Add", qty: 400, amount: 320.00, customer: "tanvir.bd@gmail.com" },
+            { date: "2026-11-18", product: "Canva Pro – 1 Year", category: "Social Subscription", qty: 2, amount: 700.00, customer: "sajib.pro@gmail.com" },
+            { date: "2026-11-17", product: "GP Proxy 9Proxy (1 GB)", category: "Proxy Items", qty: 5, amount: 575.00, customer: "antorsaha1@gmail.com" }
+        ];
+
+        // STORAGE HELPERS
+        function getProducts() {
+            let saved = localStorage.getItem('fastshop_products');
+            if (!saved) {
+                localStorage.setItem('fastshop_products', JSON.stringify(defaultProducts));
+                return defaultProducts;
+            }
+            return JSON.parse(saved);
+        }
+
+        function saveProducts(list) {
+            list.forEach(p => {
+                if (p.mode === 'quantity') {
+                    p.stockText = p.stockCount >= 1000 ? `${(p.stockCount / 1000).toFixed(1)}k PCS` : `${p.stockCount} PCS`;
+                }
+            });
+            localStorage.setItem('fastshop_products', JSON.stringify(list));
+            renderAllAdminTables();
+        }
+
+        function getCategories() {
+            let saved = localStorage.getItem('fastshop_mail_categories');
+            if (!saved) {
+                localStorage.setItem('fastshop_mail_categories', JSON.stringify(defaultMailCategories));
+                return defaultMailCategories;
+            }
+            return JSON.parse(saved);
+        }
+
+        function saveCategories(cats) {
+            localStorage.setItem('fastshop_mail_categories', JSON.stringify(cats));
+            renderAllAdminTables();
+        }
+
+        function showToast(msg) {
+            const t = document.getElementById('toastMsg');
+            document.getElementById('toastText').innerText = msg;
+            t.classList.add('show');
+            setTimeout(() => t.classList.remove('show'), 3000);
+        }
+
+        function switchPanel(panelId, el) {
+            document.querySelectorAll('.panel-section').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            document.getElementById(panelId).classList.add('active');
+            if (el) el.classList.add('active');
+            document.getElementById('sidebar').classList.remove('open');
+        }
+
+        // RENDER TABLES
+        function renderAllAdminTables() {
+            const products = getProducts();
+            const categories = getCategories();
+
+            // Total Stock Stat
+            const totalStock = products.reduce((acc, p) => acc + Number(p.stockCount || 0), 0);
+            document.getElementById('statTotalStock').innerText = totalStock.toLocaleString();
+
+            // 1. Price Management Table
+            const priceBody = document.getElementById('priceTableBody');
+            priceBody.innerHTML = products.map(p => `
+                <tr>
+                    <td>#${p.id}</td>
+                    <td><strong>${p.name}</strong></td>
+                    <td><span class="badge badge-orange">${p.mailType || p.category}</span></td>
+                    <td>৳ ${Number(p.unitPrice).toFixed(2)}</td>
+                    <td><input type="number" step="0.01" class="inline-input price-edit-input" data-id="${p.id}" value="${p.unitPrice}"></td>
+                    <td><button class="btn-sm btn-save" onclick="updateSinglePrice(${p.id})"><i class="fa-solid fa-check"></i> Update</button></td>
+                </tr>
+            `).join('');
+
+            // 2. Stock Management Table & Dropdown
+            const catSelect = document.getElementById('newProdCat');
+            catSelect.innerHTML = categories.map(c => `<option value="${c.key}">${c.label}</option>`).join('') +
+                `<option value="proxy">Proxy Items</option><option value="social">Social Subscription</option>`;
+
+            const stockBody = document.getElementById('stockTableBody');
+            stockBody.innerHTML = products.map(p => `
+                <tr>
+                    <td><strong>${p.name}</strong></td>
+                    <td>${p.mailType || p.category}</td>
+                    <td><span class="badge ${p.stockCount > 0 ? 'badge-success' : 'badge-danger'}">${Number(p.stockCount).toLocaleString()} pcs</span></td>
+                    <td>
+                        <div style="display:flex; gap:6px; align-items:center;">
+                            <input type="number" class="inline-input" id="stockInput_${p.id}" value="${p.stockCount}">
+                            <button class="btn-sm btn-edit" onclick="setExactStock(${p.id})">Set</button>
+                            <button class="btn-sm btn-save" onclick="addStockQty(${p.id}, 100)">+100</button>
+                        </div>
+                    </td>
+                    <td>
+                        <button class="btn-sm btn-del" onclick="deleteProduct(${p.id})"><i class="fa-solid fa-trash"></i></button>
+                    </td>
+                </tr>
+            `).join('');
+
+            // 3. Category Management Table
+            const catBody = document.getElementById('categoryTableBody');
+            catBody.innerHTML = categories.map((c, idx) => {
+                const count = products.filter(p => p.mailType === c.key).length;
+                return `
+                    <tr>
+                        <td>${idx + 1}</td>
+                        <td><input type="text" class="inline-input" style="width:200px;" id="catLabel_${idx}" value="${c.label}"></td>
+                        <td><code>${c.key}</code></td>
+                        <td>${count} items</td>
+                        <td>
+                            <button class="btn-sm btn-save" onclick="editCategory(${idx})"><i class="fa-solid fa-save"></i> Save</button>
+                            <button class="btn-sm btn-del" onclick="deleteCategory(${idx})"><i class="fa-solid fa-trash"></i></button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+
+            // 4. Offer Settings Load
+            const offer = JSON.parse(localStorage.getItem('fastshop_offer')) || { active: false, percent: 0, bannerText: "Instant automated delivery & 24/7 support active" };
+            document.getElementById('offerActive').value = String(offer.active);
+            document.getElementById('offerPercent').value = offer.percent;
+            document.getElementById('offerBannerText').value = offer.bannerText;
+
+            // 5. User Management Table
+            let users = JSON.parse(localStorage.getItem('fastshop_users'));
+            if (!users) {
+                users = defaultUsers;
+                localStorage.setItem('fastshop_users', JSON.stringify(users));
+            }
+            document.getElementById('userTableBody').innerHTML = users.map((u, idx) => `
+                <tr>
+                    <td><strong>${u.name}</strong></td>
+                    <td>${u.email}</td>
+                    <td>৳ ${u.balance.toFixed(2)}</td>
+                    <td><span class="badge ${u.status === 'Active' ? 'badge-success' : 'badge-danger'}">${u.status}</span></td>
+                    <td>
+                        <button class="btn-sm ${u.status === 'Active' ? 'btn-del' : 'btn-save'}" onclick="toggleUserAccess(${idx})">
+                            ${u.status === 'Active' ? 'Block Access' : 'Unblock Access'}
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+
+            // 6. Sales Report Table
+            let sales = JSON.parse(localStorage.getItem('fastshop_sales'));
+            if (!sales) {
+                sales = defaultSales;
+                localStorage.setItem('fastshop_sales', JSON.stringify(sales));
+            }
+            document.getElementById('salesTableBody').innerHTML = sales.map(s => `
+                <tr>
+                    <td>${s.date}</td>
+                    <td><strong>${s.product}</strong></td>
+                    <td>${s.category}</td>
+                    <td>${s.qty}</td>
+                    <td><strong>৳ ${Number(s.amount).toFixed(2)}</strong></td>
+                    <td>${s.customer}</td>
+                </tr>
+            `).join('');
+        }
+
+        // PRICE ACTIONS
+        function updateSinglePrice(id) {
+            const products = getProducts();
+            const input = document.querySelector(`.price-edit-input[data-id="${id}"]`);
+            const newPrice = parseFloat(input.value);
+            if (isNaN(newPrice) || newPrice < 0) return alert('Invalid Price');
+            const prod = products.find(p => p.id === id);
+            if (prod) {
+                prod.unitPrice = newPrice;
+                if (prod.plans && prod.plans.length === 1) prod.plans[0].price = newPrice;
+            }
+            saveProducts(products);
+            showToast(`Price updated for ${prod.name}!`);
+        }
+
+        function saveAllPrices() {
+            const products = getProducts();
+            document.querySelectorAll('.price-edit-input').forEach(inp => {
+                const id = Number(inp.dataset.id);
+                const val = parseFloat(inp.value);
+                const prod = products.find(p => p.id === id);
+                if (prod && !isNaN(val) && val >= 0) {
+                    prod.unitPrice = val;
+                    if (prod.plans && prod.plans.length === 1) prod.plans[0].price = val;
+                }
+            });
+            saveProducts(products);
+            showToast('All product prices synced to live website!');
+        }
+
+        // STOCK ACTIONS
+        function setExactStock(id) {
+            const products = getProducts();
+            const val = parseInt(document.getElementById(`stockInput_${id}`).value);
+            if (isNaN(val) || val < 0) return alert('Invalid stock quantity');
+            const prod = products.find(p => p.id === id);
+            if (prod) prod.stockCount = val;
+            saveProducts(products);
+            showToast('Stock updated successfully!');
+        }
+
+        function addStockQty(id, qty) {
+            const products = getProducts();
+            const prod = products.find(p => p.id === id);
+            if (prod) prod.stockCount = Number(prod.stockCount) + qty;
+            saveProducts(products);
+            showToast(`Added +${qty} stock to ${prod.name}!`);
+        }
+
+        function addNewProduct(e) {
+            e.preventDefault();
+            const products = getProducts();
+            const name = document.getElementById('newProdName').value.trim();
+            const catVal = document.getElementById('newProdCat').value;
+            const price = parseFloat(document.getElementById('newProdPrice').value);
+            const stock = parseInt(document.getElementById('newProdStock').value);
+            const desc = document.getElementById('newProdDesc').value.trim();
+
+            const isSpecial = (catVal === 'proxy' || catVal === 'social');
+            const newProd = {
+                id: Date.now(),
+                category: isSpecial ? catVal : 'email',
+                mailType: isSpecial ? undefined : catVal,
+                mode: isSpecial ? 'plan' : 'quantity',
+                planTitle: isSpecial ? 'SUBSCRIPTION PLAN' : undefined,
+                plans: isSpecial ? [{ label: 'Standard Plan', price: price }] : undefined,
+                name: name,
+                image: catVal.includes('hotmail') ? 'https://cdn-icons-png.flaticon.com/512/732/732200.png' : 'https://cdn-icons-png.flaticon.com/512/732/732221.png',
+                stockCount: stock,
+                stockText: stock >= 1000 ? `${(stock/1000).toFixed(1)}k PCS` : `${stock} PCS`,
+                sold: "0 sold",
+                unitPrice: price,
+                delivery: "Instant",
+                shortDesc: desc,
+                fullDetails: `<p>${desc}</p>`
+            };
+
+            products.push(newProd);
+            saveProducts(products);
+            e.target.reset();
+            showToast('New product added & published to store!');
+        }
+
+        function deleteProduct(id) {
+            if (!confirm('Are you sure you want to remove this product?')) return;
+            const products = getProducts().filter(p => p.id !== id);
+            saveProducts(products);
+            showToast('Product removed from store.');
+        }
+
+        // CATEGORY ACTIONS
+        function addNewCategory(e) {
+            e.preventDefault();
+            const cats = getCategories();
+            const label = document.getElementById('newCatLabel').value.trim();
+            const key = document.getElementById('newCatKey').value.trim().toLowerCase().replace(/\s+/g, '_');
+
+            if (cats.some(c => c.key === key)) return alert('Category key already exists!');
+            cats.push({ key: key, label: label, icon: 'fa-solid fa-globe' });
+            saveCategories(cats);
+            e.target.reset();
+            showToast(`Category "${label}" added to Num & Mail section!`);
+        }
+
+        function editCategory(idx) {
+            const cats = getCategories();
+            const newLabel = document.getElementById(`catLabel_${idx}`).value.trim();
+            if (!newLabel) return;
+            cats[idx].label = newLabel;
+            saveCategories(cats);
+            showToast('Category updated!');
+        }
+
+        function deleteCategory(idx) {
+            if (!confirm('Delete this category button from website?')) return;
+            const cats = getCategories();
+            cats.splice(idx, 1);
+            saveCategories(cats);
+            showToast('Category deleted!');
+        }
+
+        // OFFER ACTIONS
+        function saveOfferSettings() {
+            const offer = {
+                active: document.getElementById('offerActive').value === 'true',
+                percent: parseFloat(document.getElementById('offerPercent').value) || 0,
+                bannerText: document.getElementById('offerBannerText').value.trim() || "Instant automated delivery & 24/7 support active"
+            };
+            localStorage.setItem('fastshop_offer', JSON.stringify(offer));
+            showToast('Offer & Banner settings live on website!');
+        }
+
+        // USER ACTIONS
+        function toggleUserAccess(idx) {
+            const users = JSON.parse(localStorage.getItem('fastshop_users'));
+            users[idx].status = users[idx].status === 'Active' ? 'Blocked' : 'Active';
+            localStorage.setItem('fastshop_users', JSON.stringify(users));
+            renderAllAdminTables();
+            showToast(`User access updated to ${users[idx].status}`);
+        }
+
+        // SALES RECORD
+        function addSampleSale() {
+            const sales = JSON.parse(localStorage.getItem('fastshop_sales')) || defaultSales;
+            const today = new Date().toISOString().split('T')[0];
+            sales.unshift({
+                date: today,
+                product: "Outlook.com | OAuth2",
+                category: "Outlook.com",
+                qty: 250,
+                amount: 120.00,
+                customer: "client_order@gmail.com"
+            });
+            localStorage.setItem('fastshop_sales', JSON.stringify(sales));
+            renderAllAdminTables();
+            showToast('New sale recorded in report!');
+        }
+
+        // GOOGLE SHEETS SYNC
+        function saveSheetUrl() {
+            const url = document.getElementById('googleSheetUrl').value.trim();
+            localStorage.setItem('fastshop_sheet_url', url);
+            showToast('Google Sheet URL saved!');
+        }
+
+        async function syncFromGoogleSheets() {
+            const url = document.getElementById('googleSheetUrl').value.trim();
+            if (!url) return alert('Please enter your published Google Sheet CSV URL first.');
+            localStorage.setItem('fastshop_sheet_url', url);
+
+            const log = document.getElementById('sheetSyncLog');
+            log.innerText = 'Connecting to Google Sheets...';
+
+            try {
+                const res = await fetch(url);
+                if (!res.ok) throw new Error('Failed to fetch sheet data');
+                const csvText = await res.text();
+                const rows = csvText.split('\n').map(r => r.split(','));
+                const products = getProducts();
+                let updatedCount = 0;
+
+                for (let i = 1; i < rows.length; i++) {
+                    const cols = rows[i];
+                    if (cols.length >= 3) {
+                        const id = parseInt(cols[0].trim());
+                        const stock = parseInt(cols[2].trim());
+                        const price = cols[3] ? parseFloat(cols[3].trim()) : null;
+
+                        const prod = products.find(p => p.id === id);
+                        if (prod) {
+                            if (!isNaN(stock)) prod.stockCount = stock;
+                            if (price !== null && !isNaN(price)) prod.unitPrice = price;
+                            updatedCount++;
+                        }
+                    }
+                }
+
+                saveProducts(products);
+                log.innerText = `Success! Synced ${updatedCount} products from Google Sheets at ${new Date().toLocaleTimeString()}.`;
+                showToast(`Synced ${updatedCount} products from Google Sheets!`);
+            } catch (err) {
+                log.style.color = '#ef4444';
+                log.innerText = 'Error syncing sheet. Ensure the Google Sheet is "Published to the web" as CSV.';
+            }
+        }
+
+        // SECURITY
+        function updateAdminCredentials(e) {
+            e.preventDefault();
+            const u = document.getElementById('newAdminUser').value.trim();
+            const p = document.getElementById('newAdminPass').value.trim();
+            localStorage.setItem('fastshop_admin_cred', JSON.stringify({ user: u, pass: p }));
+            showToast('Admin username & password updated!');
+            e.target.reset();
+        }
+
+        function initDashboard() {
+            document.getElementById('loginScreen').style.display = 'none';
+            document.getElementById('adminDashboard').style.display = 'block';
+            const savedUrl = localStorage.getItem('fastshop_sheet_url');
+            if (savedUrl) document.getElementById('googleSheetUrl').value = savedUrl;
+            renderAllAdminTables();
+        }
+
+        if (sessionStorage.getItem('fastshop_admin_auth') === 'true') {
+            initDashboard();
+        }
+    </script>
+</body>
+</html>
