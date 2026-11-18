@@ -3082,5 +3082,59 @@
         updateCurrencyUI();
         updateAuthUI();
     </script>
+    <!-- ADMIN PANEL LIVE SYNC BRIDGE (Do not change design) -->
+<script>
+(function() {
+    function syncWithAdminPanel() {
+        // 1. Sync Products (Prices & Stocks)
+        const savedProducts = localStorage.getItem('fastshop_products');
+        if (savedProducts && typeof products !== 'undefined') {
+            const parsed = JSON.parse(savedProducts);
+            const offer = JSON.parse(localStorage.getItem('fastshop_offer')) || { active: false, percent: 0 };
+            
+            products.length = 0;
+            parsed.forEach(item => {
+                let finalItem = Object.assign({}, item);
+                if (offer.active && offer.percent > 0) {
+                    finalItem.unitPrice = Number((finalItem.unitPrice * (1 - offer.percent / 100)).toFixed(2));
+                }
+                products.push(finalItem);
+            });
+        }
+
+        // 2. Sync Notice & Offer Banner
+        const offerData = JSON.parse(localStorage.getItem('fastshop_offer'));
+        if (offerData) {
+            const noticeSpan = document.querySelector('.notice-left span');
+            if (noticeSpan) {
+                noticeSpan.innerText = offerData.active && offerData.percent > 0 
+                    ? `🔥 ${offerData.percent}% OFF! ${offerData.bannerText}` 
+                    : offerData.bannerText;
+            }
+        }
+
+        // 3. Sync Mail Categories Bar
+        const savedCats = localStorage.getItem('fastshop_mail_categories');
+        const catBar = document.querySelector('.mail-category-bar');
+        if (savedCats && catBar) {
+            const cats = JSON.parse(savedCats);
+            let html = `<button class="mail-cat-btn ${currentMailCategory === 'all' ? 'active' : ''}" onclick="filterMailCategory('all', this)"><i class="fa-solid fa-border-all"></i> All Mail</button>`;
+            cats.forEach(c => {
+                html += `<button class="mail-cat-btn ${currentMailCategory === c.key ? 'active' : ''}" onclick="filterMailCategory('${c.key}', this)"><i class="${c.icon || 'fa-solid fa-globe'}"></i> ${c.label}</button>`;
+            });
+            catBar.innerHTML = html;
+        }
+
+        // 4. Re-render active views without altering UI
+        if (typeof renderProducts === 'function') {
+            const searchVal = document.getElementById('searchInput') ? document.getElementById('searchInput').value : '';
+            renderProducts(searchVal);
+        }
+    }
+
+    window.addEventListener('DOMContentLoaded', syncWithAdminPanel);
+    window.addEventListener('storage', syncWithAdminPanel);
+})();
+</script>
 </body>
 </html>
